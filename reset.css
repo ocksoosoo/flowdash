@@ -1,17 +1,29 @@
-* {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
+/* 박스 크기 통일 */
+html {
+  scroll-behavior: smooth;
+}
+/* 링크 클릭 시 부드럽게 스크롤 하는거 */
+ul,
+ol,
+li {
+  list-style: none;
+}
+/* 리스트 점박이 제거 */
 a {
-    list-style: none;
-    color: inherit;
+  color: inherit;
+  text-decoration: none;
 }
-
-::after,
-::before {
-    margin: 0;
-    padding: 0;
+/* 링크 파랑색이랑 밑줄 삭제하는겨 */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
+/* 이미지 깨짐 방지 (너비 100 맥스 너비로 변경) */
