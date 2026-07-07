@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+a {
+    list-style: none;
+    color: inherit;
+}
+
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+}
