@@ -134,8 +134,10 @@
         </section>
         <!-- controls-->
         <section class="td-controls">
+          <!--left-->
           <div class="td-controls__group td-controls__group--left">
             <div class="td-controls__search-box">
+              <!--search box-->
               <input
                 type="text"
                 class="td-controls__search-input"
@@ -156,6 +158,7 @@
                 </svg>
               </button>
             </div>
+            <!--priority-->
             <div class="td-controls__filter">
               <select class="td-controls__select">
                 <option value="all">전체 기간</option>
@@ -163,6 +166,7 @@
                 <option value="week">최근 7일</option>
               </select>
             </div>
+            <!--left-->
             <div class="td-controls__filter">
               <select class="td-controls__select">
                 <option value="all">전체 우선순위</option>
@@ -171,6 +175,7 @@
                 <option value="high">높음</option>
               </select>
             </div>
+            <!--align-->
             <div class="td-controls__filter">
               <select class="td-controls__select">
                 <option value="asc">정렬: 오름차순</option>
@@ -178,13 +183,16 @@
               </select>
             </div>
           </div>
+          <!--right-->
           <div class="td-controls__group td-controls__group--right">
+            <!--work add btn-->
             <button
               type="button"
               class="td-controls__btn td-controls__btn--add"
             >
               + 새 할 일
             </button>
+            <!--reset btn-->
             <button
               type="button"
               class="td-controls__btn td-controls__btn--reset"
@@ -200,7 +208,11 @@
         </div>
       </main>
       <!-- footer -->
-      <footer class="td-footer"></footer>
+      <footer class="td-footer">
+        <p class="td-footer__copyright">
+          &copy;2026 FlowDash. All rights reserved.
+        </p>
+      </footer>
     </div>
 
     <!-- 할 일 추가 modal -->
