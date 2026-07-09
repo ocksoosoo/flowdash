@@ -136,5 +136,57 @@
       <!-- footer -->
       <footer class="td-footer"></footer>
     </div>
+
+
+
+
+
+    <!-- 할 일 추가 modal -->
+     <div class="modal-container">
+      <h2>새 할 일</h2>
+
+      <!-- 제목 -->
+       <div class="modal__field">
+         <h3><label for="modal__task-title">제목</label></h3>
+         <input type="text" id="modal__task-title" class="modal__title" placeholder="제목을 입력하세요.">
+       </div>
+
+       <!-- 내용 -->
+       <div class="modal__field">
+         <h3><label for="modal__task-content">내용</label></h3>
+         <textarea  id="modal__task-content" class="modal__content" placeholder="할 일을 입력하세요."></textarea>
+       </div>
+
+        <!-- 우선순위 & 상태 -->
+        <div class="modal__priority-status-container">
+        <!-- 우선 순위 -->
+         <div class="modal__priority-group">
+           <h3>우선 순위</h3>
+           <div class="priority-container">
+            <div class="priority__high">높음</div>
+            <div class="priority__medium">중간</div>
+            <div class="priority__low">낮음</div>
+           </div>
+         </div>
+
+         <!-- 상태 -->
+         <div class="modal__status-group">
+           <h3><label for="modal__task-status">상태</label></h3>
+           <select id="modal__task-status" class="modal__status">
+             <option value="todo">진행 전</option>
+             <option value="in-progress">진행 중</option>
+             <option value="done">완료</option>
+           </select>
+         </div>
+
+        </div> <!-- .priority-status-container -->
+
+        <!-- 버튼 -->
+        <div class="button-container">
+          <button class="button__cancel">취소</button>
+          <button class="button__save">저장</button>
+        </div>
+        
+       </div> <!-- .modal-container -->
   </body>
 </html>
