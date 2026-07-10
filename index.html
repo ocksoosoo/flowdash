@@ -197,11 +197,31 @@
           </button>
         </div>
       </section>
+      <!-- tag -->
       <div class="td-tags">
         <div class="td-tags__container" id="activeTagsContainer">
           <span class="td-tags__item"> 정렬: 오름차순 </span>
         </div>
       </div>
+      <!-- todo board -->
+      <!--할 일 head-->
+      <section class="td-board">
+        <article class="td-board__section">
+          <div class="td-board__header">
+            <h3 class="td-board_-title">할 일</h3>
+            <span class="td-board__count td-board__count--todo">1</span>
+          </div>
+          <ul class="td-board__list">
+            <!--할 일 body-->
+            <li class="td-card">
+              <div class="td-card__header">
+                <span class="td-card__badge td-card__badge--state"></span>
+                <div class="td-card__action"></div>
+              </div>
+            </li>
+          </ul>
+        </article>
+      </section>
     </main>
     <!-- footer -->
     <footer class="td-footer">
@@ -210,7 +230,7 @@
       </p>
     </footer>
 
-    <!-- to do modal -->
+    <!-- 할 일 추가 modal -->
     <div class="modal-container">
       <h2>새 할 일</h2>
 
@@ -260,18 +280,18 @@
       <!-- .priority-status-container -->
 
       <!-- 버튼 -->
-      <div class="modal-btn-container">
-        <button class="modal-btn__cancel">취소</button>
-        <button class="modal-btn__save">저장</button>
+      <div class="button-container">
+        <button class="button__cancel">취소</button>
+        <button class="button__save">저장</button>
       </div>
     </div>
     <!-- .modal-container -->
 
     <!-- reset modal -->
-     <div class="reset-modal-container">
+    <div class="reset-modal-container">
       <p class="reset-modal__message">
         <span>정말 삭제하시겠습니까?</span>
-        <br>
+        <br />
         <span>초기화 후엔 되돌릴 수 없습니다.</span>
       </p>
 
@@ -279,8 +299,7 @@
         <button class="reset-modal-btn__cancel">취소</button>
         <button class="reset-modal-btn__delete">삭제</button>
       </div>
-
-     </div> <!-- .reset-modal-container -->
-
+    </div>
+    <!-- .reset-modal-container -->
   </body>
 </html>
