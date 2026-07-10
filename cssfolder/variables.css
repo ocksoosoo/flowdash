@@ -118,31 +118,37 @@
   /* 색상 */
   --color-gradi: linear-gradient(0deg, #ffa8a8, #fff099);
   --color-bg: #fff2ea;
-  --color-side: #ecdec4;
+  --color-outline: #ecdec4;
   --color-box: #fff;
   --color-worknot: #8d7171;
-  --color-working: #fff099; /* 진행중 요소 박스 - opacity:20% */
+  --color-working: #fff099;
+  opacity: 20%; /* 진행중 요소 박스 - opacity:20% */
+  --color-workdate: #98a4b3;
   --color-font: #443434;
-  --color-complete: #f6f7f9; /*할 일 완료 박스 - opacity:70% */
+  --color-complete: #f6f7f9;
+  opacity: 70%; /*할 일 완료 박스 - opacity:70% */
   --color-em: #ec8d8d;
 
   /* 다크모드 */
   --color-gradi-dk: linear-gradient(0deg, #ffa3e2, #e287e5);
   --color-bg-dk: #010031;
-  --color-side-dk: #dab5f3;
+  --color-outline-dk: #dab5f3;
   --color-box-dk: #666a75;
   --color-worknot-dk: #e9dae1;
   --color-worktxt-dk: #1a1960; /* 진행상황 표시 박스 3개 */
+  --color-working-dk: #fff1f7;
+  opacity: 80%;
   --color-font-dk: #fff1f7; /* 진행중 요소 박스 - opacity:80% */
-  --color-complete-dk: #f6f7f9; /* 할 일 완료 요소 박스  - opacity:70% */
+  --color-complete-dk: #f6f7f9;
+  opacity: 70%; /* 할 일 완료 요소 박스  - opacity:70% */
   --color-em-dk: #ffe851;
 
   /*모듈*/
   /*배경은 요소 배경과 같은색을 쓰고, 테두리와 글자는 각각의 모드와 같은 테두리, 글자 색을 사용한다*/
   /*높음, 중간, 낮음 칸은 모드 상관없이 같은 색을 사용한다*/
-  --color-title-li: #1b2432;
+  --color-title: #1b2432;
   --color-title-dk: #f1f2f4;
-  --color-cancel-li: #5c6f8a;
+  --color-cancel: #5c6f8a;
   --color-cancel-dk: #abb1ba;
   --color-txt-high: #f25a5a;
   --color-box-high: #ffebeb;
@@ -155,7 +161,8 @@
   --font-sm: 1rem;
   --font-md: 1.25rem;
   --font-lg: 1.5rem;
-  --font-xl: 2.25rem;
+  --font-xl: 2rem;
+  --font-xxl: 2.25rem;
 
   /* 모바일 폰트 크기 */
   --mfont-sm: 0.75rem;
