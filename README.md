@@ -54,16 +54,17 @@ CRUD, 기간 필터, 통계, 테마 및 UX 요소를 포함하며
 ### 3-1. 디렉터리 구조
 ```
 flowdash/
+├─ assets
 ├─ README.md
 ├─ index.html
-└─ css/
-├── reset.css
-├── variables.css
-├── base.css
-├── layout.css
-├── components.css
-├── theme.css
-└── responsive.css
+└─ cssfolder/
+   ├── reset.css
+   ├── variables.css
+   ├── base.css
+   ├── layout.css
+   ├── components.css
+   ├── theme.css
+   └── responsive.css
 └─ js/
    ├─ main.js
    ├─ state.js
@@ -138,7 +139,6 @@ User Action
 - [ ] UX 개선 아이디어 적용
 - [ ] 예외 처리 강화 (빈 상태, 입력 검증 등)
 - [ ] 추가 기능 구현 (명세 외)
-ㅌ
 ---
 
 ## 6. 트러블슈팅 (Troubleshooting)
