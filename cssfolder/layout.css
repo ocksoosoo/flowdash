@@ -1,0 +1,166 @@
+/* base */
+
+html {font-size: 16px;}
+
+body {
+  width: 100%;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1rem;
+  color: var(--color-font);
+  background: var(--color-bg);
+  font-weight: 500;
+  min-height: 100vh;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* layout */
+
+/* header */
+
+.td-header {
+  width: 500px;
+  height: 210px;
+  margin-top: 58px;
+  margin-left: 470px;
+
+  margin: 40px auto 0;
+  display: flex;
+  background: red;
+  justify-content: center;
+  position: relative;
+} 
+
+.td-header__profile {
+  display: flex;
+  align-items: center;
+  gap: var(--pad-m);
+}
+
+.td-header__profile-img {
+  width: 72px;
+  height: 72px;
+}
+
+.td-header__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad-m);
+}
+
+.td-header__text-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad-xs);
+}
+
+.td-header__theme-toggle {
+  display: flex;
+  gap: var(--pad-m);
+
+  position: absolute;
+  right: 0;
+}
+
+/* main */
+
+.td-main {
+  width: min(1200px, calc(100% - 40px));
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* list */
+.td-list {
+  display: grid;
+  
+  grid-template-columns: repeat(3, 1fr);
+  
+  gap: var(--pad-m);
+}
+
+.td-list__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.td-list__card--achievement {
+  grid-row: span 2;
+}
+
+/* control */
+
+.td-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--pad-s);
+}
+
+.td-controls__group {
+  display: flex;
+  align-items: center;
+  gap: var(--pad-m);
+}
+
+.td-controls__group--left {
+  flex-wrap: wrap;
+}
+
+/* tag */
+
+.td-tags {
+  display: flex;
+}
+
+.td-tags__container {
+  display: flex;
+  gap: var(--pad-s);
+  flex-wrap: wrap;
+}
+
+/* board */
+.td-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pad-m);
+}
+
+.td-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad-m);
+}
+
+/* footer */
+
+.td-footer {
+  width: min(1200px, calc(100% - 40px));
+  margin: 80px auto 40px;
+  display: flex;
+  justify-content: center;
+}
