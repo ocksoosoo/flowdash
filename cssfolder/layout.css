@@ -31,6 +31,11 @@ body {
   min-height: 100vh;
 }
 
+h2, h3 {
+  font-family: "Chiron GoRound TC", sans-serif;
+  font-weight: 700;
+}
+
 input,
 textarea,
 button,
