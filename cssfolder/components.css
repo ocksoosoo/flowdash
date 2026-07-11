@@ -13,3 +13,16 @@
     background: var(--color-gradi);
     border-radius: var(--bor-l);
 }
+
+.td-header__profile-frame {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.td-header__profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
