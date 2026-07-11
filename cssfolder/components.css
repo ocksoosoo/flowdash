@@ -1,0 +1,15 @@
+/* header */
+.td-header {
+    background-color: #fff;
+}
+
+.td-header__card {
+    background-color: #fff;
+    border-radius: var(--bor-l);
+    z-index: 10;
+}
+
+.td-header__card-bg {
+    background: var(--color-gradi);
+    border-radius: var(--bor-l);
+}

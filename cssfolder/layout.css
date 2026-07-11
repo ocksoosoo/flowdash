@@ -47,11 +47,22 @@ a {
   margin-left: 470px;
 
   margin: 40px auto 0;
-  display: flex;
-  background: red;
-  justify-content: center;
   position: relative;
 } 
+
+.td-header__card {
+  width: 100%; height: 100%;
+  position: absolute;
+  padding: calc(105px/2) 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.td-header__card-bg {
+  width: 520px; height: 230px;
+  position: absolute;
+  top: -10px; left: -10px;
+}
 
 .td-header__profile {
   display: flex;
