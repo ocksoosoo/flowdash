@@ -1,8 +1,4 @@
 /* header */
-.td-header {
-    background-color: #fff;
-}
-
 .td-header__card {
     background-color: #fff;
     border-radius: var(--bor-l);
