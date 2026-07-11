@@ -53,9 +53,10 @@ a {
 .td-header__card {
   width: 100%; height: 100%;
   position: absolute;
-  padding: calc(105px/2) 0;
+  padding: calc(105px/2) 32px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .td-header__card-bg {
@@ -90,9 +91,9 @@ a {
 .td-header__theme-toggle {
   display: flex;
   gap: var(--pad-m);
-
   position: absolute;
-  right: 0;
+  top: 10%;
+  right: 5%;
 }
 
 /* main */
