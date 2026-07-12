@@ -63,7 +63,7 @@ a {
 
 .td-header {
   width: min(1200px, calc(100% - 40px));
-  height: 380px; /* 임의 지정 */
+  height: 210px; /* 임의 지정 */
   margin: 40px auto 0;
   position: relative;
   display: flex;
@@ -78,11 +78,11 @@ a {
   justify-content: space-between;
   padding: calc(105px/2) 32px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .td-header__card-bg {
-  width: 520px;
+  width: min(530px, 100%);
   height: 230px;
   position: absolute;
 }
