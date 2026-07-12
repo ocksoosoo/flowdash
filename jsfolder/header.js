@@ -7,3 +7,13 @@
 4. 다크/라이트 모드 버튼 클릭 이벤트
 5. header UI 관련 기능
 */
+
+// ===== Import =====
+// import { LoadNickname, saveNickname, loadTheme, saveTheme } from './storage.js';
+
+
+// ===== 초기화 =====
+
+export function initHeader(todos) {
+    // 나중에 구현
+}
