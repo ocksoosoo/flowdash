@@ -23,6 +23,11 @@
     object-fit: cover;
 }
 
+.td-header__brand-name {
+    color: var(--color-em);
+    border-bottom: 2px dashed var(--color-em);
+}
+
 /* 다크모드 토글 버튼 */
 
 .td-header__toggle-btn {
@@ -38,4 +43,121 @@
 
 .td-header__toggle-btn svg {
     width: 30px; height: 30px;
+}
+
+/* main */
+
+/* card */
+.td-list__card {
+    width: 310px;
+    background-color: var(--color-box);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--bor-l);
+    padding: var(--pad-l);
+}
+
+.td-list__count {
+    font-weight: 700;
+    color: var(--color-font);
+}
+
+.td-list__achievememt {
+    width: 310px;
+    height: 340px;
+}
+
+/* controls */
+.td-controls__search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-box);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--bor-xl);
+    padding: var(--pad-xs) var(--pad-m);
+}
+
+.td-controls__search-input {
+    width: 205px;
+}
+
+.td-controls__search-input::placeholder {
+    color: var(--color-workdate);
+}
+
+.td-controls__select {
+    background-color: var(--color-box);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--bor-m);
+    padding: var(--pad-xs) var(--pad-s);
+}
+
+/* btn--add */
+
+.td-controls__btn--add {
+    background-color: var(--color-em);
+    border-radius: var(--bor-l);
+    padding: var(--pad-s) var(--pad-m);
+    font-weight: 600;
+}
+
+/* btn--reset */
+
+.td-controls__btn--reset {
+    color: #EA4545;
+    font-weight: 600;
+}
+
+/* tags */
+
+.td-tags__item {
+    background-color: var(--color-box);
+    border: 1px solid var(--color-em);
+    color: var(--color-em);
+    padding: 4px 12px;
+    border-radius: var(--bor-l);
+    font-weight: 600;
+}
+
+/* boards */
+
+.td-board__section {
+    width: 312px;
+    background-color: var(--color-box);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--bor-m);
+    padding: var(--pad-m);
+}
+
+.td-board__header {
+    border-bottom: 2px solid var(--color-font);
+    padding-bottom: var(--pad-s);
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.td-board__title {
+    font-size: var(--font-md);
+    color: var(--color-font);
+}
+
+.td-board__count {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background-color: var(--color-em);
+    color: var(--color-box);
+    border-radius: 50%;
+}
+
+.td-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--color-working);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--bor-m);
+    padding: var(--pad-m);
 }
