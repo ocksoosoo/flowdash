@@ -116,7 +116,7 @@
 /* variables */
 :root {
   /* 색상 */
-  --color-gradi: linear-gradient(0deg, #ffa8a8, #fff099);
+  --color-gradi: linear-gradient(180deg, #fff099 30%, #ffa8a8 100%);
   --color-bg: #fff2ea;
   --color-outline: #ecdec4;
   --color-box: #fff;
@@ -130,7 +130,7 @@
   --color-em: #ec8d8d;
 
   /* 다크모드 */
-  --color-gradi-dk: linear-gradient(0deg, #ffa3e2, #e287e5);
+  --color-gradi-dk: linear-gradient(180deg, #ffa3e2 30%, #e287e5 100%);
   --color-bg-dk: #010031;
   --color-outline-dk: #dab5f3;
   --color-box-dk: #666a75;
