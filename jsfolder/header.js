@@ -65,6 +65,23 @@ function getGreeting() {
     }
 }
 
+// updateDate(): 오늘 날짜로 업데이트하여 프로필 카드에 출력
+function updateDate() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const weekDays = [ 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const dayOfWeek = weekDays[date.getDay()];
+
+    const formattedDate = `${year}년 ${month}월 ${day}일 ${dayOfWeek}`;
+
+    todayDate.textContent = formattedDate;
+};
+
+updateDate();
+
 // renderGreeting(): 시간대별로 다르게 인삿말을 바꿔주는 렌더링 함수
 function renderGreeting() {
     greeting.textContent = getGreeting();
@@ -135,6 +152,8 @@ function saveNickname(input) {
     
     nickname.textContent = newNickname;
 }
+
+// 
 
 
 
