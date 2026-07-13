@@ -340,6 +340,12 @@ label[for="modal__task-title"]::before {
   color: var(--color-font);
 }
 
+input[type="text"]:focus {
+  box-shadow: 0px 0px 4.2px 0px #EC8D8DB2;
+}
+
+
+
 .modal__title,
 .modal__content,
 .modal__status {
