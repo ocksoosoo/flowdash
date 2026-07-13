@@ -355,11 +355,13 @@ label[for="modal__task-title"]::before {
 .priority-container {
   display: flex;
   gap: 8px;
+  align-items: center;
+  min-height: 36px;
 }
 .priority__high,
 .priority__medium,
 .priority__low {
-  padding: 4px 10px;
+  padding: 8px 14px;
   border-radius: 999px;
   cursor: pointer;
 }
@@ -401,6 +403,23 @@ label[for="modal__task-title"]::before {
   border: 0;
   background: var(--color-em);
 }
+
+/* modal_overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+/* js에서 연결 */
+.modal-overlay.active {
+  display: block;
+}
+
 
 /* reset modal */
 
