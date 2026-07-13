@@ -12,13 +12,9 @@
 // import { LoadNickname, saveNickname, loadTheme, saveTheme } from './storage.js';
 
 
-// ===== 초기화 =====
-export function initHeader(todos) {
-    // 나중에 구현
-}
-
 
 // DOM 요소 선택
+const body = document.querySelector('body');
 const greeting = document.querySelector('.td-header__text-sub');
 const nickname = document.querySelector('.td-header__brand-name');
 const todayDate = document.querySelector('.td-header__date');
@@ -33,10 +29,10 @@ const STORAGE_KEYS = {
 
 // LocalStorage 불러오기
 function getTheme() {
-    return localStorage.getItem(STORAGE_KEYS.theme);
+    return localStorage.getItem(STORAGE_KEYS.theme) || 'light';
 };
 function getNickname() {
-    return localStorage.getItem(STORAGE_KEYS.nickname) || defaultNickname
+    return localStorage.getItem(STORAGE_KEYS.nickname) || DEFAULT_NICKNAME;
 };
 
 
@@ -65,6 +61,12 @@ function getGreeting() {
     }
 }
 
+// renderGreeting(): 시간대별로 다르게 인삿말을 바꿔주는 렌더링 함수
+function renderGreeting() {
+    greeting.textContent = `${getGreeting()} ${getNickname()} 님`;
+};
+
+
 // updateDate(): 오늘 날짜로 업데이트하여 프로필 카드에 출력
 function updateDate() {
     const date = new Date();
@@ -82,11 +84,6 @@ function updateDate() {
 
 updateDate();
 
-// renderGreeting(): 시간대별로 다르게 인삿말을 바꿔주는 렌더링 함수
-function renderGreeting() {
-    greeting.textContent = getGreeting();
-}
-
 
 // applyTheme(): 테마 적용 함수
 // saveTheme(): 테마 저장 함수
@@ -94,15 +91,15 @@ function renderGreeting() {
 // 2. LocalStorage에 저장
 // 3. 클릭 이벤트는 나중에 이벤트 함수 적을 때 한번에
 
-function applyTheme() {
+function applyTheme(theme) {
     if(theme === "dark") {
-        document.body.classList.add('dark');
+        body.classList.add('dark');
     } else {
-        document.body.classList.remove('dark');
+        body.classList.remove('dark');
     }
 }
 
-function saveTheme() {
+function saveTheme(theme) {
     localStorage.setItem(STORAGE_KEYS.theme, theme);
     applyTheme(theme);
 }
@@ -140,7 +137,6 @@ function editNickname() {
 
     nickname.textContent = '';
     nickname.appendChild(input);
-
     input.focus();
 };
 
@@ -149,14 +145,36 @@ function saveNickname(input) {
     const newNickname = input.value.trim() || getNickname();
     // 로컬 스토리지에 저장
     localStorage.setItem(STORAGE_KEYS.nickname, newNickname);
-    
     nickname.textContent = newNickname;
+
+    renderGreeting();
 }
 
-// 
+// 모드 토글 버튼 이벤트
+/*
+1. toggle.Btn에 클릭 이벤트 추가
+// 버튼 클릭시 body에 'dark' 클래스 추가
+*/
+
+toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+    saveTheme(currentTheme);
+});
+
+nickname.addEventListener('click', editNickname);
 
 
 
+// ===== 초기화 =====
+export function initHeader(todos) {
+    updateDate();
 
-// eventListener(): 모드 전환 클릭 이벤트, 닉네임 수정시 enter와 blur 이벤트
-// enter 및 blur 이벤트 추가
+    const saveTheme = getTheme();
+    applyTheme(saveTheme);
+
+    nickname.textContent = getNickname();
+    renderGreeting();
+}
+
+initHeader();
