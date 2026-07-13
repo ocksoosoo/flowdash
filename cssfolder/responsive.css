@@ -286,8 +286,8 @@
 
   .reset-modal-container {
     align-items: center;
-    width: min(420px, calc(100% - 40px));
-    min-height: min(300px, calc(100% - 40px));
+    width: min(370px, calc(100% - 40px));
+    min-height: min(270px, calc(100% - 40px));
   }
 
   .reset-modal__message {
@@ -419,10 +419,11 @@
 
   /* list */
   .td-list {
-    display: grid;
+    display: flex;
+    flex-direction: column;
 
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, auto);
+    /*grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);*/
 
     gap: var(--pad-m);
     margin: 16px;
@@ -431,18 +432,18 @@
   .td-list__card {
     display: flex;
     flex-direction: column;
-    width: 170px;
+    width: 312px;
     min-height: 100px;
     padding: 20px;
+    order: 1;
   }
 
   .td-list__card--achievement {
-    width: 170px;
+    width: 312px;
     height: 150px;
     min-height: 100px;
     padding: 20px;
-    grid-column: 1;
-    grid-row: 3 / span 2;
+    order: 2;
   }
 
   .td-list__chart-container {
