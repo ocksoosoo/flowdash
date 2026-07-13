@@ -96,6 +96,7 @@
   border-radius: 50%;
   overflow: hidden;
   background: var(--theme-graph);
+  border: 5px solid var(--theme-outline);
 }
 .td-list__percent {
   font-size: var(--font-xxl);
