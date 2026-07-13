@@ -51,15 +51,19 @@
 
 /* card */
 .td-list__card {
+  position: relative;
   width: 310px;
   background-color: var(--color-box);
   border: 1px solid var(--color-outline);
   border-radius: var(--bor-l);
   /*위 32 오른쪽 24 아래 40 왼쪽 32*/
   padding: var(--pad-xl) var(--pad-l) 40px var(--pad-xl);
+  z-index: 1;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
 }
-.td-list__card--total {
-  background: var(--color-gradi);
+.td-list__card--hoverable {
+  cursor: pointer;
 }
 .td-list__title {
   font-size: var(--font-lg);
@@ -78,24 +82,63 @@
   flex-direction: column;
   align-items: center;
   padding-top: var(--pad-xl);
-  padding-bottom: 105px;
+  padding-bottom: 60px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .td-list__card--achievement .td-list__title {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 .td-list__chart-container {
+  position: relative;
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  border: 16px solid var(--color-outline);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff099 30%, #ffa8a8 100%);
 }
 .td-list__percent {
   font-size: var(--font-xxl);
   font-weight: 600;
   color: var(--color-em);
+  margin-bottom: 27px;
+}
+/* 그라데이션 호버*/
+.td-list__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #fff099 30%, #ffa8a8 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.td-list__card--hoverable:hover::before {
+  opacity: 1;
+}
+@keyframes drift {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.wave {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  /*js는 top 적용*/
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  border-radius: 43%;
+  animation: drift 4s infinite linear;
+  background: var(--color-box);
+}
+.wave.layer_1 {
+  animation: drift 8s infinite linear;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* controls */
