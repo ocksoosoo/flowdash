@@ -171,12 +171,6 @@ body {
   padding: var(--pad-xs) var(--pad-m);
 }
 
-.td-controls__search-input {
-  width: 100%;
-  min-width: 100px;
-  max-width: 205px;
-}
-
 .td-controls__search-input::placeholder {
   color: var(--theme-workdate);
 }
