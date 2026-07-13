@@ -122,11 +122,11 @@
   --color-box: #fff;
   --color-worknot: #8d7171;
   --color-working: #fff099;
-  opacity: 20%; /* 진행중 요소 박스 - opacity:20% */
+  --opacity: 20%; /* 진행중 요소 박스 - opacity:20% */
   --color-workdate: #98a4b3;
   --color-font: #443434;
   --color-complete: #f6f7f9;
-  opacity: 70%; /*할 일 완료 박스 - opacity:70% */
+  --opacity: 70%; /*할 일 완료 박스 - opacity:70% */
   --color-em: #ec8d8d;
 
   /* 다크모드 */
@@ -137,10 +137,10 @@
   --color-worknot-dk: #e9dae1;
   --color-worktxt-dk: #1a1960; /* 진행상황 표시 박스 3개 */
   --color-working-dk: #fff1f7;
-  opacity: 80%;
+  --opacity: 80%;
   --color-font-dk: #fff1f7; /* 진행중 요소 박스 - opacity:80% */
   --color-complete-dk: #f6f7f9;
-  opacity: 70%; /* 할 일 완료 요소 박스  - opacity:70% */
+  --opacity: 70%; /* 할 일 완료 요소 박스  - opacity:70% */
   --color-em-dk: #ffe851;
 
   /*모듈*/
