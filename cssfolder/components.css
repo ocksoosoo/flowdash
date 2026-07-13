@@ -6,7 +6,7 @@
 }
 
 .td-header__card-bg {
-  background: var(--color-gradi);
+  background: var(--theme-profileline);
   border-radius: var(--bor-l);
 }
 
@@ -24,8 +24,8 @@
 }
 
 .td-header__brand-name {
-  color: var(--color-em);
-  border-bottom: 2.5px dashed var(--color-em);
+  color: var(--theme-font-accent);
+  border-bottom: 2.5px dashed var(--theme-font-accent);
   gap: 12px;
 }
 
@@ -46,8 +46,8 @@
 .td-header__toggle-btn {
   width: 40px;
   height: 40px;
-  background-image: var(--color-gradi);
-  color: var(--color-font);
+  background-image: var(--theme-profilebtn);
+  color: var(--theme-font-main);
   border: none;
   border-radius: 50%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -159,8 +159,8 @@
 .td-controls__search-box {
   display: flex;
   align-items: center;
-  background-color: var(--color-box);
-  border: 1px solid var(--color-outline);
+  background-color: var(--theme-box);
+  border: 1px solid var(--theme-outline);
   border-radius: var(--bor-xl);
   padding: var(--pad-xs) var(--pad-m);
 }
@@ -170,12 +170,12 @@
 }
 
 .td-controls__search-input::placeholder {
-  color: var(--color-workdate);
+  color: var(--theme-workdate);
 }
 
 .td-controls__select {
-  background-color: var(--color-box);
-  border: 1px solid var(--color-outline);
+  background-color: var(--theme-box);
+  border: 1px solid var(--theme-outline);
   border-radius: var(--bor-m);
   padding: var(--pad-xs) var(--pad-s);
 }
@@ -183,7 +183,7 @@
 /* btn--add */
 
 .td-controls__btn--add {
-  background-color: var(--color-em);
+  background-color: var(--theme-font-accent);
   border-radius: var(--bor-l);
   padding: var(--pad-s) var(--pad-m);
   font-weight: 600;
@@ -207,9 +207,9 @@
 /* tags */
 
 .td-tags__item {
-  background-color: var(--color-box);
-  border: 1px solid var(--color-em);
-  color: var(--color-em);
+  background-color: var(--theme-box);
+  border: 1px solid var(--theme-font-accent);
+  color: var(--theme-font-accent);
   padding: 4px 12px;
   border-radius: var(--bor-l);
   font-weight: 600;
@@ -219,14 +219,14 @@
 
 .td-board__section {
   width: 312px;
-  background-color: var(--color-box);
-  border: 1px solid var(--color-outline);
+  background-color: var(--theme-box);
+  border: 1px solid var(--theme-outline);
   border-radius: var(--bor-m);
   padding: var(--pad-m);
 }
 
 .td-board__header {
-  border-bottom: 2px solid var(--color-font);
+  border-bottom: 2px solid var(--theme-font-main);
   padding-bottom: var(--pad-s);
   margin-bottom: 13px;
   display: flex;
@@ -235,7 +235,7 @@
 
 .td-board__title {
   font-size: var(--font-md);
-  color: var(--color-font);
+  color: var(--theme-font-main);
 }
 
 .td-board__count {
@@ -244,8 +244,8 @@
   align-items: center;
   width: 25px;
   height: 25px;
-  background-color: var(--color-em);
-  color: var(--color-box);
+  background-color: var(--theme-font-accent);
+  color: var(--theme-box);
   border-radius: 50%;
 }
 
@@ -261,8 +261,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: color-mix(in srgb, var(--color-working) 20%, transparent);
-  border: 1px solid var(--color-outline);
+  background-color: color-mix(in srgb, var(--theme-working) 20%, transparent);
+  border: 1px solid var(--theme-outline);
   border-radius: var(--bor-m);
   padding: var(--pad-m);
 }
@@ -323,8 +323,8 @@ footer {
 
   min-height: 80px;
   padding: var(--pad-m);
-  border-top: 1px solid var(--color-outline);
-  color: var(--color-outline);
+  border-top: 1px solid var(--theme-outline);
+  color: var(--theme-outline);
 }
 
 .td-footer__copyright {
@@ -336,8 +336,8 @@ footer {
 .modal-container {
   width: min(550px, calc(100vw - 32px));
   padding: 40px;
-  background-color: var(--color-box);
-  border: 2px solid var(--color-outline);
+  background-color: var(--theme-box);
+  border: 2px solid var(--theme-outline);
   border-radius: var(--bor-l);
 }
 
@@ -359,7 +359,7 @@ footer {
 
 label[for="modal__task-title"]::before {
   content: "* ";
-  color: var(--color-font);
+  color: var(--theme-font-main);
 }
 
 input[type="text"]:focus,
@@ -373,7 +373,7 @@ textarea:focus {
 .modal__content,
 .modal__status {
   width: 100%;
-  border: 1px solid var(--color-outline);
+  border: 1px solid var(--theme-outline);
   border-radius: var(--bor-m);
   padding: var(--pad-s);
 }
@@ -432,13 +432,13 @@ textarea:focus {
 }
 
 .button__cancel {
-  background: var(--color-box);
-  border: 1px solid var(--color-outline);
+  background: var(--theme-box);
+  border: 1px solid var(--theme-outline);
 }
 
 .button__save {
   border: 0;
-  background: var(--color-em);
+  background: var(--theme-font-accent);
 }
 
 /* modal_overlay */
@@ -463,8 +463,8 @@ textarea:focus {
 .reset-modal-container {
   width: 350px;
   padding: var(--pad-xl) var(--pad-l);
-  background: var(--color-box);
-  border: 2px solid var(--color-outline);
+  background: var(--theme-box);
+  border: 2px solid var(--theme-outline);
   border-radius: var(--bor-l);
 }
 
@@ -491,13 +491,13 @@ textarea:focus {
 }
 
 .reset-modal-btn__cancel {
-  background-color: var(--color-box);
-  border: 1px solid var(--color-outline);
+  background-color: var(--theme-box);
+  border: 1px solid var(--theme-outline);
 }
 
 .reset-modal-btn__delete {
   border: 0;
-  background-color: var(--color-em);
+  background-color: var(--theme-font-accent);
 }
 
 /* 플로팅버튼 */
