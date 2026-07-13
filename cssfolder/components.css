@@ -25,7 +25,20 @@
 
 .td-header__brand-name {
   color: var(--color-em);
-  border-bottom: 2px dashed var(--color-em);
+  border-bottom: 2.5px dashed var(--color-em);
+  gap: 12px;
+}
+
+.td-header__text-main {
+  display: flex;
+  position: relative;
+  gap: 12px;
+}
+
+.pen {
+  position: absolute;
+  right: 20px;
+  bottom: 1px;
 }
 
 /* 다크모드 토글 버튼 */
@@ -286,6 +299,11 @@
   font-size: var(--font-md);
   font-weight: 700;
 }
+
+.td-card--done > h4 {
+  text-decoration: line-through;
+}
+
 .td-card__date {
   font-weight: 400;
   opacity: var(--opacity-70);
