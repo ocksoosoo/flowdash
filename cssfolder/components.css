@@ -6,7 +6,7 @@
 }
 
 .td-header__card-bg {
-  background: var(--color-gradi);
+  background: var(--theme-profileline);
   border-radius: var(--bor-l);
 }
 
@@ -24,8 +24,8 @@
 }
 
 .td-header__brand-name {
-  color: var(--color-em);
-  border-bottom: 2px dashed var(--color-em);
+  color: var(--theme-font-accent);
+  border-bottom: 2px dashed var(--theme-font-accent);
 }
 
 /* 다크모드 토글 버튼 */
@@ -33,8 +33,8 @@
 .td-header__toggle-btn {
   width: 40px;
   height: 40px;
-  background-image: var(--color-gradi);
-  color: var(--color-font);
+  background-image: var(--theme-profilebtn);
+  color: var(--theme-font-main);
   border: none;
   border-radius: 50%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -170,7 +170,7 @@
 /* btn--add */
 
 .td-controls__btn--add {
-  background-color: var(--color-em);
+  background-color: var(--theme-font-accent);
   border-radius: var(--bor-l);
   padding: var(--pad-s) var(--pad-m);
   font-weight: 600;
@@ -195,8 +195,8 @@
 
 .td-tags__item {
   background-color: var(--color-box);
-  border: 1px solid var(--color-em);
-  color: var(--color-em);
+  border: 1px solid var(--theme-font-accent);
+  color: var(--theme-font-accent);
   padding: 4px 12px;
   border-radius: var(--bor-l);
   font-weight: 600;
@@ -213,7 +213,7 @@
 }
 
 .td-board__header {
-  border-bottom: 2px solid var(--color-font);
+  border-bottom: 2px solid var(--theme-font-main);
   padding-bottom: var(--pad-s);
   margin-bottom: 13px;
   display: flex;
@@ -222,7 +222,7 @@
 
 .td-board__title {
   font-size: var(--font-md);
-  color: var(--color-font);
+  color: var(--theme-font-main);
 }
 
 .td-board__count {
@@ -231,7 +231,7 @@
   align-items: center;
   width: 25px;
   height: 25px;
-  background-color: var(--color-em);
+  background-color: var(--theme-font-accent);
   color: var(--color-box);
   border-radius: 50%;
 }
@@ -337,7 +337,7 @@ footer {
 
 label[for="modal__task-title"]::before {
   content: "* ";
-  color: var(--color-font);
+  color: var(--theme-font-main);
 }
 
 input[type="text"]:focus,
@@ -416,7 +416,7 @@ textarea:focus {
 
 .button__save {
   border: 0;
-  background: var(--color-em);
+  background: var(--theme-font-accent);
 }
 
 /* modal_overlay */
@@ -475,7 +475,7 @@ textarea:focus {
 
 .reset-modal-btn__delete {
   border: 0;
-  background-color: var(--color-em);
+  background-color: var(--theme-font-accent);
 }
 
 /* 플로팅버튼 */
