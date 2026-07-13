@@ -66,14 +66,14 @@
   cursor: pointer;
 }
 .td-list__title {
-  font-size: var(--font-lg);
+  font-size: var(--font-xl);
   font-weight: 700;
   color: var(--color-font);
   margin-bottom: var(--pad-xl);
 }
 .td-list__count {
-  font-size: var(--font-xxl);
-  font-weight: 700;
+  font-size: var(--font-xl);
+  font-weight: 600;
   color: var(--color-font);
 }
 .td-list__card--achievement {
