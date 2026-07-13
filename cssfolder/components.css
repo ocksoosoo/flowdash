@@ -6,7 +6,7 @@ body {
 
 /* header */
 .td-header__card {
-  background-color: #fff;
+  background-color: var(--theme-box);
   border-radius: var(--bor-l);
   z-index: 10;
 }
