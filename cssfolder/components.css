@@ -219,7 +219,7 @@ body {
 /* boards */
 
 .td-board__section {
-  width: 312px;
+  width: 100%;
   background-color: var(--theme-box);
   border: 1px solid var(--theme-outline);
   border-radius: var(--bor-m);
