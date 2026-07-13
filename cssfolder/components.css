@@ -136,6 +136,10 @@
   animation: drift 4s infinite linear;
   background: var(--theme-box);
 }
+.wave.layer_1 {
+  animation: drift 8s infinite linear;
+  background: rgba(255, 255, 255, 0.4);
+}
 
 /* controls */
 .td-controls__search-box {
