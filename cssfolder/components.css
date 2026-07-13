@@ -300,6 +300,10 @@
   font-weight: 700;
 }
 
+.td-card--done {
+  background: var(--opacity-20);
+}
+
 .td-card--done > h4 {
   text-decoration: line-through;
 }
