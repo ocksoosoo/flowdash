@@ -1,3 +1,9 @@
+body {
+    color: var(--theme-font-main);
+    background: var(--theme-bg);
+
+}
+
 /* header */
 .td-header__card {
   background-color: #fff;
