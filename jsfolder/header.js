@@ -92,6 +92,49 @@ function saveTheme() {
 
 
 // 닉네임 인라인 수정 및 저장
+/*
+- 닉네임 영역 클릭 시 인라인 수정 가능
+- Enter 또는 blur 시 저장
+- 빈 값 입력 시 이전 값 또는 기본값으로 복원
+- 닉네임은 LocalStorage에 저장
+*/
+/*
+1. 닉네임 영역 클릭 시 input으로 바꾸기
+2. enter 누르면 닉네임 저장
+3. blur시 닉네임 저장
+4. 예외 처리(빈 값) -> 이전 값 || 기본값
+*/
+
+// editNickname(): input을 추가하여 닉네임을 수정하는 함수
+function editNickname() {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = getNickname();
+    // Enter 시 닉네임 저장
+    input.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter') {
+            saveNickname(input);
+        }
+    });
+    // blur 시 닉네임 저장
+    input.addEventListener('blur', () => {
+        saveNickname(input);
+    });
+
+    nickname.textContent = '';
+    nickname.appendChild(input);
+
+    input.focus();
+};
+
+// saveNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
+function saveNickname(input) {
+    const newNickname = input.value.trim() || getNickname();
+    // 로컬 스토리지에 저장
+    localStorage.setItem(STORAGE_KEYS.nickname, newNickname);
+    
+    nickname.textContent = newNickname;
+}
 
 
 
