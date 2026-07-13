@@ -71,7 +71,7 @@ body {
 /* card */
 .td-list__card {
   position: relative;
-  width: 310px;
+  width: 100%;
   background-color: var(--theme-box);
   border: 1px solid var(--theme-outline);
   border-radius: var(--bor-l);
@@ -172,7 +172,9 @@ body {
 }
 
 .td-controls__search-input {
-  width: 205px;
+  width: 100%;
+  min-width: 100px;
+  max-width: 205px;
 }
 
 .td-controls__search-input::placeholder {
@@ -310,7 +312,7 @@ body {
   background: var(--opacity-20);
 }
 
-.td-card--done > h4 {
+.td-card--done .td-card__title {
   text-decoration: line-through;
 }
 
@@ -324,7 +326,7 @@ body {
 
 footer {
   display: flex;
-  align-items: cetner;
+  align-items: center;
   justify-content: center;
 
   min-height: 80px;
@@ -370,6 +372,7 @@ label[for="modal__task-title"]::before {
 
 input[type="text"]:focus,
 textarea:focus {
+  outline: none;
   box-shadow: 0px 0px 4.2px 0px #EC8D8DB2;
 }
 
@@ -460,7 +463,7 @@ textarea:focus {
 
 /* js에서 연결 */
 .modal-overlay.active {
-  display: block;
+  display: flex;
 }
 
 
