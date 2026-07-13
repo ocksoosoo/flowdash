@@ -8,9 +8,21 @@ import { loadTodos } from './storage.js';
 // Header
 import { initHeader } from './header.js';
 
-// main
+// Board
+import { initBoard } from './board.js';
 
-// dashboard
+// Controls
+import { initControls } from './controls.js';
+
+// modal
+import { initModal } from './modal.js';
+
+// stats
+import { updateStats } from './stats.js';
+
+//todo
+import { handleTodoActions } from './todo.js';
+
 
 
 // ===== Global Sate =====
