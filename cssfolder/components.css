@@ -53,8 +53,8 @@
 .td-list__card {
   position: relative;
   width: 310px;
-  background-color: var(--color-box);
-  border: 1px solid var(--color-outline);
+  background-color: var(--theme-box);
+  border: 1px solid var(--theme-outline);
   border-radius: var(--bor-l);
   /*위 32 오른쪽 24 아래 40 왼쪽 32*/
   padding: var(--pad-xl) var(--pad-l) 40px var(--pad-xl);
@@ -68,13 +68,13 @@
 .td-list__title {
   font-size: var(--font-xl);
   font-weight: 700;
-  color: var(--color-font);
+  color: var(--theme-font-main);
   margin-bottom: var(--pad-xl);
 }
 .td-list__count {
   font-size: var(--font-xl);
   font-weight: 600;
-  color: var(--color-font);
+  color: var(--theme-font-main);
 }
 .td-list__card--achievement {
   width: 310px;
@@ -95,12 +95,12 @@
   height: 170px;
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(180deg, #fff099 30%, #ffa8a8 100%);
+  background: var(--theme-graph);
 }
 .td-list__percent {
   font-size: var(--font-xxl);
   font-weight: 600;
-  color: var(--color-em);
+  color: var(--theme-font-accent);
   margin-bottom: 27px;
 }
 /* 그라데이션 호버*/
@@ -111,7 +111,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #fff099 30%, #ffa8a8 100%);
+  background: var(--theme-totaltask);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -134,7 +134,7 @@
   margin-left: -150px;
   border-radius: 43%;
   animation: drift 4s infinite linear;
-  background: var(--color-box);
+  background: var(--theme-box);
 }
 .wave.layer_1 {
   animation: drift 8s infinite linear;
@@ -232,16 +232,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--pad-s)
+  gap: var(--pad-s);
 }
 
 .td-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: color-mix(in srgb,
-  var(--color-working) 20%,
-  transparent);
+  background-color: color-mix(in srgb, var(--color-working) 20%, transparent);
   border: 1px solid var(--color-outline);
   border-radius: var(--bor-m);
   padding: var(--pad-m);
@@ -259,16 +257,16 @@
 }
 
 .td-card__badge--low {
-  color: #679E4E;
-  background: #B7F09D;
+  color: #679e4e;
+  background: #b7f09d;
 }
 .td-card__badge--medium {
-  color: #9F621B;
-  background: #FFCE96;
+  color: #9f621b;
+  background: #ffce96;
 }
 .td-card__badge--high {
-  color: #AC2C2C;
-  background-color: #FF9999;
+  color: #ac2c2c;
+  background-color: #ff9999;
 }
 
 .td-card__action {
@@ -324,7 +322,6 @@ footer {
   font-weight: 700;
 }
 
-
 .modal__field {
   margin-bottom: 18px;
 }
@@ -367,18 +364,18 @@ label[for="modal__task-title"]::before {
 }
 
 .priority__high {
-  color: #AC2C2C;
-  background: #FF9999;
+  color: #ac2c2c;
+  background: #ff9999;
 }
 
 .priority__medium {
-  color: #9F621B;
-  background: #FFCE96;
+  color: #9f621b;
+  background: #ffce96;
 }
 
 .priority__low {
-  color: #679E4E;
-  background: #B7F09D;
+  color: #679e4e;
+  background: #b7f09d;
 }
 
 .button-container {
