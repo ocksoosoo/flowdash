@@ -7,8 +7,8 @@
   body {
     font-family: "Pretendard", sans-serif;
     font-size: 1rem;
-    color: var(--color-font);
-    background: var(--color-bg);
+    color: var(--theme-font-main);
+    background: var(--theme-bg);
     font-weight: 500;
     min-height: 100vh;
   }
@@ -142,7 +142,7 @@
     width: 0px;
     height: 0px;
     /*border-radius: 100%;*/
-    border: 0px solid var(--color-outline);
+    border: 0px solid var(--theme-outline);
     /*display: flex;
     align-items: center;
     justify-content: center;*/
@@ -198,8 +198,8 @@
 
   .td-board__section {
     width: 700px;
-    background-color: var(--color-box);
-    border: 1px solid var(--color-outline);
+    background-color: var(--theme-box);
+    border: 1px solid var(--theme-outline);
     border-radius: var(--bor-m);
     padding: var(--pad-m);
   }
@@ -316,8 +316,8 @@
   body {
     font-family: "Pretendard", sans-serif;
     font-size: 0.75rem;
-    color: var(--color-font);
-    background: var(--color-bg);
+    color: var(--theme-font-main);
+    background: var(--theme-bg);
     font-weight: 500;
     min-height: 100vh;
   }
@@ -450,7 +450,7 @@
     width: 0px;
     height: 0px;
     /*border-radius: 100%;*/
-    border: 0px solid var(--color-outline);
+    border: 0px solid var(--theme-outline);
     /*display: flex;
     align-items: center;
     justify-content: center;*/
