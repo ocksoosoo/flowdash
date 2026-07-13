@@ -124,14 +124,14 @@
       <section class="td-controls">
         <!--left-->
         <div class="td-controls__group td-controls__group--left">
-          <div class="td-controls__search-box">
+          <div class="td-controls__search-box"> 
             <!--search box-->
             <input
               type="text"
               class="td-controls__search-input"
               placeholder="search..."
             />
-            <button type="button" class="td-controls__search-btn">
+            <button type="button" class="td-controls__search-btn" aria-label="검색">
               <svg
                 width="15"
                 height="15"
@@ -148,51 +148,45 @@
           </div>
           <!--priority-->
           <div class="td-controls__filter-inline">
-            <div class="td-controls__filter">
-              <select class="td-controls__select">
-                <option value="all">전체 기간</option>
-                <option value="today">오늘</option>
-                <option value="week">최근 7일</option>
-              </select>
-            </div>
+            <select class="td-controls__select">
+              <option value="all">전체 기간</option>
+              <option value="today">오늘</option>
+              <option value="week">최근 7일</option>
+            </select>
             <!--left-->
-            <div class="td-controls__filter">
-              <select class="td-controls__select">
-                <option value="all">전체 우선순위</option>
-                <option value="low">낮음</option>
-                <option value="medium">중간</option>
-                <option value="high">높음</option>
-              </select>
-            </div>
-          </div>
-          <!--align-->
-          <div class="td-controls__filter td-controls__filter--align">
+            <select class="td-controls__select">
+              <option value="all">전체 우선순위</option>
+              <option value="low">낮음</option>
+              <option value="medium">중간</option>
+              <option value="high">높음</option>
+            </select>
+            <!--align-->
             <select class="td-controls__select">
               <option value="asc">정렬: 오름차순</option>
               <option value="desc">정렬: 내림차순</option>
             </select>
           </div>
         </div>
-        <!--right-->
-        <div class="td-controls__group td-controls__group--right">
-          <!--work add btn-->
-          <button type="button" class="td-controls__btn td-controls__btn--add">
-            + 새 할 일
-          </button>
+          <!--right-->
+          <div class="td-controls__group td-controls__group--right">
+            <!--work add btn-->
+            <button type="button" class="td-controls__btn td-controls__btn--add">
+              + 새 할 일
+            </button>
+          </div>
           <!--reset btn-->
-          <button
-            type="button"
-            class="td-controls__btn td-controls__btn--reset"
-          >
-            전체 초기화
-          </button>
-        </div>
       </section>
       <!-- tag -->
       <div class="td-tags">
         <div class="td-tags__container" id="activeTagsContainer">
           <span class="td-tags__item"> 정렬: 오름차순 </span>
         </div>
+        <button
+          type="button"
+          class="td-controls__btn td-controls__btn--reset"
+        >
+          전체 초기화 
+        </button>
       </div>
       <!-- todo board -->
       <section class="td-board">
@@ -461,7 +455,7 @@
     </footer>
 
     <!--div추가-->
-    <div class="modal-overlay">
+    <div class="modal-overlay modal-overlay--task" hidden>
       <!-- 할 일 추가 modal -->
       <div class="modal-container">
         <h2>새 할 일</h2>
@@ -493,9 +487,9 @@
           <div class="modal__priority-group">
             <h3>우선 순위</h3>
             <div class="priority-container">
-              <button class="priority__medium">중간</button>
-              <button class="priority__low">낮음</button>
-              <button class="priority__high">높음</button>
+              <button type="button" class="priority__medium">중간</button>
+              <button type="button" class="priority__low">낮음</button>
+              <button type="button" class="priority__high">높음</button>
             </div>
           </div>
 
@@ -520,7 +514,7 @@
       <!-- .modal-container -->
     </div>
     <!--div 추가-->
-    <div class="modal-overlay">
+    <div class="modal-overlay modal-overlay--reset" hidden>
       <!-- reset modal -->
       <div class="reset-modal-container">
         <p class="reset-modal__message">
