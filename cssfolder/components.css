@@ -63,12 +63,9 @@
 }
 .td-list__title {
   font-size: var(--font-lg);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-font);
   margin-bottom: var(--pad-xl);
-}
-.td-list__title--total {
-  font-weight: 700;
 }
 .td-list__count {
   font-size: var(--font-xxl);
