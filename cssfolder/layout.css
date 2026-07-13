@@ -214,7 +214,7 @@ a {
 }
 
 /* modal */
-
+/* 
 .modal-container,
 .reset-modal-container {
   position: fixed;
@@ -233,7 +233,7 @@ a {
 
 .modal-container {
   width: min(550px, calc(100% - 40px));
-  min-height: min(660px, calc(100% - 40px));
+  min-height: min(600px, calc(100% - 40px));
   align-items: stretch;
 }
 
@@ -274,13 +274,13 @@ a {
   justify-content: flex-end;
   gap: 10px;
 }
-
+*/
 /* reset modal */
-
+/*
 .reset-modal-container {
   align-items: center;
   width: min(480px, calc(100% - 40px));
-  min-height: min(180px, calc(100% - 40px));
+  min-height: min(120px, calc(100% - 40px));
 }
 
 .reset-modal__message {
@@ -297,7 +297,7 @@ a {
   width: 100px;
   padding: 10px 0;
   text-align: center;
-}
+} */
 
 /* tablet */
 @media (min-width: 736px) and (max-width: 1199px){

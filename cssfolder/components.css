@@ -426,6 +426,9 @@ label[for="modal__task-title"]::before {
 }
 
 .reset-modal-btn-container button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 74px;
   height: 33px;
   border-radius: var(--bor-m);
