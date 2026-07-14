@@ -27,20 +27,20 @@ export function saveTodos(todos) {
 
 // ===== Theme =====
 export function loadTheme() {
-    // LocalStorage에서 theme 데이터를 가져와서 반환
+    return localStorage.getItem(STORAGE_KEYS.theme);    
 }
 
 export function saveTheme(theme) {
-    // LocalStorage에 theme 데이터를 저장
+    localStorage.setItem(STORAGE_KEY.theme, theme);
 }
 
 // ===== Nickname =====
 export function loadNickname() {
-    // LocalStorage에서 nickname 데이터를 가져와서 반환
+    return localStorage.getItem(STORAGE_KEY.nickname);
 }
 
 export function saveNickname(nickname) {
-    // LocalStorage에 nickname 데이터를 저장
+    localStorage.setItem(STORAGE_KEY.nickname, nickname);
 }
 
 // ===== Filter =====
