@@ -518,6 +518,14 @@
     margin: 16px;
   }
 
+  .td-controls__search-input {
+    min-width: 190px;
+  }
+
+  .td-controls__btn--add {
+    min-width: 240px;
+  }
+
   /* tag */
 
   .td-tags {
