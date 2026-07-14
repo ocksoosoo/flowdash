@@ -206,7 +206,6 @@ function applyProfileColor(color) {
     profile.style.backgroundColor = color;
 }
 
-
 // 모드 토글 버튼 이벤트
 /*
 1. toggle.Btn에 클릭 이벤트 추가
@@ -222,6 +221,15 @@ toggleBtn.addEventListener('click', () => {
 });
 
 nickname.addEventListener('click', editNickname);
+
+function changeProfileColor() {
+    const randomColor = getRandomProfileColor();
+
+    applyProfileColor(randomColor);
+    saveProfileColor(randomColor);
+}
+// 랜덤 프로필 색상 클릭 이벤트
+profile.addEventListener('click', changeProfileColor);
 
 
 
