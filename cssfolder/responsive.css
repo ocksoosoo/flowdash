@@ -649,3 +649,11 @@
     text-align: center;
   }
 }
+/* 플로팅버튼 */
+@media (max-width: 1199px) {
+  .td-scroll-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
