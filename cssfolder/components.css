@@ -539,7 +539,27 @@ textarea:focus {
 }
 
 /* 플로팅버튼 */
-
 .td-scroll-btn {
-  display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--theme-font-accent);
+  color: var(--theme-box);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 98;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.td-scroll-btn svg {
+  width: 35px;
+  height: 35px;
+}
+
+.td-scroll-btn:hover {
+  opacity: 0.8;
 }

@@ -3,17 +3,16 @@
 // ===== Import =====
 
 // Storage
-import { loadTodos, saveTodos } from './storage.js';
+import { loadTodos, saveTodos } from "./storage.js";
 
 // Header
-import { initHeader } from './header.js';
-
+import { initHeader } from "./header.js";
 
 // Board
-import { renderBoard } from './board.js';
+import { renderBoard } from "./board.js";
 
 // Controls
-import { getFilterState, getFilteredTodos, initControls, } from './controls.js';
+import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
 
 // modal
 // import { initModal } from './modal.js';
@@ -26,35 +25,42 @@ import { getFilterState, getFilteredTodos, initControls, } from './controls.js';
 
 // import { handleTodoActions } from './todo.js';
 
-
-
 // ===== Global Sate =====
 let state = {
-    todos: []
+  todos: [],
 };
-
 
 // ===== Initialize =====
 function init() {
-    // 저장된 데이터 가져오기
-    // state.todos = loadTodos();
-    
-    // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
-    initHeader(state.todos);
+  // 저장된 데이터 가져오기
+  // state.todos = loadTodos();
 
-    initControls({
-        onFilterChange: updateBoard,
-        onResetTodos: resetTodos,
-    });
+  // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
+  initHeader(state.todos);
 
-    updateBoard(getFilterState());
-    // initStatistics(state.todos);
-    // initTodo(state.todos);
+  initControls({
+    onFilterChange: updateBoard,
+    onResetTodos: resetTodos,
+  });
+
+  updateBoard(getFilterState());
+  // initStatistics(state.todos);
+  // initTodo(state.todos);
 }
 
+// 플로팅버튼
+const scrollTopBtn = document.querySelector("#scrollTopBtn");
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
 
 // ===== App Start =====
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("DOMContentLoaded", init);
 
 // ===== board update =====
 function updateBoard(filters) {
@@ -70,13 +76,12 @@ function updateBoard(filters) {
 }
 
 function deleteTodo(id) {
-  state.todos = state.todos.filter(todo => todo.id !== id);
+  state.todos = state.todos.filter((todo) => todo.id !== id);
 
   saveTodos(state.todos);
 
   updateBoard(getFilterState());
 }
-
 
 function resetTodos() {
   state.todos = [];
@@ -102,14 +107,12 @@ state.todos = [
     status: "todo",
     priority: "high",
     createdAt: Date.now(),
-  }
+  },
 ];
 
 console.log(state.todos);
 
 // 수정 모달
 function openModal(id) {
-    console.log("수정 : ", id);
+  console.log("수정 : ", id);
 }
-
-
