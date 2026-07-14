@@ -96,7 +96,7 @@ state.todos = [
     createdAt: 1,
   },
   {
-    id: 1,
+    id: 2,
     title: "안녕",
     content: "내용",
     status: "todo",
