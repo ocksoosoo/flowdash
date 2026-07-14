@@ -9,7 +9,7 @@
 */
 
 // ===== Import =====
-import { loadNickname, saveNickname, loadTheme, saveTheme } from './storage.js';
+import { loadNickname, saveNickname, loadTheme, saveTheme, loadProfileColor, saveProfileColor } from './storage.js';
 
 
 
@@ -19,6 +19,7 @@ const greeting = document.querySelector('.td-header__text-sub');
 const nickname = document.querySelector('.td-header__brand-name');
 const todayDate = document.querySelector('.td-header__date');
 const toggleBtn = document.querySelector('.td-header__theme-toggle');
+const profile = document.querySelector('.td-header__profile-frame');
 
 // 상수
 const DEFAULT_NICKNAME = "FlowDash";
@@ -49,7 +50,19 @@ const ADJECTIVES = [
     "여유로운",
     "재치있는"
 ];
-
+const DEFAULT_PROFILE_COLOR = "#90A4AE";
+const PROFILE_COLORS = [
+    "#FF8A80",
+    "#FFB74D",
+    "#FFD54F",
+    "#81C784",
+    "#4DD0E1",
+    "#64B5F6",
+    "#7986CB",
+    "#BA68C8",
+    "#F06292",
+    "#90A4AE",
+];
 
 // 시간대에 따라 달라지는 인삿말 구현
 // 1. 시간 데이터를 불러오기
@@ -155,6 +168,18 @@ function getRandomNickname() {
     return `${adjective} ${animal}${number}`;
 };
 
+// getRandomProfileColor(): 버튼 클릭시 프로필 이미지 색상 랜덤 교체
+function getRandomProfileColor() {
+    return PROFILE_COLORS[
+        Math.floor(Math.random() * PROFILE_COLORS.length)
+    ];
+};
+
+// applyProfileColor(): 색상 적용 함수
+function applyProfileColor(color) {
+    profile.style.backgroundcolor = color;
+}
+
 
 // 모드 토글 버튼 이벤트
 /*
@@ -177,8 +202,9 @@ nickname.addEventListener('click', editNickname);
 // ===== 초기화 =====
 export function initHeader() {
     updateDate();
-
+    // 테마
     const savedTheme = loadTheme() || 'light';
+    // 닉네임
     let savedNickname = loadNickname();
     // 저장된 닉네임이 없으면 랜덤 닉네임 생성
     if(!savedNickname) {
@@ -186,6 +212,13 @@ export function initHeader() {
         savedNickname(savedNickname);
     }
     nickname.textContent = savedNickname;
+
+    // 색상
+    let savedColor = loadProfileColor();
+    if(!savedColor) {
+        saveColor = DEFAULT_PROFILE_COLOR;
+        savedProfileColor(savedColor);
+    };
 
     applyTheme(savedTheme);
     renderGreeting();

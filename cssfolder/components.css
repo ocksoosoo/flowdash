@@ -16,16 +16,10 @@ body {
 }
 
 .td-header__profile-frame {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  overflow: hidden;
-}
-
-.td-header__profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background-color: #ffa8a8;
 }
 
 .td-header__brand-name {
