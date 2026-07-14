@@ -121,6 +121,8 @@ function saveTheme(theme) {
 
 // editNickname(): input을 추가하여 닉네임을 수정하는 함수
 function editNickname() {
+    if(nickname.querySelector('input')) return;
+    
     const input = document.createElement('input');
     input.type = 'text';
     input.value = getNickname();
@@ -176,5 +178,3 @@ export function initHeader(todos) {
     nickname.textContent = getNickname();
     renderGreeting();
 }
-
-initHeader();
