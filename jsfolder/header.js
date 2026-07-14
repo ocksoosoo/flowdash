@@ -177,7 +177,7 @@ function getRandomProfileColor() {
 
 // applyProfileColor(): 색상 적용 함수
 function applyProfileColor(color) {
-    profile.style.backgroundcolor = color;
+    profile.style.Backgroundcolor = color;
 }
 
 
@@ -215,11 +215,12 @@ export function initHeader() {
 
     // 색상
     let savedColor = loadProfileColor();
-    if(!savedColor) {
-        saveColor = DEFAULT_PROFILE_COLOR;
-        savedProfileColor(savedColor);
+    if(!savedNickname) {
+        savedNickname = getRandomNickname();
+        saveNickname(savedNickname);
     };
 
+    applyProfileColor(savedColor);
     applyTheme(savedTheme);
     renderGreeting();
 }
