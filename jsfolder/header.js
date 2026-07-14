@@ -117,7 +117,7 @@ function editNickname() {
     const input = document.createElement('input');
     input.type = 'text';
     input.classList.add('td-header__nickname-input');
-    input.value = loadNickname() || DEFAULT_NICKNAME;
+    input.value = loadNickname();
     // Enter 시 닉네임 저장
     input.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') {
@@ -137,13 +137,24 @@ function editNickname() {
 // submiteNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
 function submitNickname(input) {
     const preNickname = loadNickname() || DEFAULT_NICKNAME;
-    const newNickname = input.value.trim() || preNickname();
+    const newNickname = input.value.trim() || preNickname;
     // local에 저장
     saveNickname(newNickname);
     nickname.textContent = newNickname;
-
-    renderGreeting();
 }
+
+// getRandomNickname(): 닉네임 최초 생성시 1회에 한하여 랜덤 닉네임 생성
+function getRandomNickname() {
+    const adjectiveIndex = Math.floor(Math.random() * ADJECTIVES.length);
+    const animalIndex = Math.floor(Math.random() * ANIMALS.length);
+
+    const adjective = ADJECTIVES[adjectiveIndex];
+    const animal = ANIMALS[animalIndex];
+    const number = Math.floor(Math.random() * 90) + 10;
+
+    return `${adjective} ${animal}${number}`;
+};
+
 
 // 모드 토글 버튼 이벤트
 /*
@@ -164,13 +175,18 @@ nickname.addEventListener('click', editNickname);
 
 
 // ===== 초기화 =====
-export function initHeader(todos) {
+export function initHeader() {
     updateDate();
 
     const savedTheme = loadTheme() || 'light';
-    const savedNickname = loadNickname() || DEFAULT_NICKNAME;
+    let savedNickname = loadNickname();
+    // 저장된 닉네임이 없으면 랜덤 닉네임 생성
+    if(!savedNickname) {
+        savedNickname = getRandomNickname();
+        savedNickname(savedNickname);
+    }
+    nickname.textContent = savedNickname;
 
     applyTheme(savedTheme);
-    nickname.textContent = savedNickname;
     renderGreeting();
 }
