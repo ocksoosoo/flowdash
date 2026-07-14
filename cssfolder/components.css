@@ -41,6 +41,22 @@ body {
   gap: 12px;
 }
 
+.td-header__nickname-wrap {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  width: fit-content;
+}
+
+.td-header__nickname-input {
+  width: 6ch;
+  min-width: 60px;
+  max-width: 160px;
+
+  font: inherit;
+  color: inherit;
+}
+
 .pen {
   color: var(--theme-font-accent);
 }
