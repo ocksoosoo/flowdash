@@ -8,7 +8,7 @@ import { loadTodos } from './storage.js';
 // Header
 import { initHeader } from './header.js';
 
-/*
+
 // Board
 import { renderBoard } from './board.js';
 
@@ -22,8 +22,8 @@ import { getFilterState, getFilteredTodos, initControls, } from './controls.js';
 // import { updateStats } from './stats.js';
 
 //todo
-import { handleTodoActions } from './todo.js';
-*/
+// import { handleTodoActions } from './todo.js';
+
 // import { handleTodoActions } from './todo.js';
 
 
@@ -38,7 +38,7 @@ let state = {
 function init() {
     // 저장된 데이터 가져오기
     state.todos = loadTodos();
-    console.log(state.todos)
+    
     // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
     initHeader(state.todos);
 
