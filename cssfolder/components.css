@@ -203,10 +203,6 @@ body.dark .td-header__darktheme-btn {
   padding: var(--pad-xs) var(--pad-m);
 }
 
-.td-controls__search-input::placeholder {
-  color: var(--theme-workdate);
-}
-
 .td-controls__select {
   background-color: var(--theme-box);
   border: 1px solid var(--theme-outline);
@@ -407,6 +403,7 @@ label[for="modal__task-title"]::before {
   content: "* ";
   color: var(--theme-font-main);
 }
+
 input::placeholder,
 textarea::placeholder {
   color: var(--theme-font-main);

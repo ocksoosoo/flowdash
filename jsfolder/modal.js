@@ -21,20 +21,50 @@ const priorityBtns = document.querySelectorAll(".priority-container button");
 
 // 기본 우선순위 변수 선언
 let selectedPriority = "mid"; 
+let currentEditId = null;
 
 // 1. 모달 열기/닫기
-export function openModal(e) {
+export function openModal(e, editData = null) {
   if (e) e.preventDefault();
 
   if (taskModal) { 
   taskModal.removeAttribute  ("hidden");
   taskModal.style.display = "flex";
   taskModal.classList.add ("active");
+  
+  if (editData) {
+    currentEditId = editData.id;
+    if (titleInput) titleInput.value = editData.title;
+    if (contentInput) contentInput.value = editData.content;
+    if (statusSelect) statusSelect.value = editData.status;
 
-  if (titleInput) titleInput.value ="";
-  if (contentInput) contentInput.value ="";
+    selectedPriority = editData.priority;
+    priorityBtns.forEach(btn => {
+      btn.classList.remove("active");
+      if (btn.classList.contains(`priority__${editData.priority}`) ||
+         (editData.priority === "mid" && btn.classList.contains("priority__mid"))) {
+        btn.classList.add("active");
+    }
+    });
+
+    if (saveBtn) saveBtn.textContent = "수정하기";
+  } else {
+    currentEditId = null;
+    if (titleInput) titleInput.value = "";
+    if (contentInput) contentInput.value = "";
+    if (statusSelect) statusSelect.value = "todo";
+
+    selectedPriority = "mid";
+    priorityBtns.forEach(btn => btn.classList.remove("active"));
+
+    const midBtn = document.querySelector(".priority__mid");
+    if (midBtn) midBtn.classList.add("active");
+
+    if (saveBtn) saveBtn.textContent = "저장하기"
+  }
   }
 }
+
 export function closeModal(e) {
   if (e) e.preventDefault();
 
@@ -48,7 +78,7 @@ export function closeModal(e) {
 export function initModal(onSaveSuccess) {
   // 새 할 일 버튼
   if (openBtn) {
-    openBtn.addEventListener("click", openModal);
+    openBtn.addEventListener("click", (e) => openModal(e));
   }
 
   // 취소
@@ -69,7 +99,7 @@ export function initModal(onSaveSuccess) {
       const todoData = getModalData();
       
       if (typeof onSaveSuccess === "function") {
-        onSaveSuccess(todoData);
+        onSaveSuccess(todoData, currentEditId);
       }
 
       closeModal();
@@ -107,6 +137,11 @@ export function initModal(onSaveSuccess) {
       });
     });
   }
+  return {
+    openForEdit: (targetTodo) => {
+      openModal(null, targetTodo);
+    }
+  };
 }
 
 // 3. 입력 데이터 반환
