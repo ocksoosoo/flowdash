@@ -55,6 +55,8 @@ export function updateTodo(id, updateData) {
 }
 // - Todo 삭제(Delete)
 export function deleteTodo(id) {
+  const targetId = Number(id);
+
   todos = todos.filter((item) => item.id !== id);
 }
 // - Todo 상태 변경(TODO/ In Progress / Done)

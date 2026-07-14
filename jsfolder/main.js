@@ -32,44 +32,42 @@ let state = {
 };
 
 // ===== Initialize =====
-function init() {
-    const dummyData =
-        [
-  {
-    id: 1,
-    title: "테스트",
-    content: "내용",
-    status: "todo",
-    priority: "mid",
-    createdAt: 1,
-  },
-  {
-    id: 2,
-    title: "안녕",
-    content: "내용",
-    status: "todo",
-    priority: "high",
-    createdAt: Date.now(),
-  },
-];
+function initApp() {
+    
+function updateView() {
+    const currentTodos = getTodos()
 
-  // 저장된 데이터 가져오기
-  // state.todos = loadTodos();
+    renderBoard(currentTodos, {
+        onEditTodo: (id) => {
+            console.log(`수정 ID: ${id}`);
+        },
+        onDeleteTodo: (id) => {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                deleteTodo(id)
+                updateView()
+            }
+        }
+    });
+}
 
-  // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
-  initHeader(state.todos);
+// 저장된 데이터 가져오기
+// state.todos = loadTodos();
 
-  initTodos(dummyData);
+// ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
+initHeader(state.todos);
 
-  initControls({
+initControls({
     onFilterChange: updateBoard,
     onResetTodos: resetTodos,
-  });
+});
 
-initModal();
-  updateBoard(getFilterState());
-  // initStatistics(state.todos);
-  // initTodo(state.todos);
+initModal((todoData) => {
+    createTodo(todoData);
+    updateView();
+});
+
+
+updateView();
 }
 
 // 플로팅버튼
@@ -84,7 +82,7 @@ if (scrollTopBtn) {
 }
 
 // ===== App Start =====
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", initApp);
 
 // ===== board update =====
 function updateBoard(filters) {
@@ -114,7 +112,4 @@ function resetTodos() {
   updateBoard(getFilterState());
 }
 
-// 수정 모달
-function openModal(id) {
-  console.log("수정 : ", id);
-}
+
