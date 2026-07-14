@@ -27,20 +27,20 @@ export function saveTodos(todos) {
 
 // ===== Theme =====
 export function loadTheme() {
-    return localStorage.getItem(STORAGE_KEYS.theme);    
+    return localStorage.getItem(STORAGE_KEY.theme);    
 }
 
 export function saveTheme(theme) {
-    localStorage.setItem(STORAGE_KEY.theme, theme);
+    localStorage.setItem(STORAGE_KEY.THEME, theme);
 }
 
 // ===== Nickname =====
 export function loadNickname() {
-    return localStorage.getItem(STORAGE_KEY.nickname);
+    return localStorage.getItem(STORAGE_KEY.NICKNAME);
 }
 
 export function saveNickname(nickname) {
-    localStorage.setItem(STORAGE_KEY.nickname, nickname);
+    localStorage.setItem(STORAGE_KEY.NICKNAME, nickname);
 }
 
 // ===== Filter =====
