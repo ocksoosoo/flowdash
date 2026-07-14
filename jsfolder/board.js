@@ -6,7 +6,7 @@ import { getFilterState, getFilteredTodos } from "./controls.js";
 import { initStatistics } from "./stats.js";
 // board.js (오류 방지 안전장치 보완 버전)
 
-function formatDate(timestamp) {
+function formatDate(timestamp) { 
   if (!timestamp) return "";
   const date = new Date(timestamp);
   const year = date.getFullYear();
