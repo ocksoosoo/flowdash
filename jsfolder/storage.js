@@ -5,8 +5,9 @@ const STORAGE_KEY = {
     TODOS: 'flowdash-todos',
     THEME: 'flowdash-theme',
     NICKNAME: 'flowdash-nickname',
-    FILTER: 'flowdash-filter', // 선택사항
-    SORT: 'flowdash-sort' // 선택사항
+    PROFILE_COLOR: "flowdash-profile-color"
+    // FILTER: 'flowdash-filter', // 선택사항
+    // SORT: 'flowdash-sort' // 선택사항
 }
 
 // ===== Todo =====
@@ -41,6 +42,15 @@ export function loadNickname() {
 
 export function saveNickname(nickname) {
     localStorage.setItem(STORAGE_KEY.NICKNAME, nickname);
+}
+
+// === Profile ===
+export function loadProfileColor() {
+    return localStorage.getItem(STORAGE_KEY.PROFILE_COLOR);
+}
+
+export function saveProfileColor(color) {
+    localStorage.setItem(STORAGE_KEY.PROFILE_COLOR, color);
 }
 
 // ===== Filter =====
