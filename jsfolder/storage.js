@@ -12,10 +12,17 @@ const STORAGE_KEY = {
 // ===== Todo =====
 export function loadTodos() {
     // LocalStorage에서 todos 데이터를 가져와서 반환
+    const todos = localStorage.getItem(STORAGE_KEY.TODOS);
+
+    return todos ? JSON.parse(todos) : [];
 }
 
 export function saveTodos(todos) {
     // LocalStorage에 todos 데이터를 저장
+    localStorage.setItem(
+        STORAGE_KEY.TODOS,
+        JSON.stringify(todos)
+    )
 }
 
 // ===== Theme =====
