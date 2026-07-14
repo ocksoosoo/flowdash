@@ -125,6 +125,7 @@ function editNickname() {
     
     const input = document.createElement('input');
     input.type = 'text';
+    input.classList.add('td-header__nickname-input');
     input.value = getNickname();
     // Enter 시 닉네임 저장
     input.addEventListener('keydown', (e) => {
