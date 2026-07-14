@@ -13,10 +13,10 @@ import { renderBoard } from "./board.js";
 
 // Controls
 import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
-import { initTodos, getTodos, deleteTodo as deleteTodoFromData } from "./todo.js";
+import { initTodos, getTodos, deleteTodo as deleteTodoFromData, updateTodo} from "./todo.js";
 
 // modal
-import { initModal } from './modal.js';
+import { initModal, openModal } from './modal.js';
 
 // stats
 // import { updateStats } from './stats.js';
@@ -39,7 +39,12 @@ function updateView() {
 
     renderBoard(currentTodos, {
         onEditTodo: (id) => {
-            console.log(`수정 ID: ${id}`);
+          const allTodos = getTodos();
+          const targetTodo = allTodos.find(item => Number(item.id) === Number(id));
+          
+          if (targetTodo) {
+            openModal(null, targetTodo);
+          }
         },
         onDeleteTodo: (id) => {
             if (confirm("정말 삭제하시겠습니까?")) {
@@ -61,8 +66,12 @@ initControls({
     onResetTodos: resetTodos,
 });
 
-initModal((todoData) => {
+initModal((todoData, editId) => {
+  if (editId) {
+    updateTodo(Number(editId), todoData);
+  } else {
     createTodo(todoData);
+  }
     updateView();
 });
 

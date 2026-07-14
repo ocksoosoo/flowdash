@@ -1,6 +1,5 @@
 // board.js (오류 방지 안전장치 보완 버전)
 
-// 💡 1. 상단에 formatDate 함수가 없다면 아래 안전 함수를 추가해 줍니다.
 function formatDate(timestamp) {
   if (!timestamp) return "";
   const date = new Date(timestamp);
@@ -27,12 +26,10 @@ export function renderBoard(todos, {
   const doing = todos.filter(item => item.status === "doing");
   const done = todos.filter(item => item.status === "done");
 
-  // 💡 안전장치: HTML 컨테이너가 정상적으로 존재할 때만 렌더링 호출
   if (todoList) renderColumn(todoList, todo, { onEditTodo, onDeleteTodo });
   if (doingList) renderColumn(doingList, doing, { onEditTodo, onDeleteTodo });
   if (doneList) renderColumn(doneList, done, { onEditTodo, onDeleteTodo });
 
-  // 💡 안전장치: 카운트 요소가 마크업에 존재할 때만 내부 글자 변경
   if (todoCount) todoCount.textContent = todo.length;
   if (doingCount) doingCount.textContent = doing.length;
   if (doneCount) doneCount.textContent = done.length;
@@ -86,7 +83,7 @@ function createCard(todo, handlers) {
   if (editBtn) {
   editBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    e.stopPropagation(); // 💡 이벤트가 위로 퍼지는 것을 막아 렉을 방지합니다.
+    e.stopPropagation(); 
     if (handlers && typeof handlers.onEditTodo === "function") {
       handlers.onEditTodo(todo.id);
     }
@@ -95,7 +92,7 @@ function createCard(todo, handlers) {
   if (deleteBtn) {
   deleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    e.stopPropagation(); // 💡 이벤트가 위로 퍼지는 것을 막아 렉을 방지합니다.
+    e.stopPropagation(); 
     if (handlers && typeof handlers.onDeleteTodo === "function") {
       handlers.onDeleteTodo(todo.id);
     }
