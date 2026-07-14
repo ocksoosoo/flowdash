@@ -2,6 +2,8 @@
 // 검색, 기간 필터, 정렬, 전체 데이터 초기화
 // 데이터 초기화 부분만 데이터 변경 O, todo 데이터 생성, 수정, 삭제는 main.js에서 작성
 
+import { refreshBoardWithFilter } from "./board.js";
+
 const SELECTOR = {
   searchInput: ".td-controls__search-input",
   select: ".td-controls__select",
@@ -34,30 +36,15 @@ const TAG_LABELS = Object.freeze({
 
 let filterState = { ...FILTER_DEFAULTS };
 
-/**
- * 컨트롤 영역을 초기화합니다.
- *
- * @param {Object} callbacks 콜백 함수 모음
- * @param {(filters: Object) => void} callbacks.onFilterChange 필터가 변경될 때 실행됩니다.
- * @param {() => void} callbacks.onResetTodos 전체 초기화 버튼 클릭 시 실행됩니다.
- */
-export function initControls({ onFilterChange, onResetTodos }) {
+
+export function initControls() {
   const elements = getElements();
 
-  bindEvents(elements, onFilterChange, onResetTodos);
+  bindEvents(elements);
   renderTags(elements.activeTagsContainer);
 }
 
-/**
- * 현재 필터 상태를 복사하여 반환합니다.
- *
- * @returns {{
- *   keyword: string,
- *   period: string,
- *   priority: string,
- *   sort: string
- * }}
- */
+
 export function getFilterState() {
   return { ...filterState };
 }
@@ -93,7 +80,7 @@ function getElements() {
   };
 }
 
-function bindEvents(elements, onFilterChange, onResetTodos) {
+function bindEvents(elements) {
   const {
     searchInput,
     periodSelect,
@@ -105,22 +92,22 @@ function bindEvents(elements, onFilterChange, onResetTodos) {
 
   searchInput.addEventListener("input", (event) => {
     filterState.keyword = event.currentTarget.value;
-    notifyFilterChange(onFilterChange, activeTagsContainer);
+    notifyFilterChange(activeTagsContainer);
   });
 
   periodSelect.addEventListener("change", (event) => {
     filterState.period = event.currentTarget.value;
-    notifyFilterChange(onFilterChange, activeTagsContainer);
+    notifyFilterChange(activeTagsContainer);
   });
 
   prioritySelect.addEventListener("change", (event) => {
     filterState.priority = event.currentTarget.value;
-    notifyFilterChange(onFilterChange, activeTagsContainer);
+    notifyFilterChange(activeTagsContainer);
   });
 
   sortSelect.addEventListener("change", (event) => {
     filterState.sort = event.currentTarget.value;
-    notifyFilterChange(onFilterChange, activeTagsContainer);
+    notifyFilterChange(activeTagsContainer);
   });
 
   resetButton.addEventListener("click", () => {
@@ -133,14 +120,14 @@ function bindEvents(elements, onFilterChange, onResetTodos) {
 
   renderTags(activeTagsContainer);
 
-  onResetTodos();
-  onFilterChange(getFilterState());
+  refreshBoardWithFilter();
 });
 }
 
-function notifyFilterChange(onFilterChange, activeTagsContainer) {
+function notifyFilterChange(activeTagsContainer) {
   renderTags(activeTagsContainer);
-  onFilterChange(getFilterState());
+
+  refreshBoardWithFilter();
 }
 
 function renderTags(container) {

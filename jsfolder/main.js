@@ -9,19 +9,19 @@ import { loadTodos, saveTodos } from "./storage.js";
 import { initHeader } from "./header.js";
 
 // Board
-import { renderBoard } from "./board.js";
+import { refreshBoardWithFilter } from "./board.js";
 
 // Controls
-import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
+import { initControls } from "./controls.js";
 
 // modal
-import { initModal, openModal } from './modal.js';
+import { initModal } from './modal.js';
 
 // stats
 // import { updateStats } from './stats.js';
 
 //todo
-import { createTodo, initTodos, getTodos, deleteTodo, updateTodo} from "./todo.js";
+import { getTodos } from "./todo.js";
 
 // import { handleTodoActions } from './todo.js';
 
@@ -32,50 +32,16 @@ let state = {
 
 // ===== Initialize =====
 function initApp() {
-    
-function updateView() {
-    const currentTodos = getTodos()
-
-    renderBoard(currentTodos, {
-        onEditTodo: (id) => {
-          const allTodos = getTodos();
-          const targetTodo = allTodos.find(item => Number(item.id) === Number(id));
-          
-          if (targetTodo) {
-            openModal(null, targetTodo);
-          }
-        },
-        onDeleteTodo: (id) => {
-            if (confirm("정말 삭제하시겠습니까?")) {
-                deleteTodo(id)
-                updateView()
-            }
-        }
-    });
-}
-
-// 저장된 데이터 가져오기
-// state.todos = loadTodos();
 
 // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
-initHeader(state.todos);
+initHeader(getTodos());
 
-initControls({
-    onFilterChange: updateBoard,
-    onResetTodos: resetTodos,
-});
+initControls();
 
-initModal((todoData, editId) => {
-  if (editId) {
-    updateTodo(Number(editId), todoData);
-  } else {
-    createTodo(todoData);
-  }
-    updateView();
-});
+initModal();
 
 
-updateView();
+refreshBoardWithFilter();
 }
 
 // 플로팅버튼
@@ -93,31 +59,8 @@ if (scrollTopBtn) {
 document.addEventListener("DOMContentLoaded", initApp);
 
 // ===== board update =====
-function updateBoard(filters) {
-  const allTodos = getTodos();
-  const filteredTodos = getFilteredTodos(allTodos, filters)
-
-  console.log("전체 데이터", allTodos);
-  console.log("필터링된 데이터", filteredTodos);
-
-  renderBoard(filteredTodos, {
-    onEditTodo: openModal,
-    onDeleteTodo: handleDelete,
-  });
-}
-
-function handleDelete(id) {
-    deleteTodoFromData(id);
-
-    saveTodos(getTodos());
 
 
-  updateBoard(getFilterState());
-}
 
-function resetTodos() {
-
-  updateBoard(getFilterState());
-}
 
 
