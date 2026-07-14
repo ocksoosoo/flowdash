@@ -16,12 +16,35 @@ body {
 }
 
 .td-header__profile-frame {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  overflow: hidden;
   background: #ff9999;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: opacity 0.3s ease;
+
 }
+
+.td-header__profile-frame:hover .random {
+  opacity: var(--opacity-70);
+  display: block;
+}
+
+.random {
+  width: 20px; height: 20px;
+  color: var(--color-font);
+  display: none;
+
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 .td-header__brand-name {
   color: var(--theme-font-accent);
