@@ -13,6 +13,7 @@ import { renderBoard } from "./board.js";
 
 // Controls
 import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
+import { initTodos, getTodos, deleteTodo as deleteTodoFromData } from "./todo.js";
 
 // modal
 // import { initModal } from './modal.js';
@@ -21,7 +22,7 @@ import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
 // import { updateStats } from './stats.js';
 
 //todo
-// import { handleTodoActions } from './todo.js';
+// import { createTodo, deleteTodo } from './todo.js';
 
 // import { handleTodoActions } from './todo.js';
 
@@ -32,16 +33,39 @@ let state = {
 
 // ===== Initialize =====
 function init() {
+    const dummyData =
+        [
+  {
+    id: 1,
+    title: "테스트",
+    content: "내용",
+    status: "todo",
+    priority: "mid",
+    createdAt: 1,
+  },
+  {
+    id: 2,
+    title: "안녕",
+    content: "내용",
+    status: "todo",
+    priority: "high",
+    createdAt: Date.now(),
+  },
+];
+
   // 저장된 데이터 가져오기
   // state.todos = loadTodos();
 
   // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
   initHeader(state.todos);
 
+  initTodos(dummyData);
+
   initControls({
     onFilterChange: updateBoard,
     onResetTodos: resetTodos,
   });
+
 
   updateBoard(getFilterState());
   // initStatistics(state.todos);
@@ -64,53 +88,31 @@ document.addEventListener("DOMContentLoaded", init);
 
 // ===== board update =====
 function updateBoard(filters) {
-  const filteredTodos = getFilteredTodos(state.todos, filters);
+  const allTodos = getTodos();
+  const filteredTodos = getFilteredTodos(allTodos, filters)
 
-  console.log("state.todos", state.todos);
-  console.log("filteredTodos", filteredTodos);
+  console.log("전체 데이터", allTodos);
+  console.log("필터링된 데이터", filteredTodos);
 
   renderBoard(filteredTodos, {
     onEditTodo: openModal,
-    onDeleteTodo: deleteTodo,
+    onDeleteTodo: handleDelete,
   });
 }
 
-function deleteTodo(id) {
-  state.todos = state.todos.filter((todo) => todo.id !== id);
+function handleDelete(id) {
+    deleteTodoFromData(id);
 
-  saveTodos(state.todos);
+    saveTodos(getTodos());
+
 
   updateBoard(getFilterState());
 }
 
 function resetTodos() {
-  state.todos = [];
-
-  saveTodos(state.todos);
 
   updateBoard(getFilterState());
 }
-
-state.todos = [
-  {
-    id: 1,
-    title: "테스트",
-    content: "내용",
-    status: "todo",
-    priority: "mid",
-    createdAt: 1,
-  },
-  {
-    id: 2,
-    title: "안녕",
-    content: "내용",
-    status: "todo",
-    priority: "high",
-    createdAt: Date.now(),
-  },
-];
-
-console.log(state.todos);
 
 // 수정 모달
 function openModal(id) {

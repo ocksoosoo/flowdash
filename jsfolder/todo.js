@@ -1,5 +1,11 @@
 // Todo 데이터 관리(CRUD)
 let todos = [];
+
+// 초기 데이터 셋팅용 함수
+export function initTodos(initialData) {
+  todos = initialData || [];
+}
+
 // - Todo 생성(create)
 export function createTodo(todoData) {
   const newTodo = {
@@ -11,7 +17,7 @@ export function createTodo(todoData) {
     status: todoData.status || "todo",
     priority: todoData.priority || "medium",
 
-    createdAt: new Date(),
+    createdAt: Date.now(),
     updatedAt: null,
     completedAt: null,
   };
@@ -29,7 +35,7 @@ export function getTodos() {
 
 // - Todo 수정(Update)
 
-function updateTodo(id, updateData) {
+export function updateTodo(id, updateData) {
   const todo = todos.find((item) => item.id === id);
   
   if(!todo) return;
@@ -39,7 +45,7 @@ function updateTodo(id, updateData) {
   todo.priority = updateData.priority;
   todo.status = updateData.status;
 
-  todo.updatedAt = date.now();
+  todo.updatedAt = Date.now();
 
   if(todo.status === "done") {
     todo.completedAt = Date.now()
@@ -49,9 +55,7 @@ function updateTodo(id, updateData) {
 }
 // - Todo 삭제(Delete)
 export function deleteTodo(id) {
-  todos = todos.filter(
-    (item) => item.id !== id
-  );
+  todos = todos.filter((item) => item.id !== id);
 }
 // - Todo 상태 변경(TODO/ In Progress / Done)
 export function updateStatus(id, status) {
@@ -63,14 +67,14 @@ export function updateStatus(id, status) {
   if (!todo) return;
 
   todo.status = status;
-  todo.updatedAt = new Date();
+  todo.updatedAt = Date.now();
 
   // done
-  if (status === "DONE") {
-    todo.completedAt = new Date();
+  if (status === "done") {
+    todo.completedAt = Date.now();
   }
 
-  return
+  return todo;
 }
 
 // createdAt, updatedAt, completedAt 관리

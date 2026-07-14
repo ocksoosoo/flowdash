@@ -143,14 +143,6 @@ deleteBtn.addEventListener("click", () => {
   return card;
 }
 
-function deleteTodo(id) {
-  state.todos = state.todos.filter(todo => todo.id !== id);
-
-  saveTodos(state.todos);
-
-  updateBoard(getFilterState());
-}
-
 function createEmpty() {
   const empty = document.createElement("li");
 
