@@ -27,8 +27,8 @@ const TAG_LABELS = Object.freeze({
     low: "낮음",
   },
   sort: {
-    asc: "오름차순",
-    desc: "내림차순"
+    asc: "정렬: 오름차순",
+    desc: "정렬: 내림차순"
   },
 });
 
