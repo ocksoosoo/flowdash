@@ -8,6 +8,7 @@ import { loadTodos } from './storage.js';
 // Header
 import { initHeader } from './header.js';
 
+/*
 // Board
 import { initBoard } from './board.js';
 
@@ -22,6 +23,7 @@ import { updateStats } from './stats.js';
 
 //todo
 import { handleTodoActions } from './todo.js';
+*/
 
 
 
