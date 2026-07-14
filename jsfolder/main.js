@@ -13,7 +13,6 @@ import { renderBoard } from "./board.js";
 
 // Controls
 import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
-import { initTodos, getTodos, deleteTodo as deleteTodoFromData, updateTodo} from "./todo.js";
 
 // modal
 import { initModal, openModal } from './modal.js';
@@ -22,7 +21,7 @@ import { initModal, openModal } from './modal.js';
 // import { updateStats } from './stats.js';
 
 //todo
-import { createTodo, deleteTodo } from './todo.js';
+import { createTodo, initTodos, getTodos, deleteTodo, updateTodo} from "./todo.js";
 
 // import { handleTodoActions } from './todo.js';
 
