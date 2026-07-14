@@ -345,10 +345,21 @@ body.dark .td-header__darktheme-btn {
   text-decoration: line-through;
 }
 
+.td-card__date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
 .td-card__date {
   font-weight: 400;
   opacity: var(--opacity-70);
   font-size: 12px;
+}
+
+.td-card__date--complete {
+  color: var(--theme-font-accent);
 }
 
 /* footer */
