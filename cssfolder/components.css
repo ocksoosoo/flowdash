@@ -496,6 +496,7 @@ button.priority__low.active {
 .button__save {
   border: 0;
   background: var(--theme-font-accent);
+  color: var(--color-font);
 }
 
 /* modal_overlay */
@@ -580,4 +581,11 @@ button.priority__low.active {
 
 .td-scroll-btn:hover {
   opacity: 0.8;
+}
+
+/* 드래그 차단 */
+
+body {                      
+  -webkit-user-select: none;
+  user-select: none;
 }
