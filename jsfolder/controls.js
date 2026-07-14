@@ -13,9 +13,8 @@ const filterState = {
   keyword: "",
   period: "all",
   priority: "all",
-  sort: 'asc'
+  sort: "asc",
 };
-
 
 searchInput.addEventListener("input", (e) => {
   filterState.keyword = e.target.value;
@@ -38,7 +37,7 @@ sortSelect.addEventListener("change", (e) => {
 resetBtn.addEventListener("click", () => {
   filterState.keyword = "";
   filterState.period = "all";
-  filterState.priority = 'all';
+  filterState.priority = "all";
   filterState.sort = "asc";
 
   searchInput.value = "";
