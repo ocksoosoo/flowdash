@@ -168,3 +168,39 @@ export function getModalData() {
     status: statusSelect ? statusSelect.value : "todo",
   };
 }
+
+//초기화 모달 작성//
+export function resetModal() {
+  // 입력값 초기화
+  if (titleInput) {
+    titleInput.value = "";
+  }
+
+  if (contentInput) {
+    contentInput.value = "";
+  }
+
+  if (statusSelect) {
+    statusSelect.value = "todo";
+  }
+
+  // 우선순위 초기화
+  selectedPriority = "mid";
+
+  priorityBtns.forEach((btn) => {
+    btn.classList.remove("active");
+  });
+
+  const midBtn = document.querySelector(".priority__mid");
+  if (midBtn) {
+    midBtn.classList.add("active");
+  }
+
+  // 수정 상태 초기화
+  currentEditId = null;
+
+  // 버튼 텍스트 초기화
+  if (saveBtn) {
+    saveBtn.textContent = "저장하기";
+  }
+}
