@@ -276,6 +276,10 @@ body.dark .td-header__darktheme-btn {
   gap: var(--pad-s);
 }
 
+.td-board__empty-text {
+  color: var(--theme-worknot);
+}
+
 .td-card {
   display: flex;
   flex-direction: column;
