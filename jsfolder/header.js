@@ -50,7 +50,6 @@ const ADJECTIVES = [
     "여유로운",
     "재치있는"
 ];
-const DEFAULT_PROFILE_COLOR = "#90A4AE";
 const PROFILE_COLORS = [
     "#FF8A80",
     "#FFB74D",
@@ -202,25 +201,26 @@ nickname.addEventListener('click', editNickname);
 // ===== 초기화 =====
 export function initHeader() {
     updateDate();
+
     // 테마
     const savedTheme = loadTheme() || 'light';
+    applyTheme(savedTheme);
+
     // 닉네임
     let savedNickname = loadNickname();
-    // 저장된 닉네임이 없으면 랜덤 닉네임 생성
-    if(!savedNickname) {
+
+    if (!savedNickname) {
         savedNickname = getRandomNickname();
-        savedNickname(savedNickname);
+        saveNickname(savedNickname);
     }
+
     nickname.textContent = savedNickname;
 
     // 색상
-    let savedColor = loadProfileColor();
-    if(!savedNickname) {
-        savedNickname = getRandomNickname();
-        saveNickname(savedNickname);
-    };
+    const savedColor = loadProfileColor();
 
-    applyProfileColor(savedColor);
-    applyTheme(savedTheme);
+    if (savedColor) {
+        applyProfileColor(savedColor);
+    } 
     renderGreeting();
-}
+};
