@@ -65,6 +65,9 @@ export function openModal(e, editData = null) {
     if (saveBtn) saveBtn.textContent = "저장하기"
   }
   }
+  if (titleInput) {
+    titleInput.focus();
+  } 
 }
 
 export function closeModal(e) {

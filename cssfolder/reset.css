@@ -8,6 +8,7 @@
 /* 박스 크기 통일 */
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 /* 링크 클릭 시 부드럽게 스크롤 하는거 */
 ul,
@@ -46,4 +47,12 @@ select {
 /* 버튼 호버시 포인터 손가락 모양으로 나오게 하기 */
 button {
   cursor: pointer;
+}
+
+/* 카드 최소 높이 부여 */
+#todo-list,
+#doing-list,
+#done-list
+  {
+  contain: layout;
 }
