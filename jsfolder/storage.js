@@ -28,7 +28,7 @@ export function saveTodos(todos) {
 
 // ===== Theme =====
 export function loadTheme() {
-    return localStorage.getItem(STORAGE_KEY.theme);    
+    return localStorage.getItem(STORAGE_KEY.THEME);    
 }
 
 export function saveTheme(theme) {
