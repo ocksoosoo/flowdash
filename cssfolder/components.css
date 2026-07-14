@@ -44,7 +44,7 @@ body {
 }
 
 .td-header__nickname-input {
-  width: 6ch;
+  width: 10ch;
   min-width: 60px;
   max-width: 160px;
 

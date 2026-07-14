@@ -21,6 +21,7 @@ const todayDate = document.querySelector('.td-header__date');
 const toggleBtn = document.querySelector('.td-header__theme-toggle');
 const profile = document.querySelector('.td-header__profile-frame');
 
+
 // 상수
 const DEFAULT_NICKNAME = "FlowDash";
 const ANIMALS = [
@@ -119,9 +120,6 @@ function applyTheme(theme) {
 }
 
 
-// 예외 처리(빈 값) -> 이전 값 || 기본값
-
-
 // editNickname(): input을 추가하여 닉네임을 수정하는 함수
 function editNickname() {
     if(nickname.querySelector('input')) return;
@@ -130,6 +128,7 @@ function editNickname() {
     input.type = 'text';
     input.classList.add('td-header__nickname-input');
     input.value = loadNickname();
+
     // Enter 시 닉네임 저장
     input.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') {
@@ -146,11 +145,39 @@ function editNickname() {
     input.focus();
 };
 
+// 닉네임 예외 처리
+// checkNickname(): 닉네임 글자수 제한(2자 이상 10자 이하여야 함)
+function checkNicknameLength(nickname) {
+    const inputLength = nickname.length;
+    return inputLength >= 2 && inputLength <= 10;
+};
+
+// checkNicknameCharacter(): 
+function checkNicknameCharacter(nickname) {
+    const acceptedNickname = /^[가-힣a-zA-Z0-9_!@?\- ]+$/;
+    return acceptedNickname.test(nickname);
+}
+
 // submiteNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
 function submitNickname(input) {
     const preNickname = loadNickname() || DEFAULT_NICKNAME;
     const newNickname = input.value.trim() || preNickname;
-    // local에 저장
+
+
+    // 글자수 검사 실패
+    if(!checkNicknameLength(newNickname)) {
+        input.value = preNickname;
+        nickname.textContent = preNickname;
+        return;
+    }
+    // 허용 문자 검사 실패
+    if(!checkNicknameCharacter(newNickname)) {
+        input.value= preNickname;
+        nickname.textContent = preNickname;
+        return;
+    }
+
+    //검사 통과시 local에 저장
     saveNickname(newNickname);
     nickname.textContent = newNickname;
 }
@@ -164,7 +191,7 @@ function getRandomNickname() {
     const animal = ANIMALS[animalIndex];
     const number = Math.floor(Math.random() * 90) + 10;
 
-    return `${adjective} ${animal}${number}`;
+    return `${adjective}${animal}${number}`;
 };
 
 // getRandomProfileColor(): 버튼 클릭시 프로필 이미지 색상 랜덤 교체
@@ -176,7 +203,7 @@ function getRandomProfileColor() {
 
 // applyProfileColor(): 색상 적용 함수
 function applyProfileColor(color) {
-    profile.style.Backgroundcolor = color;
+    profile.style.backgroundColor = color;
 }
 
 
