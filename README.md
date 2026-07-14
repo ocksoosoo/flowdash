@@ -19,13 +19,13 @@ CRUD, 기간 필터, 통계, 테마 및 UX 요소를 포함하며
 
 ## 1. 팀 구성 및 역할 분담 (Team & Roles)
 
-| 이름 | 역할 | 주요 담당 | 비고 |
+| 이름 | 역할 | 주요 담당 | 
 |----|----|----|----|
-| 김명서 | UI&UX & CSS & JS | Dark Mode 변수 설계 및 시스템 구현, 공통 스타일링, | 있으면 적기 |
-| 나민우 | HTML(Lead) & JS | 메인 HTML 구조 설계,  |
-| 최현옥 | UI&UX & HTML & CSS & JS |  | |
-| 황상빈 | CSS(Lead) & JS |  | |
-| 공통 작업: 팀원 전반이 전반적인 CSS/JS 구현 및 상호 코드 리뷰에 참여함 |
+| 최현옥 | Team Lead, Web UI&UX, Header CSS&JS | Modal Markup, Header Styling & JS 설계 및 구현, 다크모드 토글, LocalStorage 관리 | 
+| 김명서 | Dark mode&Responsive(Lead), Mobile UI&UX. Modal JS  | Dark Mode 변수 설정 및 관리, 반응형 디자인 설계와 구현, Modal JS  |
+| 나민우 | HTML(Lead), Stats CSS&JS | 메인 HTML 구조 설계, 통계 보드 설계 및 관리, 원형 그래프 구현 |  
+| 황상빈 | CSS(Lead),  kanban board CSS&JS | CSS Layout 설계, Modal Styling, kanban board CSS & JS, CRUD 구현, 검색/필터/정렬 |
+| **공동: 팀원 전반이 CSS와 JS 구현 및 상호 코드 리뷰에 참여함** |
 
 
 
@@ -34,12 +34,16 @@ CRUD, 기간 필터, 통계, 테마 및 UX 요소를 포함하며
 ## 2. 수행 절차 및 방법 (Process & Strategy)
 
 ### 2-1. 진행 순서
-1. 요구사항 전체 리뷰 및 필수 / 가산 구분
-2. 데이터 모델 및 LocalStorage 키 합의
-3. 보드 구조 및 렌더링 전략 결정
-4. 필터 / 정렬 / 검색 파이프라인 구현
-5. UX / 테마 / 반응형 구현
-6. 통합 및 QA
+1. 요구사항 전체 리뷰 및 필수 / 가산 구분 / 목표 설정
+2. UI/UX / HTML / CSS 역할 분담
+3. Web / Mobile Design 분담
+4. HTML 구조 작업
+5. CSS 파일 구조 분리하여 파트 분담
+6. CSS Layout / DarkMode
+7. JS 파일 구조 분리 및 세팅, 섹션별 파트 분담
+8. Profile / Statstics / Todo-Dashboard / Redsponsive Styling&JS
+9. Modal JS
+10. 
 
 ### 2-2. 협업 규칙
 - 브랜치 전략: main / dev / feature/*
