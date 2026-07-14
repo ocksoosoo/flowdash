@@ -109,17 +109,18 @@ function bindEvents(elements, onFilterChange, onResetTodos) {
     notifyFilterChange(onFilterChange, activeTagsContainer);
   });
 
-sortSelect.addEventListener("change", (e) => {
-  filterState.sort = e.target.value;
+  prioritySelect.addEventListener("change", (event) => {
+    filterState.priority = event.currentTarget.value;
+    notifyFilterChange(onFilterChange, activeTagsContainer);
+  });
 
-  updateBoard();
-});
+  sortSelect.addEventListener("change", (event) => {
+    filterState.sort = event.currentTarget.value;
+    notifyFilterChange(onFilterChange, activeTagsContainer);
+  });
 
-resetBtn.addEventListener("click", () => {
-  filterState.keyword = "";
-  filterState.period = "all";
-  filterState.priority = 'all';
-  filterState.sort = "asc";
+  resetButton.addEventListener("click", () => {
+  filterState = { ...FILTER_DEFAULTS };
 
   searchInput.value = "";
   periodSelect.value = "all";
@@ -192,12 +193,12 @@ export function getFilteredTodos(todos, filters) {
       const date = new Date(todo.updatedAt || todo.createdAt).getTime();
 
       if (filters.period === "today") {
-        const today = new Date();
+      const today = new Date();
 
-        return (
-          new Date(date).toDateString() === today.toDateString()
-        );
-      }
+      return (
+        new Date(date).toDateString() === today.toDateString()
+      );
+}
 
       if (filters.period === "week") {
         return now - date <= 7 * 24 * 60 * 60 * 1000;
