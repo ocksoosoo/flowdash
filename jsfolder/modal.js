@@ -8,7 +8,7 @@ const taskModal = document.querySelector(".modal-overlay--task");
 
 // 버튼
 const openBtn = document.querySelector(".td-controls__btn--add");
-const saveBtn = document.querySelector(".button-container"); // 저장 버튼 클래스 확인 필요
+const saveBtn = document.querySelector(".button__save");
 const cancelBtn = document.querySelector(".button__cancel");
 
 // 입력 요소
@@ -27,9 +27,9 @@ export function openModal(e) {
   if (e) e.preventDefault();
 
   if (taskModal) { 
-  taskModal.removeAttribute = ("hidden");
-  taskModal.style.display= "flex";
-  taskModal.classList.add("active");
+  taskModal.removeAttribute  ("hidden");
+  taskModal.style.display = "flex";
+  taskModal.classList.add ("active");
 
   if (titleInput) titleInput.value ="";
   if (contentInput) contentInput.value ="";
@@ -45,7 +45,7 @@ export function closeModal(e) {
   }
 }
 // 2. 저장/취소 버튼 이벤트
-export function initModal() {
+export function initModal(onSaveSuccess) {
   // 새 할 일 버튼
   if (openBtn) {
     openBtn.addEventListener("click", openModal);
@@ -68,8 +68,9 @@ export function initModal() {
       }
       const todoData = getModalData();
       
-      // TODO: 나중에 main.js에서 createTodo를 실행하도록 연결해야 합니다.
-      console.log("저장될 데이터:", todoData); 
+      if (typeof onSaveSuccess === "function") {
+        onSaveSuccess(todoData);
+      }
 
       closeModal();
     });
@@ -88,6 +89,7 @@ export function initModal() {
   if (priorityBtns) {
     priorityBtns.forEach((button) => {
       button.addEventListener("click", (e) => {
+        e.preventDefault();
         // 모든 버튼에서 active 제거
         priorityBtns.forEach((btn) => btn.classList.remove("active"));
         
