@@ -30,13 +30,16 @@ export function openModal(e) {
   taskModal.removeAttribute = ("hidden");
   taskModal.style.display= "flex";
   taskModal.classList.add("active");
+
+  if (titleInput) titleInput.value ="";
+  if (contentInput) contentInput.value ="";
   }
 }
 export function closeModal(e) {
   if (e) e.preventDefault();
 
   if (taskModal) { 
-    taskModal.hidden = ("hidden", "true");
+    taskModal.hidden = true;
     taskModal.style.display = "none";
     taskModal.classList.remove("active"); // active 클래스 제거
   }
@@ -55,7 +58,7 @@ export function initModal() {
 
   // 저장
   if (saveBtn) {
-    saveBtn.addEventListener("click", () => {
+    saveBtn.addEventListener("click", (e) => {
       e.preventDefault(); // 기본 동작 방지
 
       if (titleInput.value.trim() === "") {
@@ -84,7 +87,7 @@ export function initModal() {
   // 우선순위 선택
   if (priorityBtns) {
     priorityBtns.forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", (e) => {
         // 모든 버튼에서 active 제거
         priorityBtns.forEach((btn) => btn.classList.remove("active"));
         
