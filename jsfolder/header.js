@@ -9,7 +9,7 @@
 */
 
 // ===== Import =====
-// import { LoadNickname, saveNickname, loadTheme, saveTheme } from './storage.js';
+import { loadNickname, saveNickname, loadTheme, saveTheme } from './storage.js';
 
 
 
@@ -20,20 +20,8 @@ const nickname = document.querySelector('.td-header__brand-name');
 const todayDate = document.querySelector('.td-header__date');
 const toggleBtn = document.querySelector('.td-header__theme-toggle');
 
-// 닉네임 기본값 & LocalStorage 값 설정
+// 닉네임 기본값 설정
 const DEFAULT_NICKNAME = "FlowDash";
-const STORAGE_KEYS = {
-    theme: "flowdash-theme",
-    nickname: "flowdash-nickname",
-};
-
-// LocalStorage 불러오기
-function getTheme() {
-    return localStorage.getItem(STORAGE_KEYS.theme) || 'light';
-};
-function getNickname() {
-    return localStorage.getItem(STORAGE_KEYS.nickname) || DEFAULT_NICKNAME;
-};
 
 
 // 시간대에 따라 달라지는 인삿말 구현
@@ -82,8 +70,6 @@ function updateDate() {
     todayDate.textContent = formattedDate;
 };
 
-updateDate();
-
 
 // applyTheme(): 테마 적용 함수
 // saveTheme(): 테마 저장 함수
@@ -97,11 +83,6 @@ function applyTheme(theme) {
     } else {
         body.classList.remove('dark');
     }
-}
-
-function saveTheme(theme) {
-    localStorage.setItem(STORAGE_KEYS.theme, theme);
-    applyTheme(theme);
 }
 
 
@@ -126,16 +107,16 @@ function editNickname() {
     const input = document.createElement('input');
     input.type = 'text';
     input.classList.add('td-header__nickname-input');
-    input.value = getNickname();
+    input.value = loadNickname() || DEFAULT_NICKNAME;
     // Enter 시 닉네임 저장
     input.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') {
-            saveNickname(input);
+            submitNickname(input);
         }
     });
     // blur 시 닉네임 저장
     input.addEventListener('blur', () => {
-        saveNickname(input);
+        submitNickname(input);
     });
 
     nickname.textContent = '';
@@ -143,11 +124,12 @@ function editNickname() {
     input.focus();
 };
 
-// saveNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
-function saveNickname(input) {
-    const newNickname = input.value.trim() || getNickname();
-    // 로컬 스토리지에 저장
-    localStorage.setItem(STORAGE_KEYS.nickname, newNickname);
+// submiteNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
+function submitNickname(input) {
+    const preNickname = loadNickname() || DEFAULT_NICKNAME;
+    const newNickname = input.value.trim() || preNickname();
+    // local에 저장
+    saveNickname(newNickname);
     nickname.textContent = newNickname;
 
     renderGreeting();
@@ -161,7 +143,9 @@ function saveNickname(input) {
 
 toggleBtn.addEventListener('click', () => {
     body.classList.toggle('dark');
-    const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+    const currentTheme = body.classList.contains('dark')
+    ? 'dark'
+    : 'light';
     saveTheme(currentTheme);
 });
 
@@ -173,9 +157,10 @@ nickname.addEventListener('click', editNickname);
 export function initHeader(todos) {
     updateDate();
 
-    const saveTheme = getTheme();
-    applyTheme(saveTheme);
+    const savedTheme = loadTheme() || 'light';
+    const savedNickname = loadNickname() || DEFAULT_NICKNAME;
 
-    nickname.textContent = getNickname();
+    applyTheme(savedTheme);
+    nickname.textContent = savedNickname;
     renderGreeting();
 }
