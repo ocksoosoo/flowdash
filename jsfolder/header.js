@@ -20,8 +20,35 @@ const nickname = document.querySelector('.td-header__brand-name');
 const todayDate = document.querySelector('.td-header__date');
 const toggleBtn = document.querySelector('.td-header__theme-toggle');
 
-// 닉네임 기본값 설정
+// 상수
 const DEFAULT_NICKNAME = "FlowDash";
+const ANIMALS = [
+    "고양이",
+    "토끼",
+    "강아지",
+    "개구리",
+    "병아리",
+    "햄스터",
+    "오리",
+    "펭귄",
+    "호랑이",
+    "돌고래",
+    "거북이",
+    "카피바라"
+];
+const ADJECTIVES = [
+    "행복한",
+    "졸린",
+    "귀여운",
+    "용맹한",
+    "차분한",
+    "행운의",
+    "멋진",
+    "아름다운",
+    "화려한",
+    "여유로운",
+    "재치있는"
+];
 
 
 // 시간대에 따라 달라지는 인삿말 구현
@@ -71,12 +98,6 @@ function updateDate() {
 };
 
 
-// applyTheme(): 테마 적용 함수
-// saveTheme(): 테마 저장 함수
-// 1. 저장된 테마 가져와서 적용
-// 2. LocalStorage에 저장
-// 3. 클릭 이벤트는 나중에 이벤트 함수 적을 때 한번에
-
 function applyTheme(theme) {
     if(theme === "dark") {
         body.classList.add('dark');
@@ -86,19 +107,8 @@ function applyTheme(theme) {
 }
 
 
-// 닉네임 인라인 수정 및 저장
-/*
-- 닉네임 영역 클릭 시 인라인 수정 가능
-- Enter 또는 blur 시 저장
-- 빈 값 입력 시 이전 값 또는 기본값으로 복원
-- 닉네임은 LocalStorage에 저장
-*/
-/*
-1. 닉네임 영역 클릭 시 input으로 바꾸기
-2. enter 누르면 닉네임 저장
-3. blur시 닉네임 저장
-4. 예외 처리(빈 값) -> 이전 값 || 기본값
-*/
+// 예외 처리(빈 값) -> 이전 값 || 기본값
+
 
 // editNickname(): input을 추가하여 닉네임을 수정하는 함수
 function editNickname() {
