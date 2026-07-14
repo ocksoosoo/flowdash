@@ -1,4 +1,4 @@
-// modal 관련 JS 파일
+// modal.js
 // 1. 모달 열기/닫기
 // 2. 저장/취소 버튼 이벤트
 // 3. 입력 데이터 반환
@@ -8,7 +8,7 @@ const taskModal = document.querySelector(".modal-overlay--task");
 
 // 버튼
 const openBtn = document.querySelector(".td-controls__btn--add");
-const saveBtn = document.querySelector(".button-container");
+const saveBtn = document.querySelector(".button-container"); // 저장 버튼 클래스 확인 필요
 const cancelBtn = document.querySelector(".button__cancel");
 
 // 입력 요소
@@ -19,71 +19,97 @@ const statusSelect = document.querySelector(".modal__status");
 // 우선순위 버튼
 const priorityBtns = document.querySelectorAll(".priority-container button");
 
-if (button.classList.contains("priority__mid")) {
-  selectedPriority = "mid";
-}
+// 기본 우선순위 변수 선언
+let selectedPriority = "mid"; 
 
 // 1. 모달 열기/닫기
+export function openModal(e) {
+  if (e) e.preventDefault();
 
-export function openModal() {
-  taskModal.hidden = false;
+  if (taskModal) { 
+  taskModal.removeAttribute = ("hidden");
+  taskModal.style.display= "flex";
+  taskModal.classList.add("active");
+  }
 }
+export function closeModal(e) {
+  if (e) e.preventDefault();
 
-export function closeModal() {
-  taskModal.hidden = true;
+  if (taskModal) { 
+    taskModal.hidden = ("hidden", "true");
+    taskModal.style.display = "none";
+    taskModal.classList.remove("active"); // active 클래스 제거
+  }
 }
-("active");
-
 // 2. 저장/취소 버튼 이벤트
-
 export function initModal() {
   // 새 할 일 버튼
-  openBtn.addEventListener("click", openModal);
+  if (openBtn) {
+    openBtn.addEventListener("click", openModal);
+  }
 
   // 취소
-  cancelBtn.addEventListener("click", closeModal);
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", closeModal);
+  }
 
   // 저장
-  saveBtn.addEventListener("click", () => {
-    const todoData = getModalData();
+  if (saveBtn) {
+    saveBtn.addEventListener("click", () => {
+      e.preventDefault(); // 기본 동작 방지
 
-    console.log(todoData);
+      if (titleInput.value.trim() === "") {
+        alert("제목을 입력해 주세요!");
+        titleInput.focus();
+        return;
+      }
+      const todoData = getModalData();
+      
+      // TODO: 나중에 main.js에서 createTodo를 실행하도록 연결해야 합니다.
+      console.log("저장될 데이터:", todoData); 
 
-    closeModal();
-  });
+      closeModal();
+    });
+  }
 
   // 배경 클릭 시 닫기
-  taskModal.addEventListener("click", (e) => {
-    if (e.target === taskModal) {
-      closeModal();
-    }
-  });
-
-  // 우선순위 선택
-  priorityBtns.forEach((button) => {
-    button.addEventListener("click", () => {
-      priorityBtns.forEach((btn) => btn.classList.remove("active"));
-
-      button.classList.add("active");
-
-      if (button.classList.contains("priority__low")) {
-        selectedPriority = "low";
-      } else if (button.classList.contains("priority__medium")) {
-        selectedPriority = "medium";
-      } else {
-        selectedPriority = "high";
+  if (taskModal) {
+    taskModal.addEventListener("click", (e) => {
+      if (e.target === taskModal) {
+        closeModal();
       }
     });
-  });
+  }
+
+  // 우선순위 선택
+  if (priorityBtns) {
+    priorityBtns.forEach((button) => {
+      button.addEventListener("click", () => {
+        // 모든 버튼에서 active 제거
+        priorityBtns.forEach((btn) => btn.classList.remove("active"));
+        
+        // 클릭한 버튼에 active 추가
+        button.classList.add("active");
+
+        // 값을 앱 전체 기준에 맞게 low, mid, high로 통일
+        if (button.classList.contains("priority__low")) {
+          selectedPriority = "low";
+        } else if (button.classList.contains("priority__medium") || button.classList.contains("priority__mid")) {
+          selectedPriority = "mid";
+        } else {
+          selectedPriority = "high";
+        }
+      });
+    });
+  }
 }
 
 // 3. 입력 데이터 반환
-
 export function getModalData() {
   return {
-    title: titleInput.value.trim(),
-    content: contentInput.value.trim(),
+    title: titleInput ? titleInput.value.trim() : "",
+    content: contentInput ? contentInput.value.trim() : "",
     priority: selectedPriority,
-    status: statusSelect.value,
+    status: statusSelect ? statusSelect.value : "todo",
   };
 }

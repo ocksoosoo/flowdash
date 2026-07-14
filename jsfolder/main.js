@@ -16,13 +16,13 @@ import { getFilterState, getFilteredTodos, initControls } from "./controls.js";
 import { initTodos, getTodos, deleteTodo as deleteTodoFromData } from "./todo.js";
 
 // modal
-// import { initModal } from './modal.js';
+import { initModal } from './modal.js';
 
 // stats
 // import { updateStats } from './stats.js';
 
 //todo
-// import { createTodo, deleteTodo } from './todo.js';
+import { createTodo, deleteTodo } from './todo.js';
 
 // import { handleTodoActions } from './todo.js';
 
@@ -66,7 +66,7 @@ function init() {
     onResetTodos: resetTodos,
   });
 
-
+initModal();
   updateBoard(getFilterState());
   // initStatistics(state.todos);
   // initTodo(state.todos);
