@@ -294,7 +294,7 @@
   }
 
   .priority__high,
-  .priority__medium,
+  .priority__mid,
   .priority__low {
     flex: 1;
     text-align: center;
@@ -612,7 +612,7 @@
   }
 
   .priority__high,
-  .priority__medium,
+  .priority__mid,
   .priority__low {
     flex: 1;
     text-align: center;
