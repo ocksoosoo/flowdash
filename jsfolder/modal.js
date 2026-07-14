@@ -1,3 +1,5 @@
+import { createTodo, updateTodo } from "./todo.js"
+import { refreshBoardWithFilter } from "./board.js"
 // modal.js
 // 1. 모달 열기/닫기
 // 2. 저장/취소 버튼 이벤트
@@ -75,7 +77,7 @@ export function closeModal(e) {
   }
 }
 // 2. 저장/취소 버튼 이벤트
-export function initModal(onSaveSuccess) {
+export function initModal() {
   // 새 할 일 버튼
   if (openBtn) {
     openBtn.addEventListener("click", (e) => openModal(e));
@@ -98,9 +100,13 @@ export function initModal(onSaveSuccess) {
       }
       const todoData = getModalData();
       
-      if (typeof onSaveSuccess === "function") {
-        onSaveSuccess(todoData, currentEditId);
+      if (currentEditId) {
+        updateTodo(currentEditId, todoData);
+      } else {
+        createTodo(todoData)
       }
+
+      refreshBoardWithFilter()
 
       closeModal();
     });

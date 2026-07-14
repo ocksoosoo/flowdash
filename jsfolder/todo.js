@@ -40,7 +40,7 @@ export function getTodos() {
 // - Todo 수정(Update)
 
 export function updateTodo(id, updateData) {
-  const todo = todos.find((item) => item.id === id);
+  const todo = todos.find((item) => Number(item.id) === Number(id));
   
   if(!todo) return;
 
@@ -61,7 +61,7 @@ export function updateTodo(id, updateData) {
 // - Todo 삭제(Delete)
 export function deleteTodo(id) {
   const targetId = Number(id);
-  todos = todos.filter((item) => item.id !== id);
+  todos = todos.filter((item) => Number(item.id) !== Number(id));
   
   saveTodos(todos);
 }
@@ -69,7 +69,7 @@ export function deleteTodo(id) {
 export function updateStatus(id, status) {
 
   const todo = todos.find(
-    (todo) => todo.id === id
+    (todo) => Number(todo.id) === Number(id)
   );
 
   if (!todo) return;
@@ -80,6 +80,8 @@ export function updateStatus(id, status) {
   // done
   if (status === "done") {
     todo.completedAt = Date.now();
+  } else {
+    todo.completedAt = null;
   }
 
   saveTodos(todos);
