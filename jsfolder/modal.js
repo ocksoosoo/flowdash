@@ -170,37 +170,26 @@ export function getModalData() {
 }
 
 //초기화 모달 작성//
-export function resetModal() {
-  // 입력값 초기화
-  if (titleInput) {
-    titleInput.value = "";
-  }
+// 삭제 모달
+const deleteModal = document.querySelector(".modal-overlay--reset");
 
-  if (contentInput) {
-    contentInput.value = "";
-  }
+// 버튼
+const deleteBtn = document.querySelector(".delete-btn");
+const cancelBtn = document.querySelector(".reset-modal-btn__cancel");
+const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
-  if (statusSelect) {
-    statusSelect.value = "todo";
-  }
+// 모달 열기
+deleteBtn.addEventListener("click", () => {
+  deleteModal.hidden = false;
+});
 
-  // 우선순위 초기화
-  selectedPriority = "mid";
+// 모달 닫기
+cancelBtn.addEventListener("click", () => {
+  deleteModal.hidden = true;
+});
 
-  priorityBtns.forEach((btn) => {
-    btn.classList.remove("active");
-  });
-
-  const midBtn = document.querySelector(".priority__mid");
-  if (midBtn) {
-    midBtn.classList.add("active");
-  }
-
-  // 수정 상태 초기화
-  currentEditId = null;
-
-  // 버튼 텍스트 초기화
-  if (saveBtn) {
-    saveBtn.textContent = "저장하기";
-  }
-}
+// 삭제
+confirmBtn.addEventListener("click", () => {
+  // 삭제 코드
+  deleteModal.hidden = true;
+});
