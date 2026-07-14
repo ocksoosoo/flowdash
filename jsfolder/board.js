@@ -3,7 +3,14 @@
 function formatDate(timestamp) {
   if (!timestamp) return "";
   const date = new Date(timestamp);
-  return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+  
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+  return `${year}. ${month}. ${day} ${hours}:${minutes}`;
 }
 
 const emptyIcon = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://w3.org"><path d="M25.6677 14H18.6672L16.3336 17.4997H11.6666L9.33308 14H2.33252M2.33252 14L6.35784 5.96247C6.55103 5.57376 6.84884 5.24664 7.2178 5.01789C7.58675 4.78914 8.01221 4.66783 8.44634 4.6676H19.5539C19.988 4.66783 20.4135 4.78914 20.7824 5.01789C21.1514 5.24664 21.4492 5.57376 21.6424 5.96247L25.6677 14V20.9993C25.6677 21.6181 25.4219 22.2115 24.9842 22.6491C24.5466 23.0866 23.9531 23.3324 23.3342 23.3324H4.66604C4.04715 23.3324 3.45361 23.0866 3.01599 22.6491C2.57837 22.2115 2.33252 21.6181 2.33252 20.9993V14Z" stroke="#D5D5D5" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -55,10 +62,22 @@ function createCard(todo, handlers) {
   if (todo.status === "done") {
     card.classList.add("td-card--done");
   }
+  let dateHtml = `<div class="td-card__date-group">`;
+  
+  // 1. 생성 일자는 어떤 상태든 '항상' 기본으로 노출됩니다.
+  dateHtml += `<time class="td-card__date td-card__date--create">생성일: ${formatDate(todo.createdAt)}</time>`;
 
-  const date = todo.status === "done"
-    ? todo.completedAt
-    : todo.updatedAt || todo.createdAt;
+  // 2. 완료 상태일 때는 완료 일자만 추가 표기 (수정 일자는 보여주지 않음)
+  if (todo.status === "done") {
+    const completedTime = todo.completedAt || Date.now();
+    dateHtml += `<time class="td-card__date td-card__date--complete">완료일: ${formatDate(completedTime)}</time>`;
+  } 
+  // 3. 완료 상태가 아니면서(todo 또는 doing) 수정 이력(updatedAt)이 존재할 때만 수정 일자 추가 표기
+  else if (todo.updatedAt) {
+    dateHtml += `<time class="td-card__date td-card__date--update">수정일: ${formatDate(todo.updatedAt)}</time>`;
+  }
+
+  dateHtml += `</div>`;
 
   card.innerHTML = `
     <div class="td-card__header">
@@ -74,7 +93,9 @@ function createCard(todo, handlers) {
 
     <h4 class="td-card__title">${todo.title}</h4>
     <p class="td-card__content">${todo.content ?? ""}</p>
-    <time class="td-card__date">${formatDate(date)}</time>
+    
+    <!-- 💡 조립된 날짜 그룹 구조를 여기에 삽입합니다 -->
+    ${dateHtml}
   `;
 
   const editBtn = card.querySelector(".td-card__btn-edit");
