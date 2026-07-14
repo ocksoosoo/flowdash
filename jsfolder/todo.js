@@ -1,9 +1,12 @@
+import { saveTodos, loadTodos } from "./storage.js";
+
 // Todo 데이터 관리(CRUD)
-let todos = [];
+let todos = loadTodos() || [];
 
 // 초기 데이터 셋팅용 함수
 export function initTodos(initialData) {
   todos = initialData || [];
+  saveTodos(todos);
 }
 
 // - Todo 생성(create)
@@ -23,6 +26,7 @@ export function createTodo(todoData) {
   };
 
   todos.push(newTodo);
+  saveTodos(todos);
 
   return newTodo;
 }
@@ -51,13 +55,15 @@ export function updateTodo(id, updateData) {
     todo.completedAt = Date.now()
   }
 
+  saveTodos(todos);
   return todo;
 }
 // - Todo 삭제(Delete)
 export function deleteTodo(id) {
   const targetId = Number(id);
-
   todos = todos.filter((item) => item.id !== id);
+  
+  saveTodos(todos);
 }
 // - Todo 상태 변경(TODO/ In Progress / Done)
 export function updateStatus(id, status) {
@@ -76,12 +82,7 @@ export function updateStatus(id, status) {
     todo.completedAt = Date.now();
   }
 
+  saveTodos(todos);
   return todo;
 }
 
-// createdAt, updatedAt, completedAt 관리
-
-// board.js: 화면 렌더링
-// status.js: 통계 계산
-// controls.js: 검색, 필터, 정렬
-// modal.js: 모달
