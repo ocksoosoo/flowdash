@@ -2,17 +2,18 @@
 import { deleteTodo, getTodos } from "./todo.js";
 import { openModal } from "./modal.js";
 import { saveTodos } from "./storage.js";
-import { getFilterState,getFilteredTodos } from "./controls.js";
+import { getFilterState, getFilteredTodos } from "./controls.js";
+import { initStatistics } from "./stats.js";
 // board.js (오류 방지 안전장치 보완 버전)
 
 function formatDate(timestamp) {
   if (!timestamp) return "";
   const date = new Date(timestamp);
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
   return `${year}. ${month}. ${day} ${hours}:${minutes}`;
 }
 
@@ -24,14 +25,14 @@ export function renderBoard(todos) {
   const todoList = document.querySelector("#todo-list");
   const doingList = document.querySelector("#doing-list");
   const doneList = document.querySelector("#done-list");
-  
+
   const todoCount = document.querySelector("#todo-count");
   const doingCount = document.querySelector("#doing-count");
   const doneCount = document.querySelector("#done-count");
 
-  const todo = todos.filter(item => item.status === "todo");
-  const doing = todos.filter(item => item.status === "doing");
-  const done = todos.filter(item => item.status === "done");
+  const todo = todos.filter((item) => item.status === "todo");
+  const doing = todos.filter((item) => item.status === "doing");
+  const done = todos.filter((item) => item.status === "done");
 
   if (todoList) renderColumn(todoList, todo);
   if (doingList) renderColumn(doingList, doing);
@@ -44,20 +45,23 @@ export function renderBoard(todos) {
 
 export function refreshBoardWithFilter() {
   const allTodos = getTodos();
-  const currentFilters = getFilterState ? getFilterState() : null
-  const filteredTodos = currentFilters ? getFilteredTodos(allTodos, currentFilters) : allTodos;
-  renderBoard(filteredTodos)
+  initStatistics(allTodos);
+  const currentFilters = getFilterState ? getFilterState() : null;
+  const filteredTodos = currentFilters
+    ? getFilteredTodos(allTodos, currentFilters)
+    : allTodos;
+  renderBoard(filteredTodos);
 }
 
 function renderColumn(container, todos, handlers) {
   container.innerHTML = "";
-  
-  if (todos.length === 0 ) {
+
+  if (todos.length === 0) {
     container.appendChild(createEmpty());
     return;
   }
 
-  todos.forEach(todo => {
+  todos.forEach((todo) => {
     container.appendChild(createCard(todo, handlers));
   });
 }
@@ -70,7 +74,7 @@ function createCard(todo, handlers) {
     card.classList.add("td-card--done");
   }
   let dateHtml = `<div class="td-card__date-group">`;
-  
+
   // 1. 생성 일자는 어떤 상태든 '항상' 기본으로 노출됩니다.
   dateHtml += `<time class="td-card__date td-card__date--create">생성일: ${formatDate(todo.createdAt)}</time>`;
 
@@ -78,7 +82,7 @@ function createCard(todo, handlers) {
   if (todo.status === "done") {
     const completedTime = todo.completedAt || Date.now();
     dateHtml += `<time class="td-card__date td-card__date--complete">완료일: ${formatDate(completedTime)}</time>`;
-  } 
+  }
   // 3. 완료 상태가 아니면서(todo 또는 doing) 수정 이력(updatedAt)이 존재할 때만 수정 일자 추가 표기
   else if (todo.updatedAt) {
     dateHtml += `<time class="td-card__date td-card__date--update">수정일: ${formatDate(todo.updatedAt)}</time>`;
@@ -108,23 +112,23 @@ function createCard(todo, handlers) {
   const deleteBtn = card.querySelector(".td-card__btn-delete");
 
   if (editBtn) {
-  editBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation(); 
-    openModal(null, todo)
-  });
-}
+    editBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(null, todo);
+    });
+  }
   if (deleteBtn) {
-  deleteBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation(); 
-    if (confirm("정말 삭제하시겠습니까?")) {
-      deleteTodo(todo.id)
-      saveTodos(getTodos());
-      refreshBoardWithFilter();
-    }
-  });
-}
+    deleteBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (confirm("정말 삭제하시겠습니까?")) {
+        deleteTodo(todo.id);
+        saveTodos(getTodos());
+        refreshBoardWithFilter();
+      }
+    });
+  }
 
   return card;
 }
@@ -141,16 +145,22 @@ function createEmpty() {
 
 function priorityClass(priority) {
   switch (priority) {
-    case "high": return "high";
-    case "mid": return "medium";
-    default: return "low";
+    case "high":
+      return "high";
+    case "mid":
+      return "medium";
+    default:
+      return "low";
   }
 }
 
 function priorityText(priority) {
   switch (priority) {
-    case "high": return "높음";
-    case "mid": return "중간";
-    default: return "낮음";
+    case "high":
+      return "높음";
+    case "mid":
+      return "중간";
+    default:
+      return "낮음";
   }
 }
