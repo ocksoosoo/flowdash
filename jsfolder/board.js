@@ -61,7 +61,7 @@ stroke-linejoin="round"
 export function renderBoard(todos, {
     onEditTodo = () => {},
     onDeleteTodo = () => {},
-  } = {}) {
+} = {}) {
   const todoList = document.querySelector("#todo-list");
   const doingList = document.querySelector("#doing-list");
   const doneList = document.querySelector("#done-list");
@@ -141,6 +141,14 @@ deleteBtn.addEventListener("click", () => {
 });
 
   return card;
+}
+
+function deleteTodo(id) {
+  state.todos = state.todos.filter(todo => todo.id !== id);
+
+  saveTodos(state.todos);
+
+  updateBoard(getFilterState());
 }
 
 function createEmpty() {

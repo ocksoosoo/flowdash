@@ -3,7 +3,7 @@
 // ===== Import =====
 
 // Storage
-import { loadTodos } from './storage.js';
+import { loadTodos, saveTodos } from './storage.js';
 
 // Header
 import { initHeader } from './header.js';
@@ -64,9 +64,26 @@ function updateBoard(filters) {
   console.log("filteredTodos", filteredTodos);
 
   renderBoard(filteredTodos, {
-    onEditTodo: openEditModal,
+    onEditTodo: openModal,
     onDeleteTodo: deleteTodo,
   });
+}
+
+function deleteTodo(id) {
+  state.todos = state.todos.filter(todo => todo.id !== id);
+
+  saveTodos(state.todos);
+
+  updateBoard(getFilterState());
+}
+
+
+function resetTodos() {
+  state.todos = [];
+
+  saveTodos(state.todos);
+
+  updateBoard(getFilterState());
 }
 
 state.todos = [
@@ -76,6 +93,14 @@ state.todos = [
     content: "내용",
     status: "todo",
     priority: "mid",
+    createdAt: 1,
+  },
+  {
+    id: 1,
+    title: "안녕",
+    content: "내용",
+    status: "todo",
+    priority: "high",
     createdAt: Date.now(),
   }
 ];
@@ -83,16 +108,8 @@ state.todos = [
 console.log(state.todos);
 
 // 수정 모달
-function openEditModal(id) {
+function openModal(id) {
     console.log("수정 : ", id);
 }
 
-// 삭제 
-function deleteTodo(id) {
-  console.log("삭제:", id);
-}
 
-// 전체 초기화
-function resetTodos() {
-  console.log("전체 초기화");
-}

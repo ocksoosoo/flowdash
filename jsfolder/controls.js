@@ -26,6 +26,10 @@ const TAG_LABELS = Object.freeze({
     mid: "중간",
     low: "낮음",
   },
+  sort: {
+    asc: "오름차순",
+    desc: "내림차순"
+  },
 });
 
 let filterState = { ...FILTER_DEFAULTS };
@@ -145,6 +149,7 @@ function renderTags(container) {
   const tags = [
     createTag("priority", filterState.priority),
     createTag("period", filterState.period),
+    createTag("sort", filterState.sort),
   ].filter(Boolean);
 
   container.append(...tags);
