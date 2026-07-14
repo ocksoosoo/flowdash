@@ -37,7 +37,7 @@ let state = {
 // ===== Initialize =====
 function init() {
     // 저장된 데이터 가져오기
-    state.todos = loadTodos();
+    // state.todos = loadTodos();
     
     // ** 나중에 각 파일에서 export한 init 함수명과 일치하는지 확인
     initHeader(state.todos);
@@ -60,11 +60,27 @@ document.addEventListener('DOMContentLoaded', init);
 function updateBoard(filters) {
   const filteredTodos = getFilteredTodos(state.todos, filters);
 
+  console.log("state.todos", state.todos);
+  console.log("filteredTodos", filteredTodos);
+
   renderBoard(filteredTodos, {
     onEditTodo: openEditModal,
     onDeleteTodo: deleteTodo,
   });
 }
+
+state.todos = [
+  {
+    id: 1,
+    title: "테스트",
+    content: "내용",
+    status: "todo",
+    priority: "mid",
+    createdAt: Date.now(),
+  }
+];
+
+console.log(state.todos);
 
 // 수정 모달
 function openEditModal(id) {

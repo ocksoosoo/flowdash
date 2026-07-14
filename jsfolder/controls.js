@@ -33,7 +33,7 @@ let filterState = { ...FILTER_DEFAULTS };
 /**
  * 컨트롤 영역을 초기화합니다.
  *
- * @param {Object} callbacks 콜백 함수 모음입니다.
+ * @param {Object} callbacks 콜백 함수 모음
  * @param {(filters: Object) => void} callbacks.onFilterChange 필터가 변경될 때 실행됩니다.
  * @param {() => void} callbacks.onResetTodos 전체 초기화 버튼 클릭 시 실행됩니다.
  */
