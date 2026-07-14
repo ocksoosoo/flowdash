@@ -17,13 +17,9 @@ import { initControls } from "./controls.js";
 // modal
 import { initModal } from './modal.js';
 
-// stats
-// import { updateStats } from './stats.js';
-
 //todo
 import { getTodos } from "./todo.js";
 
-// import { handleTodoActions } from './todo.js';
 
 // ===== Global Sate =====
 let state = {
