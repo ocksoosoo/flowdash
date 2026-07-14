@@ -20,6 +20,7 @@ const nickname = document.querySelector('.td-header__brand-name');
 const todayDate = document.querySelector('.td-header__date');
 const toggleBtn = document.querySelector('.td-header__theme-toggle');
 const profile = document.querySelector('.td-header__profile-frame');
+const penSvg = document.querySelector('.pen');
 
 
 // 상수
@@ -204,6 +205,9 @@ function getRandomProfileColor() {
 // applyProfileColor(): 색상 적용 함수
 function applyProfileColor(color) {
     profile.style.backgroundColor = color;
+    nickname.style.color = color;
+    nickname.style.borderBottomColor = color;
+    penSvg.style.color = color;
 }
 
 // 모드 토글 버튼 이벤트
