@@ -4,11 +4,12 @@
 // 3. 입력 데이터 반환
 
 // 할 일 추가 모달
-const taskModal = document.querySelector(".modal-container");
+const taskModal = document.querySelector(".modal-overlay--task");
 
 // 버튼
-const openBtn = document.querySelector("td-controls__btn--add");
-const saveBtn = document.querySelector(".button__container");
+const openBtn = document.querySelector(".td-controls__btn--add");
+const saveBtn = document.querySelector(".button-container");
+const cancelBtn = document.querySelector(".button__cancel");
 
 // 입력 요소
 const titleInput = document.querySelector(".modal__title");
@@ -16,11 +17,11 @@ const contentInput = document.querySelector(".modal__content");
 const statusSelect = document.querySelector(".modal__status");
 
 // 우선순위 버튼
-const priorityBtns = document.querySelectorAll(
-  "modal__priority-status-container",
-);
+const priorityBtns = document.querySelectorAll(".priority-container button");
 
-let selectedPriority = "priority__medium";
+if (button.classList.contains("priority__mid")) {
+  selectedPriority = "mid";
+}
 
 // 1. 모달 열기/닫기
 
@@ -31,6 +32,7 @@ export function openModal() {
 export function closeModal() {
   taskModal.hidden = true;
 }
+("active");
 
 // 2. 저장/취소 버튼 이벤트
 
