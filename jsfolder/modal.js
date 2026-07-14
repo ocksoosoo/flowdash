@@ -20,55 +20,58 @@ const statusSelect = document.querySelector(".modal__status");
 const priorityBtns = document.querySelectorAll(".priority-container button");
 
 // 기본 우선순위 변수 선언
-let selectedPriority = "mid"; 
+let selectedPriority = "mid";
 let currentEditId = null;
 
 // 1. 모달 열기/닫기
 export function openModal(e, editData = null) {
   if (e) e.preventDefault();
 
-  if (taskModal) { 
-  taskModal.removeAttribute  ("hidden");
-  taskModal.style.display = "flex";
-  taskModal.classList.add ("active");
-  
-  if (editData) {
-    currentEditId = editData.id;
-    if (titleInput) titleInput.value = editData.title;
-    if (contentInput) contentInput.value = editData.content;
-    if (statusSelect) statusSelect.value = editData.status;
+  if (taskModal) {
+    taskModal.removeAttribute("hidden");
+    taskModal.style.display = "flex";
+    taskModal.classList.add("active");
 
-    selectedPriority = editData.priority;
-    priorityBtns.forEach(btn => {
-      btn.classList.remove("active");
-      if (btn.classList.contains(`priority__${editData.priority}`) ||
-         (editData.priority === "mid" && btn.classList.contains("priority__mid"))) {
-        btn.classList.add("active");
+    if (editData) {
+      currentEditId = editData.id;
+      if (titleInput) titleInput.value = editData.title;
+      if (contentInput) contentInput.value = editData.content;
+      if (statusSelect) statusSelect.value = editData.status;
+
+      selectedPriority = editData.priority;
+      priorityBtns.forEach((btn) => {
+        btn.classList.remove("active");
+        if (
+          btn.classList.contains(`priority__${editData.priority}`) ||
+          (editData.priority === "mid" &&
+            btn.classList.contains("priority__mid"))
+        ) {
+          btn.classList.add("active");
+        }
+      });
+
+      if (saveBtn) saveBtn.textContent = "수정하기";
+    } else {
+      currentEditId = null;
+      if (titleInput) titleInput.value = "";
+      if (contentInput) contentInput.value = "";
+      if (statusSelect) statusSelect.value = "todo";
+
+      selectedPriority = "mid";
+      priorityBtns.forEach((btn) => btn.classList.remove("active"));
+
+      const midBtn = document.querySelector(".priority__mid");
+      if (midBtn) midBtn.classList.add("active");
+
+      if (saveBtn) saveBtn.textContent = "저장하기";
     }
-    });
-
-    if (saveBtn) saveBtn.textContent = "수정하기";
-  } else {
-    currentEditId = null;
-    if (titleInput) titleInput.value = "";
-    if (contentInput) contentInput.value = "";
-    if (statusSelect) statusSelect.value = "todo";
-
-    selectedPriority = "mid";
-    priorityBtns.forEach(btn => btn.classList.remove("active"));
-
-    const midBtn = document.querySelector(".priority__mid");
-    if (midBtn) midBtn.classList.add("active");
-
-    if (saveBtn) saveBtn.textContent = "저장하기"
-  }
   }
 }
 
 export function closeModal(e) {
   if (e) e.preventDefault();
 
-  if (taskModal) { 
+  if (taskModal) {
     taskModal.hidden = true;
     taskModal.style.display = "none";
     taskModal.classList.remove("active"); // active 클래스 제거
@@ -97,7 +100,7 @@ export function initModal(onSaveSuccess) {
         return;
       }
       const todoData = getModalData();
-      
+
       if (typeof onSaveSuccess === "function") {
         onSaveSuccess(todoData, currentEditId);
       }
@@ -122,14 +125,17 @@ export function initModal(onSaveSuccess) {
         e.preventDefault();
         // 모든 버튼에서 active 제거
         priorityBtns.forEach((btn) => btn.classList.remove("active"));
-        
+
         // 클릭한 버튼에 active 추가
         button.classList.add("active");
 
         // 값을 앱 전체 기준에 맞게 low, mid, high로 통일
         if (button.classList.contains("priority__low")) {
           selectedPriority = "low";
-        } else if (button.classList.contains("priority__medium") || button.classList.contains("priority__mid")) {
+        } else if (
+          button.classList.contains("priority__medium") ||
+          button.classList.contains("priority__mid")
+        ) {
           selectedPriority = "mid";
         } else {
           selectedPriority = "high";
@@ -140,7 +146,7 @@ export function initModal(onSaveSuccess) {
   return {
     openForEdit: (targetTodo) => {
       openModal(null, targetTodo);
-    }
+    },
   };
 }
 
@@ -152,4 +158,39 @@ export function getModalData() {
     priority: selectedPriority,
     status: statusSelect ? statusSelect.value : "todo",
   };
+}
+//초기화 모달 작성//
+export function resetModal() {
+  // 입력값 초기화
+  if (titleInput) {
+    titleInput.value = "";
+  }
+
+  if (contentInput) {
+    contentInput.value = "";
+  }
+
+  if (statusSelect) {
+    statusSelect.value = "todo";
+  }
+
+  // 우선순위 초기화
+  selectedPriority = "mid";
+
+  priorityBtns.forEach((btn) => {
+    btn.classList.remove("active");
+  });
+
+  const midBtn = document.querySelector(".priority__mid");
+  if (midBtn) {
+    midBtn.classList.add("active");
+  }
+
+  // 수정 상태 초기화
+  currentEditId = null;
+
+  // 버튼 텍스트 초기화
+  if (saveBtn) {
+    saveBtn.textContent = "저장하기";
+  }
 }
