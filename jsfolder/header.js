@@ -63,7 +63,7 @@ function getGreeting() {
 
 // renderGreeting(): 시간대별로 다르게 인삿말을 바꿔주는 렌더링 함수
 function renderGreeting() {
-    greeting.textContent = `${getGreeting()} ${getNickname()} 님`;
+    greeting.textContent = getGreeting();
 };
 
 
