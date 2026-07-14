@@ -407,6 +407,11 @@ label[for="modal__task-title"]::before {
   content: "* ";
   color: var(--theme-font-main);
 }
+input::placeholder,
+textarea::placeholder {
+  color: var(--theme-font-main);
+  opacity: 50%;
+}
 
 input[type="text"]:focus,
 textarea:focus {
@@ -466,6 +471,10 @@ button.priority__low.active {
   background: #b7f09d;
 }
 
+.modal__status option {
+  background-color: var(--theme-box);
+  color: var(--theme-font-main);
+}
 .button-container {
   display: flex;
   justify-content: flex-end;
@@ -487,6 +496,7 @@ button.priority__low.active {
 .button__save {
   border: 0;
   background: var(--theme-font-accent);
+  color: var(--color-font);
 }
 
 /* modal_overlay */
@@ -571,4 +581,11 @@ button.priority__low.active {
 
 .td-scroll-btn:hover {
   opacity: 0.8;
+}
+
+/* 드래그 차단 */
+
+body {                      
+  -webkit-user-select: none;
+  user-select: none;
 }
