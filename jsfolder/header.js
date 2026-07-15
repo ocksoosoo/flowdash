@@ -12,18 +12,7 @@
 import { loadNickname, saveNickname, loadTheme, saveTheme, loadProfileColor, saveProfileColor } from './storage.js';
 
 
-
-// DOM 요소 선택
-const body = document.querySelector('body');
-const greeting = document.querySelector('.td-header__text-sub');
-const nickname = document.querySelector('.td-header__brand-name');
-const todayDate = document.querySelector('.td-header__date');
-const toggleBtn = document.querySelector('.td-header__theme-toggle');
-const profile = document.querySelector('.td-header__profile-frame');
-const penSvg = document.querySelector('.pen');
-
-
-// 상수
+// ===== Constants =====
 const DEFAULT_NICKNAME = "FlowDash";
 const ANIMALS = [
     "고양이",
@@ -65,15 +54,18 @@ const PROFILE_COLORS = [
     "#90A4AE",
 ];
 
-// 시간대에 따라 달라지는 인삿말 구현
-// 1. 시간 데이터를 불러오기
-// 2. 시간대별로 인삿말 구역의 텍스트를 변경하기
-/*
-- 05–11: 좋은 아침이에요
-- 11–17: 좋은 오후에요
-- 17–22: 좋은 저녁이에요
-- 그 외: 안녕하세요*/
+// ===== DOM 요소 선택 =====
+function cacheDOM() {
+    const body = document.querySelector('body');
+    const greeting = document.querySelector('.td-header__text-sub');
+    const nickname = document.querySelector('.td-header__brand-name');
+    const todayDate = document.querySelector('.td-header__date');
+    const toggleBtn = document.querySelector('.td-header__theme-toggle');
+    const profile = document.querySelector('.td-header__profile-frame');
+    const penSvg = document.querySelector('.pen');
+};
 
+// ===== 유틸리티 & 검증 함수
 // getGreeting(): 시간 값 저장 및 시간대별 문자열 반환 함수
 function getGreeting() {
      // 현재 시간의 hour만 가져오기
@@ -90,6 +82,40 @@ function getGreeting() {
     }
 }
 
+// 닉네임 예외 처리
+// checkNickname(): 닉네임 글자수 제한(2자 이상 10자 이하여야 함)
+function checkNicknameLength(nickname) {
+    const inputLength = nickname.length;
+    return inputLength >= 2 && inputLength <= 10;
+};
+
+// checkNicknameCharacter(): 
+function checkNicknameCharacter(nickname) {
+    const acceptedNickname = /^[가-힣a-zA-Z0-9_!@?\- ]+$/;
+    return acceptedNickname.test(nickname);
+}
+
+// getRandomNickname(): 닉네임 최초 생성시 1회에 한하여 랜덤 닉네임 생성
+function getRandomNickname() {
+    const adjectiveIndex = Math.floor(Math.random() * ADJECTIVES.length);
+    const animalIndex = Math.floor(Math.random() * ANIMALS.length);
+
+    const adjective = ADJECTIVES[adjectiveIndex];
+    const animal = ANIMALS[animalIndex];
+    const number = Math.floor(Math.random() * 90) + 10;
+
+    return `${adjective}${animal}${number}`;
+};
+
+// getRandomProfileColor(): 버튼 클릭시 프로필 이미지 색상 랜덤 교체
+function getRandomProfileColor() {
+    return PROFILE_COLORS[
+        Math.floor(Math.random() * PROFILE_COLORS.length)
+    ];
+};
+
+
+// ===== DOM 제어 및 렌더링 함수 =====
 // renderGreeting(): 시간대별로 다르게 인삿말을 바꿔주는 렌더링 함수
 function renderGreeting() {
     greeting.textContent = getGreeting();
@@ -112,6 +138,7 @@ function updateDate() {
 };
 
 
+// applyTheme(): 테마 적용 함수
 function applyTheme(theme) {
     if(theme === "dark") {
         body.classList.add('dark');
@@ -120,7 +147,16 @@ function applyTheme(theme) {
     }
 }
 
+// applyProfileColor(): 색상 적용 함수
+function applyProfileColor(color) {
+    profile.style.backgroundColor = color;
+    nickname.style.color = color;
+    nickname.style.borderBottomColor = color;
+    penSvg.style.color = color;
+}
 
+
+// ===== 이벤트 핸들러 및 동작 함수 =====
 // editNickname(): input을 추가하여 닉네임을 수정하는 함수
 function editNickname() {
     if(nickname.querySelector('input')) return;
@@ -146,18 +182,6 @@ function editNickname() {
     input.focus();
 };
 
-// 닉네임 예외 처리
-// checkNickname(): 닉네임 글자수 제한(2자 이상 10자 이하여야 함)
-function checkNicknameLength(nickname) {
-    const inputLength = nickname.length;
-    return inputLength >= 2 && inputLength <= 10;
-};
-
-// checkNicknameCharacter(): 
-function checkNicknameCharacter(nickname) {
-    const acceptedNickname = /^[가-힣a-zA-Z0-9_!@?\- ]+$/;
-    return acceptedNickname.test(nickname);
-}
 
 // submiteNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
 function submitNickname(input) {
@@ -183,39 +207,7 @@ function submitNickname(input) {
     nickname.textContent = newNickname;
 }
 
-// getRandomNickname(): 닉네임 최초 생성시 1회에 한하여 랜덤 닉네임 생성
-function getRandomNickname() {
-    const adjectiveIndex = Math.floor(Math.random() * ADJECTIVES.length);
-    const animalIndex = Math.floor(Math.random() * ANIMALS.length);
-
-    const adjective = ADJECTIVES[adjectiveIndex];
-    const animal = ANIMALS[animalIndex];
-    const number = Math.floor(Math.random() * 90) + 10;
-
-    return `${adjective}${animal}${number}`;
-};
-
-// getRandomProfileColor(): 버튼 클릭시 프로필 이미지 색상 랜덤 교체
-function getRandomProfileColor() {
-    return PROFILE_COLORS[
-        Math.floor(Math.random() * PROFILE_COLORS.length)
-    ];
-};
-
-// applyProfileColor(): 색상 적용 함수
-function applyProfileColor(color) {
-    profile.style.backgroundColor = color;
-    nickname.style.color = color;
-    nickname.style.borderBottomColor = color;
-    penSvg.style.color = color;
-}
-
-// 모드 토글 버튼 이벤트
-/*
-1. toggle.Btn에 클릭 이벤트 추가
-// 버튼 클릭시 body에 'dark' 클래스 추가
-*/
-
+// 테마 토글
 toggleBtn.addEventListener('click', () => {
     body.classList.toggle('dark');
     const currentTheme = body.classList.contains('dark')
@@ -226,6 +218,7 @@ toggleBtn.addEventListener('click', () => {
 
 nickname.addEventListener('click', editNickname);
 
+// changeProfileColor(): 프로필 색상 랜덤 변경
 function changeProfileColor() {
     const randomColor = getRandomProfileColor();
 
@@ -236,11 +229,13 @@ function changeProfileColor() {
 profile.addEventListener('click', changeProfileColor);
 
 
-
 // ===== 초기화 =====
 export function initHeader() {
-    updateDate();
+    cacheDOM();
 
+    updateDate();
+    renderGreeting();
+    
     // 테마
     const savedTheme = loadTheme() || 'light';
     applyTheme(savedTheme);
@@ -261,5 +256,4 @@ export function initHeader() {
     if (savedColor) {
         applyProfileColor(savedColor);
     } 
-    renderGreeting();
 };
