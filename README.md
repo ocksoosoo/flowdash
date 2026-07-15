@@ -89,12 +89,42 @@ flowdash/
 *   **`todo.js`**: 개별 할 일(Todo Item) 객체의 생성, 수정, 삭제(CRUD) 비즈니스 로직과 세부 상태 관리를 전담하는 파일
 *   **`modal.js`**: 할 일 추가/수정 시 띄워지는 팝업창(모달)의 노출, 입력 폼 제어, 유효성 검사 및 닫기 이벤트를 관리하는 파일
 
-### 3-3. 데이터 흐름
-User Action  
-→ updateState()  
-→ saveToStorage()  
-→ renderBoards()  
-→ renderStats()
+### 3-3. 데이터 흐름 (Data Flow)
+
+#### 1) 할 일 생성 (Create)
+모달 등록 (`modal.js`) 
+→ `createTodo()` 데이터 추가 (`todo.js`) 
+→ `saveTodos()` 스토리지 저장 (`storage.js`) 
+→ `refreshBoardWithFilter()` 호출 (`board.js`)
+  - `getFilteredTodos()` 필터/정렬 적용 (`controls.js`)
+  -  `initStatistics()` 대시보드 및 달성률 갱신 (`stats.js`)
+  - `renderBoard()` 칸반 카드 출력 (`board.js`)
+
+---
+
+#### 2) 할 일 수정 (Update)
+수정 버튼 클릭 (`board.js`) 
+→ `openModal()` 기존 데이터 바인딩 (`modal.js`) 
+→ 내용 수정 및 완료 클릭 
+→ `updateTodo()` 데이터 및 수정일 갱신 (`todo.js`) 
+→ `saveTodos()` 스토리지 저장 (`storage.js`) 
+→ `refreshBoardWithFilter()` 실시간 UI 및 통계 갱신 (`board.js`)
+
+---
+
+#### 3) 할 일 삭제 (Delete)
+삭제 클릭 및 확인 (`board.js`) 
+→ `deleteTodo()` 데이터 제거 (`todo.js`) 
+→ `saveTodos()` 스토리지 저장 (`storage.js`) 
+→ `refreshBoardWithFilter()` 실시간 UI 및 통계 갱신 (`board.js`)
+
+---
+
+#### 4) 검색 및 필터/정렬 (Filter & Sort)
+컨트롤러 입력 (`controls.js`) 
+→ `filterState` 상태 변경 (`controls.js`) 
+→ `getFilteredTodos()` 조건별 가공 (`controls.js`) 
+→ `renderBoard()` 필터링된 보드 렌더링 (`board.js`)
 
 ---
 
@@ -120,29 +150,29 @@ User Action
 
 ### 5-2. 요구사항 충족 범위
 - 필수 요구사항: 충족
-- [x] Todo CRUD 기능이 모두 정상 동작한다 (생성 / 조회 / 수정 / 삭제)
-- [x] TODO / DOING / DONE 상태별 칸반 보드가 분리되어 렌더링된다
-- [ ] status 변경 시 Todo가 즉시 해당 보드로 이동한다
+- [] Todo CRUD 기능이 모두 정상 동작한다 (생성 / 조회 / 수정 / 삭제)
+- [✔️] TODO / DOING / DONE 상태별 칸반 보드가 분리되어 렌더링된다
+- [✔️ ] status 변경 시 Todo가 즉시 해당 보드로 이동한다
 - [ ] DONE 전환 시 completedAt이 기록되며, 해제 시 null로 초기화된다
-- [ ] 우선순위(HIGH / MID / LOW)를 설정 및 수정할 수 있다
-- [ ] 기간 필터(전체 / 오늘 / 7일)가 createdAt 기준으로 동작한다
-- [ ] 필터 적용 순서(기간 → 정렬 → 검색)가 항상 유지된다
-- [ ] 제목/내용 기준 검색이 필터 결과 내에서 정상 동작한다
-- [ ] 제목 기준 오름차순 / 내림차순 정렬이 가능하다
-- [ ] 통계 대시보드에 전체 / TODO / DOING / DONE / 달성률이 표시된다
-- [ ] 달성률은 (DONE / 전체) * 100 기준으로 계산된다
-- [ ] 전체 초기화 시 Todo 데이터만 삭제되며 확인 절차가 존재한다
-- [ ] 테마(Light / Dark) 전환이 가능하며 LocalStorage에 저장된다
-- [ ] 인사말이 시간대 기준으로 표시된다
-- [ ] 닉네임을 인라인으로 수정할 수 있으며 LocalStorage에 저장된다
-- [ ] 새로고침 후에도 Todo / 테마 / 닉네임 상태가 유지된다
-- [ ] 반응형 레이아웃이 Mobile / Tablet / Desktop 기준으로 동작한다
+- [✔️] 우선순위(HIGH / MID / LOW)를 설정 및 수정할 수 있다
+- [✔️] 기간 필터(전체 / 오늘 / 7일)가 createdAt 기준으로 동작한다
+- [✔️] 필터 적용 순서(기간 → 정렬 → 검색)가 항상 유지된다
+- [✔️] 제목/내용 기준 검색이 필터 결과 내에서 정상 동작한다
+- [✔️] 제목 기준 오름차순 / 내림차순 정렬이 가능하다
+- [✔️] 통계 대시보드에 전체 / TODO / DOING / DONE / 달성률이 표시된다
+- [✔️] 달성률은 (DONE / 전체) * 100 기준으로 계산된다
+- [✔️] 전체 초기화 시 Todo 데이터만 삭제되며 확인 절차가 존재한다
+- [✔️] 테마(Light / Dark) 전환이 가능하며 LocalStorage에 저장된다
+- [✔️] 인사말이 시간대 기준으로 표시된다
+- [✔️] 닉네임을 인라인으로 수정할 수 있으며 LocalStorage에 저장된다
+- [✔️] 새로고침 후에도 Todo / 테마 / 닉네임 상태가 유지된다
+- [✔️] 반응형 레이아웃이 Mobile / Tablet / Desktop 기준으로 동작한다
 - [ ] 콘솔에 치명적인 에러가 발생하지 않는다
 - 가산 요소: (해당 시 작성)
-- [ ] 디자인 커스터마이징
-- [ ] UX 개선 아이디어 적용
-- [ ] 예외 처리 강화 (빈 상태, 입력 검증 등)
-- [ ] 추가 기능 구현 (명세 외)
+- [✔️] 디자인 커스터마이징
+- [✔️] UX 개선 아이디어 적용
+- [✔️] 예외 처리 강화 (빈 상태, 입력 검증 등)
+- [✔️] 추가 기능 구현 (명세 외): 랜덤 프로필 색상 변경 기능, 변경된 프로필 색상에 따라 닉네임 색상도 함께 변경, 모바일 및 태블릿 모드에서 todo 카드가 너무 많아질 때 무한대로 길어지는 것을 방지하기 위해 펼치기/숨기기 버튼을 추가하여 사용자가 조절
 ---
 
 ## 6. 트러블슈팅 (Troubleshooting)
