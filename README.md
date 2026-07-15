@@ -19,16 +19,16 @@ CRUD, 기간 필터, 통계, 테마 및 UX 요소를 포함하며
 
 ## 1. 팀 구성 및 역할 분담 (Team & Roles)
 
-| 이름 | 역할 | 주요 담당 | 
-|----|----|----|----|
-| 최현옥 | Team Lead, Web UI&UX, Header CSS&JS | Modal Markup, Header Styling & JS 설계 및 구현, 다크모드 토글, LocalStorage 관리 | 
-| 김명서 | Dark mode&Responsive(Lead), Mobile UI&UX. Modal JS  | Dark Mode 변수 설정 및 관리, 반응형 디자인 설계와 구현, Modal JS  |
-| 나민우 | HTML(Lead), Stats CSS&JS | 메인 HTML 구조 설계, 통계 보드 설계 및 관리, 원형 그래프 구현 |  
-| 황상빈 | CSS(Lead),  kanban board CSS&JS | CSS Layout 설계, Modal Styling, kanban board CSS & JS, CRUD 구현, 검색/필터/정렬 |
-| **공동: 팀원 전반이 CSS와 JS 구현 및 상호 코드 리뷰에 참여함** |
+### 👥 팀 구성 및 역할 분담
 
+| 이름 | 역할 | 주요 담당 업무 |
+| :--- | :--- | :--- |
+| **최현옥** | **Team Lead**<br>• Web UI/UX 디자인<br>• Header 개발 | • 프로젝트 총괄 및 일정 관리<br>• Header 스타일링 및 JS 기능 구현 (다크모드 토글)<br>• LocalStorage 데이터 관리 로직 설계<br>• 모달(Modal) 마크업 구조 설계 |
+| **김명서** | **Tech Lead (반응형/테마)**<br>• Mobile UI/UX 디자인<br>• Modal JS 개발 | • 다크모드 공통 CSS 변수(Variables) 설계 및 관리<br>• 모바일 및 태블릿 반응형 레이아웃 구현<br>• 모달(Modal) 기능 관련 JS 로직 개발 |
+| **나민우** | **Markup Lead**<br>• Stats 개발 | • 메인 HTML 레이아웃 및 웹 표준 구조 설계<br>• 통계 대시보드 UI 구현<br>• Chart.js 또는 SVG 활용 원형 그래프 구현 |
+| **황상빈** | **CSS Lead**<br>• Kanban Board 개발 | • 전체 프로젝트 CSS 공통 레이아웃 시스템 설계<br>• 모달(Modal) 컴포넌트 세부 스타일링<br>• 칸반 보드 CRUD(등록/조회/수정/삭제) 및 검색·필터·정렬 기능 구현 |
 
-
+> 💡 **공동 작업:** 팀원 전원이 CSS/JS 세부 구현에 유기적으로 참여하였으며, 상호 코드 리뷰를 통해 코드 품질을 유지했습니다.
 ---
 
 ## 2. 수행 절차 및 방법 (Process & Strategy)
@@ -58,36 +58,36 @@ CRUD, 기간 필터, 통계, 테마 및 UX 요소를 포함하며
 ### 3-1. 디렉터리 구조
 ```
 flowdash/
-├─ assets
 ├─ README.md
 ├─ index.html
 └─ cssfolder/
    ├── reset.css
-   ├── variables.css
-   ├── base.css
    ├── layout.css
-   ├── components.css
+   ├── variables.css
    ├── theme.css
+   ├── components.css
    └── responsive.css
-└─ js/
+└─ jsfolder/
    ├─ main.js
-   ├─ state.js
    ├─ storage.js
-   ├─ utils/
-   │  └─ date.js
-   └─ ui/
-      ├─ board.js
-      ├─ card.js
-      ├─ header.js
-      └─ stats.js
+   ├─ header.js
+   ├─ stats.js
+   ├─ controls.js
+   ├─ board.js
+   ├─ todo.js
+   └─ modal.js
 ```
 
-### 3-2. 모듈 책임 분리
-- state.js: 앱의 단일 상태 관리
-- storage.js: LocalStorage IO 전담
-- ui/board.js: 보드 단위 렌더링
-- ui/card.js: 카드 렌더링 및 이벤트
-- utils/date.js: 날짜 계산 유틸
+프로젝트의 각 JS 파일은 단일 책임 원칙(SRP)에 따라 역할을 명확히 분리하여 설계 및 구현되었습니다.
+
+*   **`main.js`**: 애플리케이션의 진입점(Entry Point) 및 각 모듈의 초기화 함수(`init`)를 일괄 실행하고 관리하는 파일
+*   **`storage.js`**: 로컬 스토리지(LocalStorage) 관련 데이터 조회, 저장, 삭제 등 데이터 영속성 관리를 전담하는 파일
+*   **`header.js`**: 사용자 맞춤형 인사말, 오늘 날짜 출력, 프로필 배경 색상 및 테마 토글, 닉네임 수정 등 상단 헤더 영역의 UI 및 데이터 상태를 제어하는 파일
+*   **`stats.js`**: 전체 할 일 데이터에 따른 원형 그래프 렌더링 및 대시보드 통계 수치를 계산하고 업데이트하는 파일
+*   **`controls.js`**: 할 일 목록의 검색, 정렬, 필터링 등 칸반 보드 전체 데이터의 흐름과 조회 방식을 제어하는 유틸리티 파일
+*   **`board.js`**: 칸반 보드의 컬럼(To-Do, In-Progress, Done 등) 렌더링 및 드래그 앤 드롭(Drag & Drop)을 통한 상태 변경 이벤트를 처리하는 파일
+*   **`todo.js`**: 개별 할 일(Todo Item) 객체의 생성, 수정, 삭제(CRUD) 비즈니스 로직과 세부 상태 관리를 전담하는 파일
+*   **`modal.js`**: 할 일 추가/수정 시 띄워지는 팝업창(모달)의 노출, 입력 폼 제어, 유효성 검사 및 닫기 이벤트를 관리하는 파일
 
 ### 3-3. 데이터 흐름
 User Action  
