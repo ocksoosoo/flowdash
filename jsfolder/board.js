@@ -1,7 +1,6 @@
 // 이벤트 이식수술
 import { deleteTodo, getTodos } from "./todo.js";
 import { openModal, openResetModal } from "./modal.js";
-import { saveTodos } from "./storage.js";
 import { getFilterState, getFilteredTodos } from "./controls.js";
 import { initStatistics } from "./stats.js";
 // board.js (오류 방지 안전장치 보완 버전)
