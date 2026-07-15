@@ -55,15 +55,13 @@ const PROFILE_COLORS = [
 ];
 
 // ===== DOM 요소 선택 =====
-function cacheDOM() {
     const body = document.querySelector('body');
     const greeting = document.querySelector('.td-header__text-sub');
     const nickname = document.querySelector('.td-header__brand-name');
     const todayDate = document.querySelector('.td-header__date');
-    const toggleBtn = document.querySelector('.td-header__theme-toggle');
     const profile = document.querySelector('.td-header__profile-frame');
     const penSvg = document.querySelector('.pen');
-};
+
 
 // ===== 유틸리티 & 검증 함수
 // getGreeting(): 시간 값 저장 및 시간대별 문자열 반환 함수
@@ -207,6 +205,8 @@ function submitNickname(input) {
     nickname.textContent = newNickname;
 }
 
+const toggleBtn = document.querySelector('.td-header__toggle-btn');
+
 // 테마 토글
 toggleBtn.addEventListener('click', () => {
     body.classList.toggle('dark');
@@ -231,7 +231,6 @@ profile.addEventListener('click', changeProfileColor);
 
 // ===== 초기화 =====
 export function initHeader() {
-    cacheDOM();
 
     updateDate();
     renderGreeting();
