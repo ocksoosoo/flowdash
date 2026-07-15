@@ -168,7 +168,7 @@ body.dark .td-header__darktheme-btn {
   border: 5px solid var(--theme-outline);
 }
 .td-list__percent {
-  font-size: var(--font-xxl);
+  font-size: var(--font-xl);
   font-weight: 600;
   color: var(--theme-font-accent);
   margin-bottom: 27px;
@@ -659,7 +659,6 @@ body.dark .td-board__toggle-btn::after {
   background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23fff1f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 body.dark .td-board__toggle-btn:hover::after {
-  /* 원하는 호버 색상(예: #ffffff)으로 바꾼 SVG 코드 */
   background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23443434' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 /* is-open 180도 */
