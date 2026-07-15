@@ -1,31 +1,29 @@
-import { createTodo, updateTodo } from "./todo.js";
+import { createTodo, updateTodo, initTodos } from "./todo.js";
 import { refreshBoardWithFilter } from "./board.js";
 // modal.js
 // 1. 모달 열기/닫기
 // 2. 저장/취소 버튼 이벤트
 // 3. 입력 데이터 반환
 
-// 할 일 추가 모달
+// HTML DOM 요소 선택자
 const taskModal = document.querySelector(".modal-overlay--task");
-
-// 버튼
 const openBtn = document.querySelector(".td-controls__btn--add");
 const saveBtn = document.querySelector(".button__save");
 const cancelBtn = document.querySelector(".button__cancel");
-
-// 입력 요소
 const titleInput = document.querySelector(".modal__title");
 const contentInput = document.querySelector(".modal__content");
 const statusSelect = document.querySelector(".modal__status");
-
-// 우선순위 버튼
 const priorityBtns = document.querySelectorAll(".priority-container button");
 
-// 기본 우선순위 변수 선언
+// 초기화 모달 관련 요소
+const deleteModal = document.querySelector(".modal-overlay--reset");
+const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
+const confirmBtn = document.querySelector(".reset-modal-btn__delete");
+
 let selectedPriority = "mid";
 let currentEditId = null;
 
-// 1. 모달 열기/닫기
+// 1. 할 일 추가 / 수정 모달 열기 / 닫기
 export function openModal(e, editData = null) {
   if (e) e.preventDefault();
 
@@ -82,41 +80,78 @@ export function closeModal(e) {
     taskModal.classList.remove("active"); // active 클래스 제거
   }
 }
-// 2. 저장/취소 버튼 이벤트
+
+// 전체 초기화 모달 열기 / 닫기
+export function openResetModal() {
+  if (deleteModal) {
+    deleteModal.removeAttribute("hidden");
+    deleteModal.style.display = "flex";
+    deleteModal.classList.add("active");
+  }
+}
+
+export function closeResetModal(e) {
+  if (e) e.preventDefault();
+  if (deleteModal) {
+    deleteModal.hidden = true;
+    deleteModal.style.display = "none";
+    deleteModal.classList.remove("active");
+  }
+}
+
+// 메인 이벤트 리스너 세팅 및 진입
 export function initModal() {
-  // 새 할 일 버튼
-  if (openBtn) {
-    openBtn.addEventListener("click", (e) => openModal(e));
-  }
-
+  // 새 할 일
+  if (openBtn) {openBtn.addEventListener("click", (e) => openModal(e))};
   // 취소
-  if (cancelBtn) {
-    cancelBtn.addEventListener("click", closeModal);
-  }
+  if (cancelBtn) { cancelBtn.addEventListener("click", closeModal)};
 
+  
   // 저장
+
+  function handleSaveTodo() {
+    if (titleInput.value.trim() === "") {
+      alert("제목을 입력해 주세요!");
+      titleInput.focus();
+      return;
+    }
+    const todoData = getModalData();
+    if (currentEditId) { updateTodo(currentEditId, todoData);}
+    else {createTodo(todoData); }
+    refreshBoardWithFilter();
+    closeModal();
+  } 
+
   if (saveBtn) {
     saveBtn.addEventListener("click", (e) => {
-      e.preventDefault(); // 기본 동작 방지
-
-      if (titleInput.value.trim() === "") {
-        alert("제목을 입력해 주세요!");
-        titleInput.focus();
-        return;
-      }
-      const todoData = getModalData();
-
-      if (currentEditId) {
-        updateTodo(currentEditId, todoData);
-      } else {
-        createTodo(todoData);
-      }
-
-      refreshBoardWithFilter();
-
-      closeModal();
+      e.preventDefault();
+      handleSaveTodo();
     });
   }
+
+  [titleInput, contentInput].forEach((inputField) => {
+    if (!inputField) return;
+    inputField.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.isComposing) {
+        if (inputField === contentInput && e.shiftKey) {
+          return;
+        }
+
+        e.preventDefault();
+        handleSaveTodo();
+      }
+    });
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || e.key === "Esc") {
+      if (taskModal && taskModal.classList.contains("active")) {
+        closeModal(e);
+      }
+      if (deleteModal && deleteModal.classList.contains("active")) {
+        closeResetModal(e)
+      }
+    }
+  });
 
   // 배경 클릭 시 닫기
   if (taskModal) {
@@ -152,6 +187,7 @@ export function initModal() {
       });
     });
   }
+  initResetModal();
   return {
     openForEdit: (targetTodo) => {
       openModal(null, targetTodo);
@@ -171,61 +207,6 @@ export function getModalData() {
 
 //초기화 모달 작성//
 
-// 전체 초기화 버튼
-const resetBtn = document.querySelector(".td-controls__btn--reset");
-
-// 삭제 확인 모달
-const resetModal = document.querySelector(".modal-overlay--reset");
-
-// 모달 안 버튼
-const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
-const resetDeleteBtn = document.querySelector(".reset-modal-btn__delete");
-
-// 전체 초기화 버튼 클릭 → 모달 열기
-resetBtn.addEventListener("click", () => {
-  resetModal.hidden = false;
-});
-
-// 취소
-resetCancelBtn.addEventListener("click", () => {
-  resetModal.hidden = true;
-});
-
-// 삭제
-resetDeleteBtn.addEventListener("click", () => {
-  // 전체 초기화 코드 작성
-
-  // 이벤트 등록
-  if (resetCancelBtn) {
-    resetCancelBtn.addEventListener("click", closeResetModal);
-  }
-
-  if (resetDeleteBtn) {
-    resetDeleteBtn.addEventListener("click", () => {
-      closeResetModal();
-    });
-  }
-
-  resetModal.hidden = true;
-});
-
-// 모달 닫기
-function closeResetModal() {
-  resetModal.hidden = true;
-}
-
-// 취소 버튼
-resetCancelBtn.addEventListener("click", () => {
-  closeResetModal();
-});
-
-// 삭제 버튼
-resetDeleteBtn.addEventListener("click", () => {
-  console.log("전체 초기화 실행");
-
-  closeResetModal();
-});
-
 // 저장(설정) 모달
 const saveModalCancelBtn = document.querySelector(".button__cancel");
 
@@ -234,30 +215,22 @@ const saveModalCancelBtn = document.querySelector(".button__cancel");
 // --- 초기화 모달 이벤트 ---
 
 // 초기화 모달
-const deleteModal = document.querySelector(".modal-overlay--reset");
-const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
 export function initResetModal() {
-  // 초기화 버튼 → 모달 열기
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      deleteModal.hidden = false;
-    });
-  }
 
-  // 취소 버튼 → 모달 닫기
+  // 취소 버튼 클릭 시
   if (resetCancelBtn) {
     resetCancelBtn.addEventListener("click", () => {
-      deleteModal.hidden = true;
+      closeResetModal();
     });
   }
 
-  // 삭제 버튼 → 데이터 초기화
+  // 삭제 버튼 클릭 시
   if (confirmBtn) {
     confirmBtn.addEventListener("click", () => {
-      // 실제 초기화 코드 작성
-
-      deleteModal.hidden = true;
+      initTodos([]);
+      refreshBoardWithFilter();
+      closeResetModal();
     });
   }
 
@@ -265,7 +238,7 @@ export function initResetModal() {
   if (deleteModal) {
     deleteModal.addEventListener("click", (e) => {
       if (e.target === deleteModal) {
-        deleteModal.hidden = true;
+        closeResetModal();
       }
     });
   }
