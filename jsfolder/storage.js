@@ -5,16 +5,16 @@ const STORAGE_KEY = {
     TODOS: 'flowdash-todos',
     THEME: 'flowdash-theme',
     NICKNAME: 'flowdash-nickname',
-    PROFILE_COLOR: "flowdash-profile-color"
-    // FILTER: 'flowdash-filter', // 선택사항
-    // SORT: 'flowdash-sort' // 선택사항
+    PROFILE_COLOR: "flowdash-profile-color",
+    FILTER: 'flowdash-filters', // 선택사항
+    // SORT: 'flowdash-sort', // 선택사항
 }
 
 // ===== Todo =====
 export function loadTodos() {
     // LocalStorage에서 todos 데이터를 가져와서 반환
     const todos = localStorage.getItem(STORAGE_KEY.TODOS);
-
+    
     return todos ? JSON.parse(todos) : [];
 }
 
@@ -54,19 +54,13 @@ export function saveProfileColor(color) {
 }
 
 // ===== Filter =====
-export function loadFilter() {
+export function loadFilters() {
     // LocalStorage에서 filter 데이터를 가져와서 반환
+    const filter = localStorage.getItem(STORAGE_KEY.FILTER);
+    return filter ? JSON.parse(filter) : null;
 }
 
-export function saveFilter(filter) {
+export function saveFilters(filters) {
     // LocalStorage에 filter 데이터를 저장
-}
-
-// ===== Sort =====
-export function loadSort() {
-    // LocalStorage에서 sort 데이터를 가져와서 반환
-}
-
-export function saveSort(sort) {
-    // LocalStorage에 sort 데이터를 저장
+    localStorage.setItem(STORAGE_KEY.FILTER, JSON.stringify(filters));
 }
