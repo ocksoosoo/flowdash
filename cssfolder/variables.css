@@ -56,62 +56,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 200;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 300;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 800;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Chiron GoRound TC";
-  src: url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap")
-    format("woff2");
-  font-weight: 900;
-  font-display: swap;
-}
 
 /* variables */
 :root {
