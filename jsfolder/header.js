@@ -162,7 +162,7 @@ function editNickname() {
     const input = document.createElement('input');
     input.type = 'text';
     input.classList.add('td-header__nickname-input');
-    input.value = loadNickname();
+    input.value = loadNickname() || DEFAULT_NICKNAME;
 
     // Enter 시 닉네임 저장
     input.addEventListener('keydown', (e) => {
@@ -222,9 +222,13 @@ nickname.addEventListener('click', editNickname);
 // changeProfileColor(): 프로필 색상 랜덤 변경
 function changeProfileColor() {
     const randomColor = getRandomProfileColor();
+    const randomNickname = getRandomNickname();
 
     applyProfileColor(randomColor);
     saveProfileColor(randomColor);
+
+    nickname.textContent = randomNickname;
+    saveNickname(randomNickname);
 }
 // 랜덤 프로필 색상 클릭 이벤트
 profile.addEventListener('click', changeProfileColor);
@@ -242,13 +246,7 @@ export function initHeader() {
 
     // 닉네임
     let savedNickname = loadNickname();
-
-    if (!savedNickname) {
-        savedNickname = getRandomNickname();
-        saveNickname(savedNickname);
-    }
-
-    nickname.textContent = savedNickname;
+    nickname.textContent = savedNickname || DEFAULT_NICKNAME;
 
     // 색상
     const savedColor = loadProfileColor();
