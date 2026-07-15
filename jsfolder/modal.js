@@ -66,7 +66,7 @@ export function openModal(e, editData = null) {
       const midBtn = document.querySelector(".priority__mid");
       if (midBtn) midBtn.classList.add("active");
 
-      if (saveBtn) saveBtn.textContent = "저장하기";
+      if (saveBtn) saveBtn.textContent = "저장";
     }
   }
   if (titleInput) {
