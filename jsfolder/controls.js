@@ -141,9 +141,9 @@ function notifyFilterChange(activeTagsContainer) {
 function renderTags(container) {
   container.replaceChildren();
   const tags = [
-    createTag("priority", filterState.priority),
-    createTag("period", filterState.period),
-    createTag("sort", filterState.sort),
+    createTag("period", filterState.period),      // 기간 뱃지
+    createTag("priority", filterState.priority),  // 정렬 뱃지
+    createTag("sort", filterState.sort),          // 우선순위 뱃지
   ].filter(Boolean);
 
   container.append(...tags);
@@ -166,27 +166,8 @@ function createTag(category, value) {
 // 전역 할 일 배열을 가공하여 현재 켜져 있는 검색어, 필터 조건, 정렬 기준을 통과한 값 반환
 export function getFilteredTodos(todos, filters) {
   let result = [...todos];
-
-  // 텍스트 키워드 필터링 (할 일 제목 또는 할 일 내용 글자 포함 여부 검사)
-  if (filters.keyword) {
-    const keyword = filters.keyword.toLowerCase();
-
-    result = result.filter((todo) => {
-      return (
-        todo.title.toLowerCase().includes(keyword) ||
-        (todo.content ?? "").toLowerCase().includes(keyword)
-      );
-    });
-  }
-
-  // 우선순위 필터링 (높음, 중간, 낮음, 값이 설정된 데이터만 추출)
-  if (filters.priority !== "all") {
-    result = result.filter(
-      (todo) => todo.priority === filters.priority
-    );
-  }
-
-  // 오늘 하루 동안 생성 / 수정된 카드 판별 
+  
+  // 오늘 하루 동안 생성 / 수정된 카드 판별 (기간 필터)
   if (filters.period !== "all") {
     const now = Date.now();
 
@@ -194,31 +175,53 @@ export function getFilteredTodos(todos, filters) {
       const date = new Date(todo.updatedAt || todo.createdAt).getTime();
 
       if (filters.period === "today") {
-      const today = new Date();
+        const today = new Date();
 
-      return (
-        new Date(date).toDateString() === today.toDateString()
-      );
-}
+        return (
+          new Date(date).toDateString() === today.toDateString()
+        );
+      }
       // 최근 7일(밀리초 연산) 이내에 생성 / 수정된 카드 판별
       if (filters.period === "week") {
         return now - date <= 7 * 24 * 60 * 60 * 1000;
       }
-
+      
       return true;
     });
   }
-  // 오름차순 / 내림차순 날짜 정렬 (원본 훼손 및 동기화 누락을 막기 위해 안전하게 분리 가공 연산 처리)
-  const sortedResult = [...result].sort((a, b) => {
-    const dateA = new Date(a.updatedAt || a.createdAt).getTime();
-    const dateB = new Date(b.updatedAt || b.createdAt).getTime()
 
-    if (filters.sort === "asc") {
-      return dateA - dateB; // 오름차순 정렬 (과거순)
-    }
-    return dateB - dateA; // 내림차순 정렬 (최신순)
+// 오름차순 / 내림차순 날짜 정렬 (원본 훼손 및 동기화 누락을 막기 위해 안전하게 분리 가공 연산 처리)
+const sortedResult = [...result].sort((a, b) => {
+  const titleA = a.title ?? "";
+  const titleB = b.title ?? "";
+  
+  if (filters.sort === "asc") {
+    return titleA.localeCompare(titleB, "ko"); // 오름차순 (가나다순 / A to Z)
+  }
+  return titleB.localeCompare(titleA, "ko"); // 내림차순 (하파타순 / Z to A)
   });
 
-  // 모든 조건 필터링과 시간 정렬 연산이 완벽히 끝난 최후의 정제된 배열을 보드 렌더러에 쏴줌
-  return sortedResult;
-  };
+// 텍스트 키워드 필터링 (할 일 제목 또는 할 일 내용 글자 포함 여부 검사)
+if (filters.keyword) {
+  const keyword = filters.keyword.toLowerCase();
+
+  result = result.filter((todo) => {
+    return (
+      todo.title.toLowerCase().includes(keyword) ||
+      (todo.content ?? "").toLowerCase().includes(keyword)
+    );
+  });
+  }
+
+// 우선순위 필터링 (높음, 중간, 낮음, 값이 설정된 데이터만 추출)
+  if (filters.priority !== "all") {
+    result = result.filter(
+      (todo) => todo.priority === filters.priority
+    );
+  }
+  
+
+  
+  // 고정 순서 기간 -> 정렬 -> 검색을 모두 통과한 최종 결과 반환
+  return result;
+};
