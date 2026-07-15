@@ -3,6 +3,7 @@
 // 데이터 초기화 부분만 데이터 변경 O, todo 데이터 생성, 수정, 삭제는 main.js에서 작성
 
 import { refreshBoardWithFilter } from "./board.js";
+import { openResetModal } from "./modal.js";
 
 const SELECTOR = {
   searchInput: ".td-controls__search-input",
@@ -89,6 +90,12 @@ function bindEvents(elements) {
     resetButton,
     activeTagsContainer,
   } = elements;
+
+  if (resetButton) {
+    resetButton.addEventListener("click", (e) => {
+      openResetModal();
+    });
+  }
 
   searchInput.addEventListener("input", (event) => {
     filterState.keyword = event.currentTarget.value;
