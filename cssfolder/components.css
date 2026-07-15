@@ -460,12 +460,13 @@ textarea:focus {
 
 .modal__priority-status-container {
   display: grid;
-  grid-template-columns: 1fr 186px;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   align-items: end;
 }
 
 .priority-container {
+  width: 100%;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -474,6 +475,8 @@ textarea:focus {
 .priority__high,
 .priority__mid,
 .priority__low {
+  flex: 1;
+  text-align: center;
   padding: 8px 14px;
   border: 1px solid var(--theme-outline);
   color: var(--theme-font-main);
