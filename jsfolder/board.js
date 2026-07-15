@@ -6,7 +6,7 @@ import { getFilterState, getFilteredTodos } from "./controls.js";
 import { initStatistics } from "./stats.js";
 // board.js (오류 방지 안전장치 보완 버전)
 
-function formatDate(timestamp) { 
+function formatDate(timestamp) {
   if (!timestamp) return "";
   const date = new Date(timestamp);
   const year = date.getFullYear();
@@ -53,17 +53,61 @@ export function refreshBoardWithFilter() {
   renderBoard(filteredTodos);
 }
 
+//카드 렌더개수
+const MAX_VISIBLE_CARDS = 3;
 function renderColumn(container, todos, handlers) {
+  // (기존유지)
   container.innerHTML = "";
 
+  //접힘중복
+  container.classList.remove("is-collapsed");
+
+  //버튼중복
+  const existingBtn = container.parentElement.querySelector(
+    ".td-board__toggle-btn",
+  );
+  if (existingBtn) {
+    existingBtn.remove();
+  }
+
+  // (기존유지)
   if (todos.length === 0) {
     container.appendChild(createEmpty());
     return;
   }
 
+  // (기존유지)
   todos.forEach((todo) => {
     container.appendChild(createCard(todo, handlers));
   });
+
+  //카드 기준 조건
+  if (todos.length > MAX_VISIBLE_CARDS) {
+    container.classList.add("is-collapsed");
+    const toggleBtn = document.createElement("button");
+
+    // CSS 클래스명
+    toggleBtn.className = "td-board__toggle-btn";
+
+    //개수
+    toggleBtn.textContent = `+ (${todos.length - MAX_VISIBLE_CARDS})`;
+
+    //이벤트 토글
+    toggleBtn.addEventListener("click", () => {
+      container.classList.toggle("is-collapsed");
+      toggleBtn.classList.toggle("is-open");
+
+      //상자 상태
+      if (container.classList.contains("is-collapsed")) {
+        toggleBtn.textContent = `+ (${todos.length - MAX_VISIBLE_CARDS})`;
+      } else {
+        toggleBtn.textContent = "-";
+      }
+    });
+
+    //화면렌더
+    container.parentElement.appendChild(toggleBtn);
+  }
 }
 
 function createCard(todo, handlers) {
