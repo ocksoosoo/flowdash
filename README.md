@@ -23,10 +23,10 @@ CRUD, 기간 필터, 통계, 테마 및 UX 요소를 포함하며
 
 | 이름 | 역할 | 주요 담당 업무 |
 | :--- | :--- | :--- |
-| **최현옥** | **Team Lead**<br>• Web UI/UX 디자인<br>• Header 개발 | • 프로젝트 총괄 및 일정 관리<br>• Header 스타일링 및 JS 기능 구현 (다크모드 토글)<br>• LocalStorage 데이터 관리 로직 설계<br>• 모달(Modal) 마크업 구조 설계 |
+| **최현옥** | **Team Lead**<br>• Web UI/UX 디자인<br>• Header CSS 및 JS 개발 | • 프로젝트 총괄 및 일정 관리<br>• Header 스타일링 및 JS 기능 구현 (다크모드 토글)<br>• LocalStorage 데이터 관리 로직 설계<br>• 모달(Modal) 마크업 구조 설계 |
 | **김명서** | **Tech Lead (반응형/테마)**<br>• Mobile UI/UX 디자인<br>• Modal JS 개발 | • 다크모드 공통 CSS 변수(Variables) 설계 및 관리<br>• 모바일 및 태블릿 반응형 레이아웃 구현<br>• 모달(Modal) 기능 관련 JS 로직 개발 |
-| **나민우** | **Markup Lead**<br>• Stats 개발 | • 메인 HTML 레이아웃 및 웹 표준 구조 설계<br>• 통계 대시보드 UI 구현<br>• 모바일 카드 펼치기/숨기기 기능 구현
-| **황상빈** | **CSS Lead**<br>• Kanban Board 개발 | • 전체 프로젝트 CSS 공통 레이아웃 시스템 설계<br>• 모달(Modal) 컴포넌트 세부 스타일링<br>• 칸반 보드 CRUD(등록/조회/수정/삭제) 및 검색·필터·정렬 기능 구현 |
+| **나민우** | **Markup Lead**<br>• Stats CSS 및 JS 개발 | • 메인 HTML 레이아웃 및 웹 표준 구조 설계<br>• 통계 대시보드 UI 구현<br>• 모바일 카드 펼치기/숨기기 기능 구현
+| **황상빈** | **CSS Lead**<br>• Kanban Board JS 개발 | • 전체 프로젝트 CSS 공통 레이아웃 시스템 설계<br>• 모달(Modal) 컴포넌트 세부 스타일링<br>• 칸반 보드 CRUD(등록/조회/수정/삭제) 및 검색·필터·정렬 기능 구현 |
 
 > **공동 작업:** 팀원 전원이 CSS/JS 세부 구현에 유기적으로 참여함
 ---
