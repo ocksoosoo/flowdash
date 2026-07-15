@@ -582,7 +582,6 @@ button.priority__low.active {
 .reset-modal-btn__cancel {
   background-color: var(--theme-box);
   border: 1px solid var(--theme-outline);
-  color: var(--color-font);
 }
 
 .reset-modal-btn__delete {
