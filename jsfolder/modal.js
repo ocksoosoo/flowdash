@@ -235,8 +235,6 @@ const saveModalCancelBtn = document.querySelector(".button__cancel");
 
 // 초기화 모달
 const deleteModal = document.querySelector(".modal-overlay--reset");
-const resetBtn = document.querySelector(".td-controls__btn--reset");
-const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
 const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
 export function initResetModal() {
