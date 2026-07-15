@@ -206,18 +206,16 @@ export function getFilteredTodos(todos, filters) {
       return true;
     });
   }
-
-  // 정렬
-  result.sort((a, b) => {
-    const dateA = new Date(a.updatedAt || a.createdAt);
-    const dateB = new Date(b.updatedAt || b.createdAt);
+  const sortedResult = [...result].sort((a, b) => {
+    const dateA = new Date(a.updatedAt || a.createdAt).getTime();
+    const dateB = new Date(b.updatedAt || b.createdAt).getTime()
 
     if (filters.sort === "asc") {
       return dateA - dateB;
     }
-
     return dateB - dateA;
-  });
+  });  
+  return sortedResult;
+  };
 
-  return result;
-}
+
