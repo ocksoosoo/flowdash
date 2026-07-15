@@ -35,7 +35,6 @@ initHeader(getTodos());
 initControls();
 
 initModal();
-initResetModal();
 
 refreshBoardWithFilter();
 }

@@ -1,4 +1,4 @@
-import { createTodo, updateTodo, initTodos } from "./todo.js";
+import { createTodo, updateTodo, initTodos, deleteTodo } from "./todo.js";
 import { refreshBoardWithFilter } from "./board.js";
 // modal.js
 // 1. 모달 열기/닫기
@@ -19,9 +19,12 @@ const priorityBtns = document.querySelectorAll(".priority-container button");
 const deleteModal = document.querySelector(".modal-overlay--reset");
 const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
 const confirmBtn = document.querySelector(".reset-modal-btn__delete");
+const resetBtn = document.querySelector(".td-controls__btn--reset");
 
 let selectedPriority = "mid";
 let currentEditId = null;
+
+let currentDeleteTargetId = null;
 
 // 1. 할 일 추가 / 수정 모달 열기 / 닫기
 export function openModal(e, editData = null) {
@@ -82,8 +85,27 @@ export function closeModal(e) {
 }
 
 // 전체 초기화 모달 열기 / 닫기
-export function openResetModal() {
+export function openResetModal(e = null, id = null) {
+  if (e && typeof e.preventDefault === "function") e.preventDefault();
+
+  currentDeleteTargetId = id;
+
   if (deleteModal) {
+    const messageSpans = deleteModal.querySelectorAll(".reset-modal__message span"); 
+    const deleteButton = deleteModal.querySelector(".reset-modal-btn__delete");     
+
+    if (messageSpans && messageSpans.length >= 2) {
+      if (id) {
+        messageSpans[0].textContent = "이 할 일을 정말 삭제하시겠습니까?";
+        messageSpans[1].textContent = "삭제 후엔 데이터를 되돌릴 수 없습니다.";
+        if (deleteButton) deleteButton.textContent = "삭제";
+      } else {
+        messageSpans[0].textContent = "정말 초기화 하시겠습니까?";
+        messageSpans[1].textContent = "초기화 후엔 되돌릴 수 없습니다.";
+        if (deleteButton) deleteButton.textContent = "초기화"; 
+      }
+    }
+
     deleteModal.removeAttribute("hidden");
     deleteModal.style.display = "flex";
     deleteModal.classList.add("active");
@@ -91,11 +113,12 @@ export function openResetModal() {
 }
 
 export function closeResetModal(e) {
-  if (e) e.preventDefault();
+  if (e && typeof e.preventDefault === "function") e.preventDefault();
   if (deleteModal) {
     deleteModal.hidden = true;
     deleteModal.style.display = "none";
     deleteModal.classList.remove("active");
+    currentDeleteTargetId = null;
   }
 }
 
@@ -144,12 +167,8 @@ export function initModal() {
   });
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape" || e.key === "Esc") {
-      if (taskModal && taskModal.classList.contains("active")) {
-        closeModal(e);
-      }
-      if (deleteModal && deleteModal.classList.contains("active")) {
-        closeResetModal(e)
-      }
+      if (taskModal && taskModal.classList.contains("active")) closeModal(e);
+      if (deleteModal && deleteModal.classList.contains("active")) closeResetModal(e);
     }
   });
 
@@ -230,7 +249,12 @@ export function initResetModal() {
   // 삭제 버튼 클릭 시
   if (confirmBtn) {
     confirmBtn.addEventListener("click", () => {
-      initTodos([]);
+      if (currentDeleteTargetId) {
+        deleteTodo(Number(currentDeleteTargetId));
+      } else {
+        initTodos([]);
+      }
+
       refreshBoardWithFilter();
       closeResetModal();
     });
