@@ -171,6 +171,9 @@ export function getModalData() {
 
 //초기화 모달 작성//
 
+// 전체 초기화 버튼
+const resetBtn = document.querySelector(".td-controls__btn--reset");
+
 // 저장(설정) 모달
 const saveModalCancelBtn = document.querySelector(".button__cancel");
 
@@ -183,6 +186,12 @@ const deleteModal = document.querySelector(".modal-overlay--reset");
 const resetBtn = document.querySelector(".td-controls__btn--reset");
 const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
 const confirmBtn = document.querySelector(".reset-modal-btn__delete");
+// 삭제 확인 모달
+const resetModal = document.querySelector(".modal-overlay--reset");
+
+// 모달 안 버튼
+const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
+const resetDeleteBtn = document.querySelector(".reset-modal-btn__delete");
 
 export function initResetModal() {
   // 초기화 버튼 → 모달 열기
@@ -191,6 +200,10 @@ export function initResetModal() {
       deleteModal.hidden = false;
     });
   }
+  // 전체 초기화 버튼 클릭 → 모달 열기
+  resetBtn.addEventListener("click", () => {
+    resetModal.hidden = false;
+  });
 
   // 취소 버튼 → 모달 닫기
   if (resetCancelBtn) {
@@ -217,3 +230,57 @@ export function initResetModal() {
     });
   }
 }
+// 전체 초기화 버튼
+const resetBtn = document.querySelector(".td-controls__btn--reset");
+
+// 삭제 확인 모달
+const resetModal = document.querySelector(".modal-overlay--reset");
+
+// 모달 안 버튼
+const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
+const resetDeleteBtn = document.querySelector(".reset-modal-btn__delete");
+
+// 전체 초기화 버튼 클릭 → 모달 열기
+resetBtn.addEventListener("click", () => {
+  resetModal.hidden = false;
+});
+
+// 취소
+resetCancelBtn.addEventListener("click", () => {
+  resetModal.hidden = true;
+});
+
+// 삭제
+resetDeleteBtn.addEventListener("click", () => {
+  // 전체 초기화 코드 작성
+
+  // 이벤트 등록
+  if (resetCancelBtn) {
+    resetCancelBtn.addEventListener("click", closeResetModal);
+  }
+
+  if (resetDeleteBtn) {
+    resetDeleteBtn.addEventListener("click", () => {
+      closeResetModal();
+    });
+  }
+
+  resetModal.hidden = true;
+});
+
+// 모달 닫기
+function closeResetModal() {
+  resetModal.hidden = true;
+}
+
+// 취소 버튼
+resetCancelBtn.addEventListener("click", () => {
+  closeResetModal();
+});
+
+// 삭제 버튼
+resetDeleteBtn.addEventListener("click", () => {
+  console.log("전체 초기화 실행");
+
+  closeResetModal();
+});
