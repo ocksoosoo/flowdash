@@ -173,34 +173,47 @@ export function getModalData() {
 
 // 저장(설정) 모달
 const saveModalCancelBtn = document.querySelector(".button__cancel");
-const saveBtn = document.querySelector(".button__save");
 
 // 초기화(삭제) 모달
-const deleteModal = document.querySelector(".modal-overlay--reset");
-const deleteBtn = document.querySelector(".delete-btn");
-const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
-const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
 // --- 초기화 모달 이벤트 ---
 
-// 모달 열기
-if (deleteBtn) {
-  deleteBtn.addEventListener("click", () => {
-    deleteModal.hidden = false;
-  });
-}
+// 초기화 모달
+const deleteModal = document.querySelector(".modal-overlay--reset");
+const resetBtn = document.querySelector(".td-controls__btn--reset");
+const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
+const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
-// 모달 닫기
-if (resetCancelBtn) {
-  resetCancelBtn.addEventListener("click", () => {
-    deleteModal.hidden = true;
-  });
-}
+export function initResetModal() {
+  // 초기화 버튼 → 모달 열기
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      deleteModal.hidden = false;
+    });
+  }
 
-// 삭제
-if (confirmBtn) {
-  confirmBtn.addEventListener("click", () => {
-    // 삭제 코드
-    deleteModal.hidden = true;
-  });
+  // 취소 버튼 → 모달 닫기
+  if (resetCancelBtn) {
+    resetCancelBtn.addEventListener("click", () => {
+      deleteModal.hidden = true;
+    });
+  }
+
+  // 삭제 버튼 → 데이터 초기화
+  if (confirmBtn) {
+    confirmBtn.addEventListener("click", () => {
+      // 실제 초기화 코드 작성
+
+      deleteModal.hidden = true;
+    });
+  }
+
+  // 모달 배경 클릭 → 닫기
+  if (deleteModal) {
+    deleteModal.addEventListener("click", (e) => {
+      if (e.target === deleteModal) {
+        deleteModal.hidden = true;
+      }
+    });
+  }
 }
