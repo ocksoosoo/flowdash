@@ -188,6 +188,8 @@ flowdash/
 - [✔️] `user-selet: none;` 를 추가하여 사용에 불편함 최소화
 - [✔️] `Enter` 및 `ESC` 키로 저장 및 닫기 구현 (`shift + Enter` 시 줄바꿈)
 - [✔️] 필터를 localstage에 저장하여 새로고침 시 필터 유지
+- [✔️] 보드 크기 개별 적용
+
 
 ## 6. 트러블슈팅(Troubleshooting)
 

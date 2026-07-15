@@ -168,10 +168,7 @@ export function initModal() {
       // !e.isComposing으로 한글 입력기 완성 타이밍의 중복 실행 버그 방어
       if (e.key === "Enter" && !e.isComposing) {
         // 내용 입력창 안에서 shift + Enter 조합 시 줄바꿈
-        if (inputField === contentInput && e.shiftKey) {
-          return;
-        }
-
+        if (inputField === contentInput && e.shiftKey) return;
         e.preventDefault(); // 엔터 고유의 브라우저 개행 / 제출 동작 방지
         handleSaveTodo();   // 저장 프로세스 가동
       }
