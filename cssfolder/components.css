@@ -20,7 +20,7 @@ body {
   height: 70px;
   border-radius: 50%;
   background: #ff9999;
-
+  flex-shrink: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -228,6 +228,9 @@ li svg {
   border: 1px solid var(--theme-outline);
   border-radius: var(--bor-m);
   padding: var(--pad-xs) var(--pad-m);
+}
+.td-controls__search-box button {
+  height: 15px;
 }
 
 .td-controls__select {
