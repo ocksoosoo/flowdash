@@ -1,0 +1,58 @@
+@import "./variables.css";
+
+:root {
+  --theme-bg: var(--color-bg); /* 배경 */
+  --theme-totaltask: var(--color-gradi); /* total task */
+  --theme-graph: var(--color-gradi); /* 원형그래프 */
+  --theme-profileline: var(--color-gradi); /* 프로필 부분 테두리 */
+  --theme-profilebtn: var(--color-gradi); /* 다크모드 전환 버튼 */
+  --theme-outline: var(--color-outline); /* 테두리 */
+  --theme-working: var(--color-working); /* 진행중 */
+  --theme-complete: var(--color-complete); /* 완료 */
+  --theme-worknot: var(--color-worknot); /* 할일이 없습니다*/
+  --theme-workdate: var(--color-workdate); /*  할일,진행중,완료 날짜 색 */
+  --theme-font-main: var(--color-font); /* 글자색 */
+  --theme-font-accent: var(--color-em); /* 글자색 (강조) */
+  --theme-round: var(--color-em); /* 숫자 칸 동그라미 */
+  --theme-number: var(--color-box); /* 진행상황 표시 숫자 */
+  --theme-box: var(--color-box); /* 상자 */ /* 모듈 배경도 같은 색으로 감 */
+  --theme-cancel: var(--color-cancel); /* 모듈 취소 글자 색 */
+  --theme-mdtitle: var(--color-title); /* 모듈 제목 (새 할일) */
+  --theme-txt-high: var(
+    --color-txt-high
+  ); /* 높음 글자 */ /* 모듈과 메인 동일하게 간다 */
+  --theme-box-high: var(--color-box-high); /* 높음 박스 */
+  --theme-txt-mid: var(--color-txt-mid); /* 중간 글자 */
+  --theme-box-mid: var(--color-box-mid); /* 중간 박스 */
+  --theme-txt-low: var(--color-txt-low); /* 낮음 글자 */
+  --theme-box-low: var(--color-box-low); /* 낮음 박스 */
+}
+
+body.dark {
+  --theme-bg: var(--color-bg-dk); /* 배경 */
+  --theme-totaltask: var(--color-gradi-dk); /* total task */
+  --theme-graph: var(--color-gradi-dk); /* 원형그래프 */
+  --theme-profileline: var(--color-gradi-dk); /* 프로필 부분 테두리 */
+  --theme-profilebtn: var(--color-gradi-dk); /* 다크모드 전환 버튼 */
+  --theme-outline: var(--color-outline-dk); /* 테두리 */
+  --theme-working: var(--color-working-dk); /* 진행중 */
+  --theme-complete: var(--color-complete-dk); /* 완료 */
+  --theme-worknot: var(--color-worknot-dk); /* 할일이 없습니다*/
+  --theme-worktxt: var(--color-worktxt-dk); /* 진행상황 박스 글자 색 */
+  --theme-workdate: var(--color-workdate); /*  할일,진행중,완료 날짜 색 */
+  --theme-font-main: var(--color-font-dk); /* 글자색 */
+  --theme-font-accent: var(--color-em-dk); /* 글자색 (강조) */
+  --theme-round: var(--color-em-dk); /* 숫자 칸 동그라미 */
+  --theme-number: var(--color-box-dk); /* 진행상황 표시 숫자 */
+  --theme-box: var(--color-box-dk); /* 상자 */ /* 모듈 배경도 같은 색으로 감 */
+  --theme-cancel: var(--color-cancel-dk); /* 모듈 취소 글자 색 */
+  --theme-mdtitle: var(--color-title-dk); /* 모듈 제목 (새 할일) */
+  --theme-txt-high: var(
+    --color-txt-high
+  ); /* 높음 글자 */ /* 모듈과 메인 동일하게 간다 */
+  --theme-box-high: var(--color-box-high); /* 높음 박스 */
+  --theme-txt-mid: var(--color-txt-mid); /* 중간 글자 */
+  --theme-box-mid: var(--color-box-mid); /* 중간 박스 */
+  --theme-txt-low: var(--color-txt-low); /* 낮음 글자 */
+  --theme-box-low: var(--color-box-low); /* 낮음 박스 */
+}

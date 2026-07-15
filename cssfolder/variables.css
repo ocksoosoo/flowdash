@@ -1,0 +1,128 @@
+/* 글꼴 */
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2")
+    format("woff2");
+  font-weight: 100;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2")
+    format("woff2");
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2")
+    format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
+
+/* variables */
+:root {
+  /* 색상 */
+  --color-gradi: linear-gradient(180deg, #fff099 30%, #ffa8a8 100%);
+  --color-bg: #fff2ea;
+  --color-outline: #ecdec4;
+  --color-box: #fff;
+  --color-worknot: #8d7171;
+  --color-working: #fff099;
+  --opacity-20: 20%; /* 진행중 요소 박스 - opacity:20% */
+  --color-workdate: #98a4b3;
+  --color-font: #443434;
+  --color-complete: #f6f7f9;
+  --opacity-70: 70%; /*할 일 완료 박스 - opacity:70% */
+  --color-em: #ec8d8d;
+
+  /* 다크모드 */
+  --color-gradi-dk: linear-gradient(180deg, #ffa3e2 30%, #e287e5 100%);
+  --color-bg-dk: #010031;
+  --color-outline-dk: #dab5f3;
+  --color-box-dk: #666a75;
+  --color-worknot-dk: #e9dae1;
+  --color-worktxt-dk: #1a1960; /* 진행상황 표시 박스 3개 */
+  --color-working-dk: #fff1f7;
+  --opacity-80: 80%;
+  --color-font-dk: #fff1f7; /* 진행중 요소 박스 - opacity:80% */
+  --color-complete-dk: #f6f7f9;
+  --color-em-dk: #ffe851;
+
+  /*모듈*/
+  /*배경은 요소 배경과 같은색을 쓰고, 테두리와 글자는 각각의 모드와 같은 테두리, 글자 색을 사용한다*/
+  /*높음, 중간, 낮음 칸은 모드 상관없이 같은 색을 사용한다*/
+  --color-title: #1b2432;
+  --color-title-dk: #f1f2f4;
+  --color-cancel: #5c6f8a;
+  --color-cancel-dk: #abb1ba;
+  --color-txt-high: #f25a5a;
+  --color-box-high: #ffebeb;
+  --color-txt-mid: #f49d25;
+  --color-box-mid: #ffebeb;
+  --color-txt-low: #29a366;
+  --color-box-low: #cae8d9;
+
+  /* 폰트 크기 */
+  --font-sm: 1rem;     /* 16px */
+  --font-md: 1.25rem;  /* 20px */
+  --font-lg: 1.5rem;   /* 24px */
+  --font-xl: 2rem;     /* 32px */
+  --font-xxl: 2.25rem; /* 36px */
+
+  /* 모바일 폰트 크기 */
+  --mfont-sm: 0.75rem; /* 12px */
+  --mfont-md: 1rem;
+  --mfont-lg: 1.25rem;
+  --mfont-xl: 1.5rem;
+
+  /* padding */
+  --pad-xs: 4px;
+  --pad-s: 8px;
+  --pad-m: 16px;
+  --pad-l: 24px;
+  --pad-xl: 32px;
+
+  /* border-radius */
+  --bor-s: 4px;
+  --bor-m: 8px;
+  --bor-l: 16px;
+  --bor-xl: 20px;
+}

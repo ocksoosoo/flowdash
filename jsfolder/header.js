@@ -1,0 +1,259 @@
+// header 내 기능 구현 JS 파일
+/*
+1. 시간대별 인사말
+2. 날짜 출력(Date 객체)
+3. 닉네임 인라인 수정 및 저장, enter 및 blur 이벤트 추가
+(시간 남으면 최초 1회 랜덤 닉네임 생성 기능 추가)
+4. 다크/라이트 모드 전환 및 저장
+5. header UI 관련 기능
+*/
+
+// ===== Import =====
+import { loadNickname, saveNickname, loadTheme, saveTheme, loadProfileColor, saveProfileColor } from './storage.js';
+
+
+// ===== Constants =====
+const DEFAULT_NICKNAME = "FlowDash";
+const ANIMALS = [
+    "고양이",
+    "토끼",
+    "강아지",
+    "개구리",
+    "병아리",
+    "햄스터",
+    "오리",
+    "펭귄",
+    "호랑이",
+    "돌고래",
+    "거북이",
+    "카피바라"
+];
+const ADJECTIVES = [
+    "행복한",
+    "졸린",
+    "귀여운",
+    "용맹한",
+    "차분한",
+    "행운의",
+    "멋진",
+    "아름다운",
+    "화려한",
+    "여유로운",
+    "재치있는"
+];
+const PROFILE_COLORS = [
+    "#FF8A80",
+    "#FFB74D",
+    "#FFD54F",
+    "#81C784",
+    "#4DD0E1",
+    "#64B5F6",
+    "#7986CB",
+    "#BA68C8",
+    "#F06292",
+    "#90A4AE",
+];
+
+// ===== DOM 요소 선택 =====
+    const body = document.querySelector('body');
+    const greeting = document.querySelector('.td-header__text-sub');
+    const nickname = document.querySelector('.td-header__brand-name');
+    const todayDate = document.querySelector('.td-header__date');
+    const profile = document.querySelector('.td-header__profile-frame');
+    const penSvg = document.querySelector('.pen');
+
+
+// ===== 유틸리티 & 검증 함수
+// getGreeting(): 시간 값 저장 및 시간대별 문자열 반환 함수
+function getGreeting() {
+     // 현재 시간의 hour만 가져오기
+     const hour = new Date().getHours();
+
+     if(hour >= 5 && hour < 11) {
+        return "좋은 아침이에요!";
+    } else if(hour >= 11 && hour < 17) {
+        return "좋은 오후예요!";
+    } else if(hour >= 17 && hour < 22) {
+        return "좋은 저녁이에요!";
+    } else {
+        return "안녕하세요!";
+    }
+}
+
+// 닉네임 예외 처리
+// checkNickname(): 닉네임 글자수 제한(2자 이상 10자 이하여야 함)
+function checkNicknameLength(nickname) {
+    const inputLength = nickname.length;
+    return inputLength >= 2 && inputLength <= 10;
+};
+
+// checkNicknameCharacter(): 
+function checkNicknameCharacter(nickname) {
+    const acceptedNickname = /^[가-힣a-zA-Z0-9_!@?\- ]+$/;
+    return acceptedNickname.test(nickname);
+}
+
+// getRandomNickname(): 닉네임 최초 생성시 1회에 한하여 랜덤 닉네임 생성
+function getRandomNickname() {
+    const adjectiveIndex = Math.floor(Math.random() * ADJECTIVES.length);
+    const animalIndex = Math.floor(Math.random() * ANIMALS.length);
+
+    const adjective = ADJECTIVES[adjectiveIndex];
+    const animal = ANIMALS[animalIndex];
+    const number = Math.floor(Math.random() * 90) + 10;
+
+    return `${adjective}${animal}${number}`;
+};
+
+// getRandomProfileColor(): 버튼 클릭시 프로필 이미지 색상 랜덤 교체
+function getRandomProfileColor() {
+    return PROFILE_COLORS[
+        Math.floor(Math.random() * PROFILE_COLORS.length)
+    ];
+};
+
+
+// ===== DOM 제어 및 렌더링 함수 =====
+// renderGreeting(): 시간대별로 다르게 인삿말을 바꿔주는 렌더링 함수
+function renderGreeting() {
+    greeting.textContent = getGreeting();
+};
+
+
+// updateDate(): 오늘 날짜로 업데이트하여 프로필 카드에 출력
+function updateDate() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const weekDays = [ 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const dayOfWeek = weekDays[date.getDay()];
+
+    const formattedDate = `${year}년 ${month}월 ${day}일 ${dayOfWeek}`;
+
+    todayDate.textContent = formattedDate;
+};
+
+
+// applyTheme(): 테마 적용 함수
+function applyTheme(theme) {
+    if(theme === "dark") {
+        body.classList.add('dark');
+    } else {
+        body.classList.remove('dark');
+    }
+}
+
+// applyProfileColor(): 색상 적용 함수
+function applyProfileColor(color) {
+    profile.style.backgroundColor = color;
+    nickname.style.color = color;
+    nickname.style.borderBottomColor = color;
+    penSvg.style.color = color;
+}
+
+
+// ===== 이벤트 핸들러 및 동작 함수 =====
+// editNickname(): input을 추가하여 닉네임을 수정하는 함수
+function editNickname() {
+    if(nickname.querySelector('input')) return;
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.classList.add('td-header__nickname-input');
+    input.value = loadNickname();
+
+    // Enter 시 닉네임 저장
+    input.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter') {
+            submitNickname(input);
+        }
+    });
+    // blur 시 닉네임 저장
+    input.addEventListener('blur', () => {
+        submitNickname(input);
+    });
+
+    nickname.textContent = '';
+    nickname.appendChild(input);
+    input.focus();
+    input.select();
+};
+
+
+// submiteNickname(): input 값을 불러와서 로컬 스토리지에 저장하고 렌더링하는 함수
+function submitNickname(input) {
+    const preNickname = loadNickname() || DEFAULT_NICKNAME;
+    const newNickname = input.value.trim() || preNickname;
+
+
+    // 글자수 검사 실패
+    if(!checkNicknameLength(newNickname)) {
+        input.value = preNickname;
+        nickname.textContent = preNickname;
+        return;
+    }
+    // 허용 문자 검사 실패
+    if(!checkNicknameCharacter(newNickname)) {
+        input.value= preNickname;
+        nickname.textContent = preNickname;
+        return;
+    }
+
+    //검사 통과시 local에 저장
+    saveNickname(newNickname);
+    nickname.textContent = newNickname;
+}
+
+const toggleBtn = document.querySelector('.td-header__toggle-btn');
+
+// 테마 토글
+toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    const currentTheme = body.classList.contains('dark')
+    ? 'dark'
+    : 'light';
+    saveTheme(currentTheme);
+});
+
+nickname.addEventListener('click', editNickname);
+
+// changeProfileColor(): 프로필 색상 랜덤 변경
+function changeProfileColor() {
+    const randomColor = getRandomProfileColor();
+
+    applyProfileColor(randomColor);
+    saveProfileColor(randomColor);
+}
+// 랜덤 프로필 색상 클릭 이벤트
+profile.addEventListener('click', changeProfileColor);
+
+
+// ===== 초기화 =====
+export function initHeader() {
+
+    updateDate();
+    renderGreeting();
+    
+    // 테마
+    const savedTheme = loadTheme() || 'light';
+    applyTheme(savedTheme);
+
+    // 닉네임
+    let savedNickname = loadNickname();
+
+    if (!savedNickname) {
+        savedNickname = getRandomNickname();
+        saveNickname(savedNickname);
+    }
+
+    nickname.textContent = savedNickname;
+
+    // 색상
+    const savedColor = loadProfileColor();
+
+    if (savedColor) {
+        applyProfileColor(savedColor);
+    } 
+};
