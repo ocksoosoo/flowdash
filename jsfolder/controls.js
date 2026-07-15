@@ -142,8 +142,8 @@ function renderTags(container) {
   container.replaceChildren();
   const tags = [
     createTag("period", filterState.period),      // 기간 뱃지
-    createTag("priority", filterState.priority),  // 정렬 뱃지
-    createTag("sort", filterState.sort),          // 우선순위 뱃지
+    createTag("priority", filterState.priority),  // 우선순위 뱃지
+    createTag("sort", filterState.sort),          // 정렬 뱃지
   ].filter(Boolean);
 
   container.append(...tags);
@@ -191,7 +191,7 @@ export function getFilteredTodos(todos, filters) {
   }
 
 // 오름차순 / 내림차순 날짜 정렬 (원본 훼손 및 동기화 누락을 막기 위해 안전하게 분리 가공 연산 처리)
-const sortedResult = [...result].sort((a, b) => {
+  result = [...result].sort((a, b) => {
   const titleA = a.title ?? "";
   const titleB = b.title ?? "";
   
