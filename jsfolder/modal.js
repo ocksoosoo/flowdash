@@ -170,26 +170,37 @@ export function getModalData() {
 }
 
 //초기화 모달 작성//
-// 삭제 모달
-const deleteModal = document.querySelector(".modal-overlay--reset");
 
-// 버튼
+// 저장(설정) 모달
+const saveModalCancelBtn = document.querySelector(".button__cancel");
+const saveBtn = document.querySelector(".button__save");
+
+// 초기화(삭제) 모달
+const deleteModal = document.querySelector(".modal-overlay--reset");
 const deleteBtn = document.querySelector(".delete-btn");
-const cancelBtn = document.querySelector(".reset-modal-btn__cancel");
+const resetCancelBtn = document.querySelector(".reset-modal-btn__cancel");
 const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
+// --- 초기화 모달 이벤트 ---
+
 // 모달 열기
-deleteBtn.addEventListener("click", () => {
-  deleteModal.hidden = false;
-});
+if (deleteBtn) {
+  deleteBtn.addEventListener("click", () => {
+    deleteModal.hidden = false;
+  });
+}
 
 // 모달 닫기
-cancelBtn.addEventListener("click", () => {
-  deleteModal.hidden = true;
-});
+if (resetCancelBtn) {
+  resetCancelBtn.addEventListener("click", () => {
+    deleteModal.hidden = true;
+  });
+}
 
 // 삭제
-confirmBtn.addEventListener("click", () => {
-  // 삭제 코드
-  deleteModal.hidden = true;
-});
+if (confirmBtn) {
+  confirmBtn.addEventListener("click", () => {
+    // 삭제 코드
+    deleteModal.hidden = true;
+  });
+}
