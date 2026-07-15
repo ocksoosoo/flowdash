@@ -235,7 +235,7 @@ a {
 }
 
 /* modal */
-/* 
+
 .modal-container,
 .reset-modal-container {
   position: fixed;
@@ -295,9 +295,9 @@ a {
   justify-content: flex-end;
   gap: 10px;
 }
-*/
+
 /* reset modal */
-/*
+
 .reset-modal-container {
   align-items: center;
   width: min(480px, calc(100% - 40px));
@@ -318,7 +318,7 @@ a {
   width: 100px;
   padding: 10px 0;
   text-align: center;
-} */
+} 
 
 /* tablet */
 @media (min-width: 736px) and (max-width: 1199px) {
@@ -464,7 +464,7 @@ a {
 
   /* modal */
 
-  /*.modal-container,
+  .modal-container,
   .reset-modal-container {
     position: fixed;
     top: 50%;
@@ -526,7 +526,7 @@ a {
 */
   /* reset modal */
 
-  /*
+  
   .reset-modal-container {
     align-items: center;
     width: min(480px, calc(100% - 40px));
@@ -548,7 +548,7 @@ a {
     padding: 10px 0;
     text-align: center;
   }
-  */
+  
 }
 
 /* mobile */
@@ -701,7 +701,7 @@ a {
 
   /* modal */
 
-  /*
+  
   .modal-container,
   .reset-modal-container {
     position: fixed;
@@ -761,11 +761,11 @@ a {
     justify-content: flex-end;
     gap: 10px;
   }
-*/
+
 
   /* reset modal */
 
-  /*
+  
   .reset-modal-container {
     align-items: center;
     width: min(480px, calc(100% - 40px));
@@ -787,5 +787,5 @@ a {
     padding: 10px 0;
     text-align: center;
   }
-  */
+  
 }
