@@ -582,11 +582,13 @@ button.priority__low.active {
 .reset-modal-btn__cancel {
   background-color: var(--theme-box);
   border: 1px solid var(--theme-outline);
+  color: var(--color-font);
 }
 
 .reset-modal-btn__delete {
   border: 0;
   background-color: var(--theme-font-accent);
+  color: var(--color-font);
 }
 
 /* 플로팅버튼 */
@@ -631,14 +633,14 @@ button.priority__low.active {
   background-color: var(--theme-box);
   border: 1px dashed var(--theme-outline);
   border-radius: var(--bor-m);
-  color: color-mix(in srgb, var(--theme-font-main) 70%, transparent);
+  color: color-mix(in srgb, var(--theme-font-main) 80%, transparent);
   cursor: pointer;
   font-size: 0.875rem;
 }
 /* 버튼 호버 물어보기 */
 .td-board__toggle-btn:hover {
-  background-color: #fff;
-  color: #000;
+  background: var(--theme-totaltask);
+  color: var(--theme-font-main);
 }
 
 /* 버튼 SVG 박스 */
@@ -649,12 +651,14 @@ button.priority__low.active {
   height: 14px;
   margin-left: 6px;
   /* SVG */
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23777777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23443434B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
   transition: transform 0.3s ease;
 }
-
+body.dark .td-board__toggle-btn::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23fff1f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
 /* is-open 180도 */
 .td-board__toggle-btn.is-open::after {
   transform: rotate(180deg);
