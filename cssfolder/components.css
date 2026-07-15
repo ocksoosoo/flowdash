@@ -638,8 +638,8 @@ button.priority__low.active {
 }
 /* 버튼 호버 물어보기 */
 .td-board__toggle-btn:hover {
-  background: var(--theme-totaltask);
-  color: var(--theme-font-main);
+  background: var(--theme-font-accent);
+  color: var(--color-font);
 }
 
 /* 버튼 SVG 박스 */
@@ -657,6 +657,10 @@ button.priority__low.active {
 }
 body.dark .td-board__toggle-btn::after {
   background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23fff1f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+body.dark .td-board__toggle-btn:hover::after {
+  /* 원하는 호버 색상(예: #ffffff)으로 바꾼 SVG 코드 */
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23443434' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 /* is-open 180도 */
 .td-board__toggle-btn.is-open::after {
