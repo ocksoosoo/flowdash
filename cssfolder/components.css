@@ -182,6 +182,8 @@ body.dark .td-header__darktheme-btn {
   right: 0;
   bottom: 0;
   background: var(--theme-totaltask);
+  border: 2px solid var(--theme-font-accent);
+  border-radius: var(--bor-l);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -213,13 +215,18 @@ body.dark .td-header__darktheme-btn {
   opacity: 0.2;
 }
 
+li svg {
+  color: var(--theme-font-accent);
+}
+
+
 /* controls */
 .td-controls__search-box {
   display: flex;
   align-items: center;
   background-color: var(--theme-box);
   border: 1px solid var(--theme-outline);
-  border-radius: var(--bor-xl);
+  border-radius: var(--bor-m);
   padding: var(--pad-xs) var(--pad-m);
 }
 
@@ -323,6 +330,11 @@ body.dark .td-header__darktheme-btn {
   border-radius: var(--bor-m);
   padding: var(--pad-m);
 }
+
+.td-card:hover {
+  border: 2px solid var(--theme-font-accent);
+}
+
 
 .td-card__badge {
   display: inline-flex;
