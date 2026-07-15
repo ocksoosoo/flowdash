@@ -1,9 +1,6 @@
+// modal.js
 import { createTodo, updateTodo, initTodos, deleteTodo } from "./todo.js";
 import { refreshBoardWithFilter } from "./board.js";
-// modal.js
-// 1. 모달 열기/닫기
-// 2. 저장/취소 버튼 이벤트
-// 3. 입력 데이터 반환
 
 // HTML DOM 요소 선택자
 const taskModal = document.querySelector(".modal-overlay--task");
@@ -23,7 +20,6 @@ const resetBtn = document.querySelector(".td-controls__btn--reset");
 
 let selectedPriority = "mid";
 let currentEditId = null;
-
 let currentDeleteTargetId = null;
 
 // 1. 할 일 추가 / 수정 모달 열기 / 닫기
@@ -129,7 +125,6 @@ export function initModal() {
   // 취소
   if (cancelBtn) { cancelBtn.addEventListener("click", closeModal)};
 
-  
   // 저장
 
   function handleSaveTodo() {
@@ -224,40 +219,51 @@ export function getModalData() {
   };
 }
 
-//초기화 모달 작성//
-
-// 저장(설정) 모달
-
-// 초기화(삭제) 모달
-
-// --- 초기화 모달 이벤트 ---
-
 // 초기화 모달
-
 export function initResetModal() {
 
-  // 취소 버튼 클릭 시
+  if (resetBtn) {
+    resetBtn.addEventListener("click", (e) => {
+      openResetModal(e, null); 
+    })
+  }
+
+  // 취소 버튼 클릭 시 모달 닫힘
   if (resetCancelBtn) {
     resetCancelBtn.addEventListener("click", () => {
       closeResetModal();
     });
   }
 
-  // 삭제 버튼 클릭 시
+  // 삭제 버튼 클릭 시 전체 필터 초기화 및 카드 초기화
   if (confirmBtn) {
     confirmBtn.addEventListener("click", () => {
+      // 개별 삭제 필터, 삭제 X
       if (currentDeleteTargetId) {
         deleteTodo(Number(currentDeleteTargetId));
+        refreshBoardWithFilter();
       } else {
-        initTodos([]);
-      }
+        // 전체 초기화
+        initTodos([]); // 모든 할 일 카드 배열 포맷
 
-      refreshBoardWithFilter();
-      closeResetModal();
+        localStorage.setItem("flowdash-filters", JSON.stringify({ keyword: "", period: "all", priority: "all", sort: "asc"}))
+
+        const searchInput = document.querySelector(".td-controls__search-input");
+        const selectList = document.querySelectorAll(".td-controls__select");
+
+        if (searchInput) searchInput.value = "";
+        if (selectList && selectList.length >= 3) {
+          selectList[0].value = "all"; // 기간 리셋
+          selectList[1].value = "all"; // 우선순위 리셋
+          selectList[2].value = "asc"; // 정렬 리셋
+        }
+
+        window.location.reload();
+      }
+      closeResetModal(); // 작업 완료 후 모달 닫기
     });
   }
-
-  // 모달 배경 클릭 → 닫기
+  // 모달 배경 클릭 시 닫기
   if (deleteModal) {
     deleteModal.addEventListener("click", (e) => {
       if (e.target === deleteModal) {
