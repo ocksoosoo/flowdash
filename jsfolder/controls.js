@@ -4,6 +4,7 @@
 
 import { refreshBoardWithFilter } from "./board.js";
 import { openResetModal } from "./modal.js";
+import { loadFilters, saveFilters } from "./storage.js"
 
 const SELECTOR = {
   searchInput: ".td-controls__search-input",
@@ -35,11 +36,13 @@ const TAG_LABELS = Object.freeze({
   },
 });
 
-let filterState = { ...FILTER_DEFAULTS };
+let filterState = loadFilters() || { ...FILTER_DEFAULTS };
 
 
 export function initControls() {
   const elements = getElements();
+
+  syncFiltersToDOM(elements);
 
   bindEvents(elements);
   renderTags(elements.activeTagsContainer);
@@ -50,14 +53,20 @@ export function getFilterState() {
   return { ...filterState };
 }
 
+function syncFiltersToDOM(elements) {
+  const { searchInput, periodSelect, prioritySelect, sortSelect} = elements;
+
+  if (searchInput) searchInput.value = filterState.keyword;
+  if (periodSelect) periodSelect.value = filterState.period;
+  if (prioritySelect) prioritySelect.value = filterState.priority;
+  if (sortSelect) sortSelect.value = filterState.sort;
+}
+
 function getElements() {
   const searchInput = document.querySelector(SELECTOR.searchInput);
   const selectList = document.querySelectorAll(SELECTOR.select);
   const resetButton = document.querySelector(SELECTOR.resetButton);
-  const activeTagsContainer = document.querySelector(
-    SELECTOR.activeTagsContainer,
-  );
-
+  const activeTagsContainer = document.querySelector(SELECTOR.activeTagsContainer);
   const [periodSelect, prioritySelect, sortSelect] = selectList;
 
   if (
@@ -78,7 +87,7 @@ function getElements() {
     sortSelect,
     resetButton,
     activeTagsContainer,
-  };
+  }
 }
 
 function bindEvents(elements) {
@@ -99,36 +108,28 @@ function bindEvents(elements) {
 
   searchInput.addEventListener("input", (event) => {
     filterState.keyword = event.currentTarget.value;
+    saveFilters(filterState);
     notifyFilterChange(activeTagsContainer);
   });
 
   periodSelect.addEventListener("change", (event) => {
     filterState.period = event.currentTarget.value;
+    saveFilters(filterState);
     notifyFilterChange(activeTagsContainer);
   });
 
   prioritySelect.addEventListener("change", (event) => {
     filterState.priority = event.currentTarget.value;
+    saveFilters(filterState);
     notifyFilterChange(activeTagsContainer);
   });
 
   sortSelect.addEventListener("change", (event) => {
     filterState.sort = event.currentTarget.value;
+    saveFilters(filterState);
     notifyFilterChange(activeTagsContainer);
   });
 
-  resetButton.addEventListener("click", () => {
-  filterState = { ...FILTER_DEFAULTS };
-
-  searchInput.value = "";
-  periodSelect.value = "all";
-  prioritySelect.value = "all";
-  sortSelect.value = "asc";
-
-  renderTags(activeTagsContainer);
-
-  refreshBoardWithFilter();
-});
 }
 
 function notifyFilterChange(activeTagsContainer) {
@@ -139,7 +140,6 @@ function notifyFilterChange(activeTagsContainer) {
 
 function renderTags(container) {
   container.replaceChildren();
-
   const tags = [
     createTag("priority", filterState.priority),
     createTag("period", filterState.period),
