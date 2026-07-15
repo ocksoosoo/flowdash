@@ -3,7 +3,7 @@
 > 공통 과제: 칸반 기반 태스크 관리 대시보드  
 > 팀원: 김명서, 나민우, 최현옥, 황상빈 
 > 저장소: [GitHub](https://github.com/ocksoosoo/flowdash)
-> 배포: [GitHub Pages](https://링크주소)
+> 배포: [GitHub Pages](https://ocksoosoo.github.io/flowdash/)
 
 ---
 
