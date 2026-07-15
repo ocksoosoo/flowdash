@@ -15,7 +15,7 @@ import { refreshBoardWithFilter } from "./board.js";
 import { initControls } from "./controls.js";
 
 // modal
-import { initModal } from './modal.js';
+import { initModal, initResetModal } from './modal.js';
 
 //todo
 import { getTodos } from "./todo.js";
@@ -35,7 +35,7 @@ initHeader(getTodos());
 initControls();
 
 initModal();
-
+initResetModal();
 
 refreshBoardWithFilter();
 }
