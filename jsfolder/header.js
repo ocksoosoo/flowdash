@@ -178,6 +178,7 @@ function editNickname() {
     nickname.textContent = '';
     nickname.appendChild(input);
     input.focus();
+    input.select();
 };
 
 
