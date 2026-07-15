@@ -227,15 +227,12 @@ export function getModalData() {
 //초기화 모달 작성//
 
 // 저장(설정) 모달
-const saveModalCancelBtn = document.querySelector(".button__cancel");
 
 // 초기화(삭제) 모달
 
 // --- 초기화 모달 이벤트 ---
 
 // 초기화 모달
-const deleteModal = document.querySelector(".modal-overlay--reset");
-const confirmBtn = document.querySelector(".reset-modal-btn__delete");
 
 export function initResetModal() {
 
