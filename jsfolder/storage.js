@@ -7,7 +7,6 @@ const STORAGE_KEY = {
     NICKNAME: 'flowdash-nickname',
     PROFILE_COLOR: "flowdash-profile-color",
     FILTER: 'flowdash-filters', // 선택사항
-    // SORT: 'flowdash-sort', // 선택사항
 }
 
 // ===== Todo =====
