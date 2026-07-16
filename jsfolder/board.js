@@ -140,8 +140,8 @@ function createCard(todo) {
       </span>
 
       <div class="td-card__action">
-        <button class="td-card__btn-edit" data-id="${todo.id}">${editIcon}</button>
-        <button class="td-card__btn-delete" data-id="${todo.id}">${deleteIcon}</button>
+        <button class="td-card__btn-edit" data-id="${todo.id}" aria-label="수정">${editIcon}</button>
+        <button class="td-card__btn-delete" data-id="${todo.id}" aria-label="삭제">${deleteIcon}</button>
       </div>
     </div>
 
@@ -165,14 +165,12 @@ function createCard(todo) {
     deleteBtn.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       openResetModal(e, todo.id);
     });
   }
   return card;
 }
-
-
 
 function createEmpty() {
   const empty = document.createElement("li");
